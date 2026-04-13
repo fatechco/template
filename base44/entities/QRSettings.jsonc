@@ -1,0 +1,76 @@
+{
+  "name": "QRSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "requirePaidPlan": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowedPlans": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of plan codes allowed to generate QR codes"
+    },
+    "maxQRCodesPerUser": {
+      "type": "number",
+      "default": 50
+    },
+    "maxQRCodesPerListing": {
+      "type": "number",
+      "default": 3
+    },
+    "defaultForegroundColor": {
+      "type": "string",
+      "default": "#FF6B00"
+    },
+    "defaultBackgroundColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "defaultLogoType": {
+      "type": "string",
+      "default": "kemedar"
+    },
+    "defaultFrameStyle": {
+      "type": "string",
+      "default": "branded"
+    },
+    "defaultFrameText": {
+      "type": "string",
+      "default": "Scan to view on Kemedar"
+    },
+    "defaultFrameTextAr": {
+      "type": "string",
+      "default": "\u0627\u0645\u0633\u062d \u0644\u0644\u0639\u0631\u0636 \u0639\u0644\u0649 \u0643\u064a\u0645\u062f\u0627\u0631"
+    },
+    "trackingBaseUrl": {
+      "type": "string",
+      "default": "https://kemedar.com/qr/"
+    },
+    "enableAnalytics": {
+      "type": "boolean",
+      "default": true
+    },
+    "pngResolution": {
+      "type": "number",
+      "default": 1000,
+      "description": "PNG output size in pixels (1000x1000)"
+    },
+    "svgSize": {
+      "type": "number",
+      "default": 500,
+      "description": "SVG output size in pixels"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

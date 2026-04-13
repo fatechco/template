@@ -1,0 +1,209 @@
+{
+  "name": "EscrowDeal",
+  "type": "object",
+  "properties": {
+    "dealNumber": {
+      "type": "string",
+      "description": "Auto-generated: KED-YYYYMMDD-XXXXX"
+    },
+    "buyerId": {
+      "type": "string"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "lawyerId": {
+      "type": "string"
+    },
+    "propertyId": {
+      "type": "string"
+    },
+    "negotiationSessionId": {
+      "type": "string"
+    },
+    "matchId": {
+      "type": "string"
+    },
+    "agreedPrice": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "agreedPricePerSqm": {
+      "type": "number"
+    },
+    "paymentStructure": {
+      "type": "string",
+      "enum": [
+        "full_cash",
+        "cash_installment",
+        "mortgage",
+        "developer_plan",
+        "mixed"
+      ],
+      "default": "full_cash"
+    },
+    "earnestMoneyAmount": {
+      "type": "number"
+    },
+    "earnestMoneyPercent": {
+      "type": "number"
+    },
+    "totalEscrowAmount": {
+      "type": "number"
+    },
+    "paymentSchedule": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "awaiting_deposit",
+        "deposit_received",
+        "in_progress",
+        "awaiting_completion",
+        "completed",
+        "disputed",
+        "cancelled",
+        "refunded",
+        "expired"
+      ],
+      "default": "draft"
+    },
+    "currentMilestone": {
+      "type": "string"
+    },
+    "completionPercent": {
+      "type": "number",
+      "default": 0
+    },
+    "depositDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completionDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dealStartedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dealCompletedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalDeposited": {
+      "type": "number",
+      "default": 0
+    },
+    "totalReleased": {
+      "type": "number",
+      "default": 0
+    },
+    "totalRefunded": {
+      "type": "number",
+      "default": 0
+    },
+    "platformFeeAmount": {
+      "type": "number"
+    },
+    "platformFeePercent": {
+      "type": "number"
+    },
+    "agentFeeAmount": {
+      "type": "number"
+    },
+    "franchiseOwnerFeeAmount": {
+      "type": "number"
+    },
+    "isDisputed": {
+      "type": "boolean",
+      "default": false
+    },
+    "disputeId": {
+      "type": "string"
+    },
+    "dealDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "buyerConfirmedCompletion": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerConfirmedCompletion": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sellerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "foInspectionRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "foInspectionCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "foInspectionNotes": {
+      "type": "string"
+    },
+    "buyerRatedSeller": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerRatedBuyer": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerRating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "sellerRating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "buyerReview": {
+      "type": "string"
+    },
+    "sellerReview": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "buyerId",
+    "sellerId",
+    "propertyId",
+    "agreedPrice"
+  ]
+}

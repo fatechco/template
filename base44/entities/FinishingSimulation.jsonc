@@ -1,0 +1,109 @@
+{
+  "name": "FinishingSimulation",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable for guests)"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "currentState": {
+      "type": "string",
+      "enum": [
+        "Core & Shell",
+        "Semi-Finished",
+        "Needs Renovation"
+      ]
+    },
+    "desiredStyle": {
+      "type": "string",
+      "enum": [
+        "Modern",
+        "Classic",
+        "Minimalist",
+        "Industrial",
+        "Bohemian"
+      ]
+    },
+    "desiredTier": {
+      "type": "string",
+      "enum": [
+        "Economy",
+        "Standard",
+        "Premium",
+        "Luxury"
+      ]
+    },
+    "smartHomeEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "centralAcEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "estimatedTotalMin": {
+      "type": "number"
+    },
+    "estimatedTotalMax": {
+      "type": "number"
+    },
+    "estimatedMaterialsCost": {
+      "type": "number"
+    },
+    "estimatedLaborCost": {
+      "type": "number"
+    },
+    "currencyId": {
+      "type": "string"
+    },
+    "estimatedWeeksMin": {
+      "type": "number"
+    },
+    "estimatedWeeksMax": {
+      "type": "number"
+    },
+    "aiGeneratedBoQ": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Detailed breakdown by category"
+    },
+    "aiShoppingList": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Itemized materials list"
+    },
+    "aiDesignAdvice": {
+      "type": "string"
+    },
+    "convertedToKemeworkTaskId": {
+      "type": "string",
+      "description": "Ref KemeworkTask, nullable"
+    },
+    "convertedToKemetroRfqId": {
+      "type": "string",
+      "description": "Ref KemetroShipmentRequest, nullable"
+    },
+    "requestedKemedarTurnkey": {
+      "type": "boolean",
+      "default": false
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "currentState",
+    "desiredStyle",
+    "desiredTier"
+  ]
+}

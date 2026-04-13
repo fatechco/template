@@ -1,0 +1,38 @@
+{
+  "name": "CRMPipelineStage",
+  "type": "object",
+  "properties": {
+    "pipelineId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "number"
+    },
+    "probability": {
+      "type": "number",
+      "description": "0-100 win probability"
+    },
+    "color": {
+      "type": "string"
+    },
+    "isClosedWon": {
+      "type": "boolean",
+      "default": false
+    },
+    "isClosedLost": {
+      "type": "boolean",
+      "default": false
+    },
+    "rottenAfterDays": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "pipelineId",
+    "name",
+    "order"
+  ]
+}

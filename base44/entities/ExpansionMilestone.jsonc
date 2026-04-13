@@ -1,0 +1,77 @@
+{
+  "name": "ExpansionMilestone",
+  "type": "object",
+  "properties": {
+    "marketId": {
+      "type": "string"
+    },
+    "milestoneCategory": {
+      "type": "string",
+      "enum": [
+        "legal",
+        "technical",
+        "commercial",
+        "team",
+        "marketing",
+        "regulatory"
+      ]
+    },
+    "milestoneName": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "pre_launch",
+        "soft_launch",
+        "full_launch",
+        "scale"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed",
+        "blocked",
+        "skipped"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "ownerId": {
+      "type": "string"
+    },
+    "ownerName": {
+      "type": "string"
+    },
+    "plannedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "completedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "blockerDescription": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "marketId",
+    "milestoneCategory",
+    "milestoneName",
+    "phase"
+  ]
+}

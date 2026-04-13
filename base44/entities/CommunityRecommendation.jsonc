@@ -1,0 +1,87 @@
+{
+  "name": "CommunityRecommendation",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "recommendedBy": {
+      "type": "string"
+    },
+    "recommendedByName": {
+      "type": "string"
+    },
+    "recommendedByUnit": {
+      "type": "string"
+    },
+    "recommendationType": {
+      "type": "string",
+      "enum": [
+        "professional",
+        "service",
+        "shop",
+        "restaurant",
+        "doctor",
+        "school",
+        "other"
+      ]
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "businessNameAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "contactWhatsapp": {
+      "type": "string"
+    },
+    "googleMapsUrl": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number"
+    },
+    "review": {
+      "type": "string"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kemeworkProfessionalId": {
+      "type": "string"
+    },
+    "helpfulVotes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalVotes": {
+      "type": "number",
+      "default": 0
+    },
+    "voterIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "communityId",
+    "recommendedBy",
+    "businessName",
+    "rating",
+    "review"
+  ]
+}

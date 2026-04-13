@@ -1,0 +1,46 @@
+{
+  "name": "UsageEvent",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User ID using the feature"
+    },
+    "subscriptionId": {
+      "type": "string",
+      "description": "Current subscription ID"
+    },
+    "planCode": {
+      "type": "string",
+      "description": "Plan code at time of usage"
+    },
+    "featureKey": {
+      "type": "string",
+      "description": "Feature key being used (matches limit keys)"
+    },
+    "usageValue": {
+      "type": "number",
+      "default": 1,
+      "description": "How much of the feature was used"
+    },
+    "usagePeriod": {
+      "type": "string",
+      "description": "Billing period (YYYY-MM format)"
+    },
+    "relatedEntityType": {
+      "type": "string",
+      "description": "Entity type related to this usage (nullable)"
+    },
+    "relatedEntityId": {
+      "type": "string",
+      "description": "Entity ID related to this usage (nullable)"
+    }
+  },
+  "required": [
+    "userId",
+    "subscriptionId",
+    "planCode",
+    "featureKey",
+    "usagePeriod"
+  ]
+}

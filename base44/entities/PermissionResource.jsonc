@@ -1,0 +1,71 @@
+{
+  "name": "PermissionResource",
+  "type": "object",
+  "properties": {
+    "resourceKey": {
+      "type": "string",
+      "description": "Unique slug identifier for this resource"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable resource name"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "kemedar",
+        "kemework",
+        "kemetro",
+        "shared",
+        "admin"
+      ],
+      "description": "Module this resource belongs to"
+    },
+    "resourceType": {
+      "type": "string",
+      "enum": [
+        "page",
+        "entity",
+        "feature",
+        "api",
+        "widget",
+        "menu_item",
+        "dashboard_section",
+        "form"
+      ],
+      "description": "Type of resource"
+    },
+    "route": {
+      "type": "string",
+      "description": "URL path for this resource (nullable)"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this resource is and does"
+    },
+    "availableActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of actionKeys that apply to this resource"
+    },
+    "parentResourceId": {
+      "type": "string",
+      "description": "Reference to PermissionResource (parent)"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "sortOrder": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "resourceKey",
+    "displayName",
+    "module",
+    "resourceType"
+  ]
+}

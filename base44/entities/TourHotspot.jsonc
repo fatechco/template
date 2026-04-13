@@ -1,0 +1,72 @@
+{
+  "name": "TourHotspot",
+  "type": "object",
+  "properties": {
+    "virtualTourId": {
+      "type": "string",
+      "description": "Reference to VirtualTour"
+    },
+    "sceneId": {
+      "type": "string"
+    },
+    "hotspotType": {
+      "type": "string",
+      "enum": [
+        "navigation",
+        "info",
+        "measurement",
+        "amenity",
+        "defect_note",
+        "feature_highlight"
+      ],
+      "default": "info"
+    },
+    "label": {
+      "type": "string"
+    },
+    "labelAr": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "contentAr": {
+      "type": "string"
+    },
+    "positionX": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage from left"
+    },
+    "positionY": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage from top"
+    },
+    "targetSceneId": {
+      "type": "string",
+      "description": "For navigation hotspots"
+    },
+    "iconType": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "addedBy": {
+      "type": "string",
+      "description": "Reference to User"
+    }
+  },
+  "required": [
+    "virtualTourId",
+    "sceneId",
+    "label"
+  ]
+}

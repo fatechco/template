@@ -1,0 +1,60 @@
+{
+  "name": "FeatureRegistry",
+  "type": "object",
+  "properties": {
+    "featureKey": {
+      "type": "string",
+      "description": "Unique identifier for the feature (e.g., buy_it_finished_simulator)"
+    },
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature"
+    },
+    "featureType": {
+      "type": "string",
+      "enum": [
+        "feature",
+        "experiment",
+        "beta"
+      ],
+      "default": "feature",
+      "description": "Type of feature"
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of module identifiers (e.g., ['kemedar', 'kemework', 'kemetro'])"
+    },
+    "location": {
+      "type": "string",
+      "description": "Where the feature appears (e.g., 'property_detail_page')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Feature description"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the feature is currently enabled"
+    },
+    "rolloutPercentage": {
+      "type": "number",
+      "default": 100,
+      "description": "Percentage of users who see this feature (0-100)"
+    },
+    "restrictToRoles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "If set, only these user roles can access the feature"
+    }
+  },
+  "required": [
+    "featureKey",
+    "featureName"
+  ]
+}

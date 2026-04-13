@@ -1,0 +1,176 @@
+{
+  "name": "MarketProfile",
+  "type": "object",
+  "properties": {
+    "marketCode": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "countryName": {
+      "type": "string"
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "currencySymbol": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expansionStatus": {
+      "type": "string",
+      "enum": [
+        "not_evaluated",
+        "under_evaluation",
+        "planned",
+        "pilot",
+        "soft_launch",
+        "active",
+        "full_launch",
+        "paused",
+        "exited"
+      ],
+      "default": "not_evaluated"
+    },
+    "launchDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "overallReadinessScore": {
+      "type": "number"
+    },
+    "readinessGrade": {
+      "type": "string",
+      "enum": [
+        "A+",
+        "A",
+        "B+",
+        "B",
+        "C+",
+        "C",
+        "D",
+        "Not Scored"
+      ]
+    },
+    "readinessDimensions": {
+      "type": "object"
+    },
+    "population": {
+      "type": "number"
+    },
+    "gdpPerCapitaUSD": {
+      "type": "number"
+    },
+    "medianPropertyPriceUSD": {
+      "type": "number"
+    },
+    "avgRentalYieldPercent": {
+      "type": "number"
+    },
+    "internetPenetrationPercent": {
+      "type": "number"
+    },
+    "foreignOwnershipAllowed": {
+      "type": "boolean"
+    },
+    "localizationStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "complete"
+      ]
+    },
+    "localizationChecklist": {
+      "type": "object"
+    },
+    "totalFOsRecruited": {
+      "type": "number",
+      "default": 0
+    },
+    "activeFOs": {
+      "type": "number",
+      "default": 0
+    },
+    "totalRegisteredUsers": {
+      "type": "number",
+      "default": 0
+    },
+    "totalListings": {
+      "type": "number",
+      "default": 0
+    },
+    "platformRevenueMonthly": {
+      "type": "number",
+      "default": 0
+    },
+    "competitorCount": {
+      "type": "number"
+    },
+    "competitorNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiMarketSummary": {
+      "type": "string"
+    },
+    "aiExpansionRecommendation": {
+      "type": "string"
+    },
+    "aiRiskFactors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiOpportunities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastAnalyzed": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "coverImageUrl": {
+      "type": "string"
+    },
+    "flagEmoji": {
+      "type": "string"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "marketCode",
+    "countryCode",
+    "countryName",
+    "cityName",
+    "region",
+    "currency"
+  ]
+}

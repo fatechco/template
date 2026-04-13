@@ -1,0 +1,46 @@
+{
+  "name": "CRMNote",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "opportunityId": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "bodyType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "html"
+      ],
+      "default": "text"
+    },
+    "authorId": {
+      "type": "string"
+    },
+    "isPinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPrivate": {
+      "type": "boolean",
+      "default": false
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "body"
+  ]
+}

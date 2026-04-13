@@ -1,0 +1,95 @@
+{
+  "name": "Translation",
+  "type": "object",
+  "properties": {
+    "lang_key": {
+      "type": "string",
+      "description": "Unique translation key (e.g. search_by_location)"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module group (e.g. common, kemedar, kemetro, kemework, about)",
+      "default": "common"
+    },
+    "en": {
+      "type": "string",
+      "description": "English"
+    },
+    "ar": {
+      "type": "string",
+      "description": "Arabic"
+    },
+    "tr": {
+      "type": "string",
+      "description": "Turkish"
+    },
+    "fr": {
+      "type": "string",
+      "description": "French"
+    },
+    "ru": {
+      "type": "string",
+      "description": "Russian"
+    },
+    "id": {
+      "type": "string",
+      "description": "Indonesian"
+    },
+    "vi": {
+      "type": "string",
+      "description": "Vietnamese"
+    },
+    "de": {
+      "type": "string",
+      "description": "German"
+    },
+    "ur": {
+      "type": "string",
+      "description": "Urdu"
+    },
+    "hi": {
+      "type": "string",
+      "description": "Hindi"
+    },
+    "bn": {
+      "type": "string",
+      "description": "Bengali"
+    },
+    "zh": {
+      "type": "string",
+      "description": "Chinese"
+    },
+    "es": {
+      "type": "string",
+      "description": "Spanish"
+    },
+    "pt": {
+      "type": "string",
+      "description": "Portuguese"
+    },
+    "it": {
+      "type": "string",
+      "description": "Italian"
+    },
+    "th": {
+      "type": "string",
+      "description": "Thai"
+    },
+    "ja": {
+      "type": "string",
+      "description": "Japanese"
+    },
+    "ko": {
+      "type": "string",
+      "description": "Korean"
+    },
+    "fa": {
+      "type": "string",
+      "description": "Persian/Farsi"
+    }
+  },
+  "required": [
+    "lang_key",
+    "en"
+  ]
+}

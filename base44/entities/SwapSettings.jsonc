@@ -1,0 +1,87 @@
+{
+  "name": "SwapSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether Kemedar Swap is globally enabled"
+    },
+    "minVerifyProLevelToList": {
+      "type": "number",
+      "default": 2,
+      "description": "Property must have Verify Pro level >= this to be listed in the swap pool"
+    },
+    "matchScoreThreshold": {
+      "type": "number",
+      "default": 75,
+      "description": "Minimum AI score required to create a SwapMatch record"
+    },
+    "maxMatchesPerIntent": {
+      "type": "number",
+      "default": 20,
+      "description": "Maximum number of suggestions shown to each user per intent"
+    },
+    "swapIntentExpiryDays": {
+      "type": "number",
+      "default": 90,
+      "description": "Days after publishing before a SwapIntent expires"
+    },
+    "negotiationExpiryDays": {
+      "type": "number",
+      "default": 30,
+      "description": "Days of inactivity before a negotiation expires"
+    },
+    "gapOfferExpiryHours": {
+      "type": "number",
+      "default": 48,
+      "description": "Hours before an unanswered SwapGapOffer expires"
+    },
+    "verificationFeePerPartyEGP": {
+      "type": "number",
+      "default": 500,
+      "description": "Fee charged to each party for property verification"
+    },
+    "legalFeePerSwapEGP": {
+      "type": "number",
+      "default": 3000,
+      "description": "Total legal fee per completed swap via Kemework lawyers"
+    },
+    "legalFeeSplitPercent": {
+      "type": "number",
+      "default": 50,
+      "description": "Percentage of legal fee each party pays (50 = equal split)"
+    },
+    "escrowFeePercent": {
+      "type": "number",
+      "default": 1.5,
+      "description": "Fee percentage charged on the gap amount deposited into XeedWallet escrow"
+    },
+    "platformCommissionPercent": {
+      "type": "number",
+      "default": 0.5,
+      "description": "Platform commission charged on total combined property value at completion"
+    },
+    "requireBothVerifiedForLegal": {
+      "type": "boolean",
+      "default": true,
+      "description": "Both parties must have Verify Pro before lawyer can be assigned"
+    },
+    "claudeModel": {
+      "type": "string",
+      "default": "claude-sonnet-4-20250514",
+      "description": "Claude model version used for AI matching"
+    },
+    "weeklyMatchCronEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the weekly AI re-matching cron job is enabled"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When settings were last updated"
+    }
+  },
+  "required": []
+}

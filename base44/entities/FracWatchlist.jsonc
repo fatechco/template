@@ -1,0 +1,28 @@
+{
+  "name": "FracWatchlist",
+  "type": "object",
+  "properties": {
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "notifyOnPriceDrop": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when token price drops"
+    },
+    "notifyOnAvailability": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when tokens become available"
+    }
+  },
+  "required": [
+    "fracPropertyId",
+    "userId"
+  ]
+}

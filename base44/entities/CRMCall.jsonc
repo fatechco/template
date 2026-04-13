@@ -1,0 +1,81 @@
+{
+  "name": "CRMCall",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound"
+      ]
+    },
+    "calledBy": {
+      "type": "string",
+      "description": "User ID of the rep"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "completed",
+        "no_answer",
+        "busy",
+        "failed",
+        "voicemail"
+      ],
+      "default": "completed"
+    },
+    "durationSeconds": {
+      "type": "number"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recordingUrl": {
+      "type": "string"
+    },
+    "transcriptAvailable": {
+      "type": "boolean",
+      "default": false
+    },
+    "summary": {
+      "type": "string",
+      "description": "AI-generated call summary"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "interested",
+        "not_interested",
+        "callback",
+        "qualified",
+        "disqualified",
+        "no_outcome"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "contactId",
+    "direction"
+  ]
+}

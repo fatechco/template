@@ -1,0 +1,194 @@
+{
+  "name": "BuildProject",
+  "type": "object",
+  "properties": {
+    "projectNumber": {
+      "type": "string",
+      "description": "Auto: KBP-YYYYMMDD-XXXXX"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable)"
+    },
+    "guestToken": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "projectType": {
+      "type": "string",
+      "enum": [
+        "apartment_finishing",
+        "villa_finishing",
+        "renovation",
+        "bathroom_renovation",
+        "kitchen_renovation",
+        "flooring_only",
+        "painting_only",
+        "commercial_fitout",
+        "custom"
+      ]
+    },
+    "totalAreaSqm": {
+      "type": "number"
+    },
+    "numberOfRooms": {
+      "type": "number"
+    },
+    "numberOfBathrooms": {
+      "type": "number"
+    },
+    "floorNumber": {
+      "type": "number"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "floorPlanUrl": {
+      "type": "string"
+    },
+    "floorPlanType": {
+      "type": "string",
+      "enum": [
+        "uploaded_image",
+        "uploaded_pdf",
+        "ai_sketched",
+        "manual_dimensions",
+        "no_plan_estimate"
+      ],
+      "default": "no_plan_estimate"
+    },
+    "extractedRooms": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiExtractionConfidence": {
+      "type": "number"
+    },
+    "finishingLevel": {
+      "type": "string",
+      "enum": [
+        "economy",
+        "standard",
+        "premium",
+        "luxury"
+      ],
+      "default": "standard"
+    },
+    "selectedScenario": {
+      "type": "string",
+      "enum": [
+        "economy",
+        "standard",
+        "premium"
+      ],
+      "default": "standard"
+    },
+    "finishingPreferences": {
+      "type": "object"
+    },
+    "includeLabor": {
+      "type": "boolean",
+      "default": false
+    },
+    "includeContingency": {
+      "type": "boolean",
+      "default": true
+    },
+    "contingencyPercent": {
+      "type": "number",
+      "default": 10
+    },
+    "boqStatus": {
+      "type": "string",
+      "enum": [
+        "not_generated",
+        "generating",
+        "ready",
+        "modified",
+        "ordered"
+      ],
+      "default": "not_generated"
+    },
+    "boqData": {
+      "type": "object"
+    },
+    "totalMaterialsCost": {
+      "type": "number"
+    },
+    "totalLaborCost": {
+      "type": "number"
+    },
+    "grandTotal": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "scenarioEconomy": {
+      "type": "object"
+    },
+    "scenarioStandard": {
+      "type": "object"
+    },
+    "scenarioPremium": {
+      "type": "object"
+    },
+    "orderStatus": {
+      "type": "string",
+      "enum": [
+        "not_ordered",
+        "cart_created",
+        "partially_ordered",
+        "fully_ordered"
+      ],
+      "default": "not_ordered"
+    },
+    "kemetroCartId": {
+      "type": "string"
+    },
+    "kemetroOrderIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "shareToken": {
+      "type": "string"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false
+    },
+    "shareCount": {
+      "type": "number",
+      "default": 0
+    },
+    "isGroupBuy": {
+      "type": "boolean",
+      "default": false
+    },
+    "groupBuyId": {
+      "type": "string"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "downloadCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "projectName",
+    "projectType"
+  ]
+}

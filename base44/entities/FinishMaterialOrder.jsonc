@@ -1,0 +1,89 @@
+{
+  "name": "FinishMaterialOrder",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "boqSectionId": {
+      "type": "string"
+    },
+    "orderNumber": {
+      "type": "string"
+    },
+    "kemetroOrderId": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of {boqItemId, productId, productName, quantity, unit, unitPrice, totalPrice, kemetroSellerId}"
+    },
+    "totalAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "deliveryAddress": {
+      "type": "string"
+    },
+    "requestedDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "scheduledDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "deliveryStatus": {
+      "type": "string",
+      "enum": [
+        "not_ordered",
+        "ordered",
+        "confirmed",
+        "shipped",
+        "out_for_delivery",
+        "delivered",
+        "partial",
+        "returned"
+      ],
+      "default": "not_ordered"
+    },
+    "deliveryNotes": {
+      "type": "string"
+    },
+    "deliveryPhotoUrl": {
+      "type": "string"
+    },
+    "paymentStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid",
+        "refunded",
+        "disputed"
+      ],
+      "default": "pending"
+    },
+    "paidAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "projectId",
+    "items",
+    "totalAmount"
+  ]
+}

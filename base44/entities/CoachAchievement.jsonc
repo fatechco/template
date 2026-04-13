@@ -1,0 +1,58 @@
+{
+  "name": "CoachAchievement",
+  "type": "object",
+  "properties": {
+    "coachProfileId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "achievementType": {
+      "type": "string",
+      "enum": [
+        "stage_complete",
+        "milestone_reached",
+        "streak",
+        "quiz_perfect",
+        "speed_learner",
+        "comeback",
+        "journey_complete"
+      ]
+    },
+    "achievementName": {
+      "type": "string"
+    },
+    "achievementNameAr": {
+      "type": "string"
+    },
+    "achievementIcon": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "pointsEarned": {
+      "type": "number",
+      "default": 0
+    },
+    "celebrationSeen": {
+      "type": "boolean",
+      "default": false
+    },
+    "celebrationSeenAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "earnedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "coachProfileId",
+    "userId",
+    "achievementType",
+    "achievementName"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "PropertyDistance",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "distanceFieldId": {
+      "type": "string",
+      "description": "Reference to DistanceField"
+    },
+    "distanceValue": {
+      "type": "number",
+      "description": "Distance value"
+    },
+    "distanceUnit": {
+      "type": "string",
+      "enum": [
+        "km",
+        "m",
+        "min"
+      ],
+      "description": "Unit of measurement"
+    },
+    "transportMode": {
+      "type": "string",
+      "enum": [
+        "walking",
+        "driving",
+        "public_transport"
+      ],
+      "description": "Transport mode (when unit is min)"
+    }
+  },
+  "required": [
+    "propertyId",
+    "distanceFieldId",
+    "distanceValue",
+    "distanceUnit"
+  ]
+}

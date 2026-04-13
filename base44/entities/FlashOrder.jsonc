@@ -1,0 +1,135 @@
+{
+  "name": "FlashOrder",
+  "type": "object",
+  "properties": {
+    "orderNumber": {
+      "type": "string"
+    },
+    "dealId": {
+      "type": "string"
+    },
+    "dealType": {
+      "type": "string",
+      "enum": [
+        "flash",
+        "compound"
+      ]
+    },
+    "buyerId": {
+      "type": "string"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "unitPrice": {
+      "type": "number"
+    },
+    "originalUnitPrice": {
+      "type": "number"
+    },
+    "discount": {
+      "type": "number"
+    },
+    "discountPercent": {
+      "type": "number"
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "deliveryCost": {
+      "type": "number",
+      "default": 0
+    },
+    "platformFee": {
+      "type": "number",
+      "default": 0
+    },
+    "totalAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "deliveryType": {
+      "type": "string"
+    },
+    "deliveryAddress": {
+      "type": "string"
+    },
+    "deliveryCityId": {
+      "type": "string"
+    },
+    "scheduledDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_payment",
+        "paid",
+        "confirmed",
+        "preparing",
+        "shipped",
+        "out_for_delivery",
+        "delivered",
+        "returned",
+        "refunded",
+        "cancelled"
+      ],
+      "default": "pending_payment"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "default": "on_delivery"
+    },
+    "paymentReference": {
+      "type": "string"
+    },
+    "paidAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deliveryTrackingNumber": {
+      "type": "string"
+    },
+    "deliveryPhotoUrl": {
+      "type": "string"
+    },
+    "buyerConfirmedDelivery": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buyerRating": {
+      "type": "number"
+    },
+    "buyerReview": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productImage": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "dealId",
+    "dealType",
+    "buyerId",
+    "quantity",
+    "totalAmount"
+  ]
+}

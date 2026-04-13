@@ -1,0 +1,137 @@
+{
+  "name": "SubscriptionPlan",
+  "type": "object",
+  "properties": {
+    "planCode": {
+      "type": "string",
+      "description": "Unique plan identifier (e.g. BUYER_FREE, BUYER_PRO)"
+    },
+    "planName": {
+      "type": "string",
+      "description": "Plan display name in English"
+    },
+    "planNameAr": {
+      "type": "string",
+      "description": "Plan display name in Arabic"
+    },
+    "planDescription": {
+      "type": "string",
+      "description": "Plan description in English"
+    },
+    "planDescriptionAr": {
+      "type": "string",
+      "description": "Plan description in Arabic"
+    },
+    "planCategory": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller",
+        "agent",
+        "kemework_professional",
+        "kemetro_seller",
+        "franchise_owner",
+        "developer",
+        "enterprise"
+      ],
+      "description": "Category of plan"
+    },
+    "planTier": {
+      "type": "string",
+      "enum": [
+        "free",
+        "starter",
+        "pro",
+        "premium",
+        "enterprise"
+      ],
+      "description": "Tier level of plan"
+    },
+    "monthlyPriceEGP": {
+      "type": "number",
+      "default": 0,
+      "description": "Monthly price in EGP"
+    },
+    "quarterlyPriceEGP": {
+      "type": "number",
+      "description": "Quarterly price in EGP (nullable)"
+    },
+    "annualPriceEGP": {
+      "type": "number",
+      "description": "Annual price in EGP (nullable)"
+    },
+    "monthlyPriceUSD": {
+      "type": "number",
+      "description": "Monthly price in USD (nullable)"
+    },
+    "annualPriceUSD": {
+      "type": "number",
+      "description": "Annual price in USD (nullable)"
+    },
+    "trialDays": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of trial days (0 = no trial)"
+    },
+    "annualDiscountPercent": {
+      "type": "number",
+      "default": 0,
+      "description": "Annual discount percentage"
+    },
+    "quarterlyDiscountPercent": {
+      "type": "number",
+      "default": 0,
+      "description": "Quarterly discount percentage"
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature flags for this plan (JSON object with boolean values)"
+    },
+    "limits": {
+      "type": "object",
+      "description": "Usage limits for this plan (JSON object with numeric values)"
+    },
+    "isPopular": {
+      "type": "boolean",
+      "default": false,
+      "description": "Mark as popular/recommended plan"
+    },
+    "highlightColor": {
+      "type": "string",
+      "description": "Highlight color for plan card (hex or Tailwind class)"
+    },
+    "badgeText": {
+      "type": "string",
+      "description": "Badge text (e.g. 'Most Popular', 'Best Value')"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order when listing plans"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Plan is available for purchase"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true,
+      "description": "Plan is visible on pricing pages"
+    },
+    "applicableModules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Modules this plan applies to: kemedar, kemework, kemetro"
+    }
+  },
+  "required": [
+    "planCode",
+    "planName",
+    "planCategory",
+    "planTier",
+    "applicableModules"
+  ]
+}

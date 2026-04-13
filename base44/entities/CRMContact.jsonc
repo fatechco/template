@@ -1,0 +1,211 @@
+{
+  "name": "CRMContact",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable if not registered)"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "phoneNormalized": {
+      "type": "string",
+      "description": "E.164 normalized phone for deduplication"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "emailNormalized": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "primaryRole": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "common_user",
+        "agent",
+        "agency",
+        "developer",
+        "franchise_owner",
+        "professional",
+        "finishing_company",
+        "product_seller",
+        "product_buyer",
+        "shipper",
+        "investor",
+        "partner"
+      ],
+      "default": "lead"
+    },
+    "secondaryRoles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "prospect",
+        "activated",
+        "onboarding",
+        "active",
+        "churned",
+        "disqualified"
+      ],
+      "default": "lead"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "in_progress",
+        "waiting",
+        "follow_up",
+        "closed_won",
+        "closed_lost",
+        "archived"
+      ],
+      "default": "new"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "preferredLanguage": {
+      "type": "string",
+      "enum": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "default": "ar"
+    },
+    "preferredChannel": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "phone",
+        "email",
+        "sms",
+        "app"
+      ],
+      "default": "whatsapp"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "imported",
+        "scraped",
+        "self_registered",
+        "referral",
+        "inbound",
+        "outbound",
+        "manual"
+      ],
+      "default": "manual"
+    },
+    "sourceDetail": {
+      "type": "string",
+      "description": "e.g. Aqarmap, OLX, scraping job ID"
+    },
+    "ownerId": {
+      "type": "string",
+      "description": "Reference to User (assigned sales rep/agent)"
+    },
+    "teamId": {
+      "type": "string",
+      "description": "Reference to CRM team"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Reference to CRMAccount"
+    },
+    "score": {
+      "type": "number",
+      "default": 0,
+      "description": "Lead/engagement score 0-100"
+    },
+    "aiScore": {
+      "type": "number",
+      "description": "AI-computed priority score"
+    },
+    "consentMarketing": {
+      "type": "boolean",
+      "default": false
+    },
+    "consentCommunication": {
+      "type": "boolean",
+      "default": false
+    },
+    "consentDataStorage": {
+      "type": "boolean",
+      "default": false
+    },
+    "lastActivityAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastContactedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nextFollowupAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "customFields": {
+      "type": "object"
+    },
+    "isArchived": {
+      "type": "boolean",
+      "default": false
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "displayName"
+  ]
+}

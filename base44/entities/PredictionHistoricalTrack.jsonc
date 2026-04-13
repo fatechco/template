@@ -1,0 +1,31 @@
+{
+  "name": "PredictionHistoricalTrack",
+  "type": "object",
+  "properties": {
+    "predictionId": {
+      "type": "string"
+    },
+    "trackingDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualPricePerSqm": {
+      "type": "number"
+    },
+    "predictedPricePerSqm": {
+      "type": "number"
+    },
+    "accuracyPercent": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "predictionId",
+    "trackingDate",
+    "actualPricePerSqm",
+    "predictedPricePerSqm"
+  ]
+}

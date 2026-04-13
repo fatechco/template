@@ -1,0 +1,220 @@
+{
+  "name": "CompoundDeal",
+  "type": "object",
+  "properties": {
+    "dealNumber": {
+      "type": "string",
+      "description": "KCD-YYYYMMDD-XXXXX"
+    },
+    "initiatorId": {
+      "type": "string"
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "dealType": {
+      "type": "string",
+      "enum": [
+        "compound_group_buy",
+        "building_group_buy",
+        "neighborhood_deal",
+        "project_community_deal"
+      ],
+      "default": "compound_group_buy"
+    },
+    "dealTitle": {
+      "type": "string"
+    },
+    "dealTitleAr": {
+      "type": "string"
+    },
+    "dealDescription": {
+      "type": "string"
+    },
+    "productId": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productNameAr": {
+      "type": "string"
+    },
+    "productCategory": {
+      "type": "string"
+    },
+    "productImage": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string",
+      "default": "m\u00b2"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "sellerName": {
+      "type": "string"
+    },
+    "sellerConfirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "retailPricePerUnit": {
+      "type": "number"
+    },
+    "targetPricePerUnit": {
+      "type": "number"
+    },
+    "achievedPricePerUnit": {
+      "type": "number"
+    },
+    "priceTiers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "currentTierIndex": {
+      "type": "number",
+      "default": 0
+    },
+    "minParticipants": {
+      "type": "number"
+    },
+    "maxParticipants": {
+      "type": "number"
+    },
+    "currentParticipants": {
+      "type": "number",
+      "default": 0
+    },
+    "minTotalQty": {
+      "type": "number"
+    },
+    "currentTotalQty": {
+      "type": "number",
+      "default": 0
+    },
+    "suggestedQtyPerUnit": {
+      "type": "number",
+      "default": 80
+    },
+    "compoundName": {
+      "type": "string"
+    },
+    "compoundId": {
+      "type": "string"
+    },
+    "buildingNumber": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "areaId": {
+      "type": "string"
+    },
+    "deliveryPoint": {
+      "type": "string"
+    },
+    "deliveryAddress": {
+      "type": "string"
+    },
+    "dealOpenedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dealClosingAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expectedDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "forming",
+        "threshold_reached",
+        "ordering",
+        "seller_confirmed",
+        "payment_collected",
+        "ordered",
+        "in_delivery",
+        "delivered",
+        "cancelled",
+        "expired"
+      ],
+      "default": "forming"
+    },
+    "cancellationReason": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "totalGroupValue": {
+      "type": "number",
+      "default": 0
+    },
+    "collectedAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "platformFeePercent": {
+      "type": "number",
+      "default": 3
+    },
+    "platformFeeAmount": {
+      "type": "number"
+    },
+    "groupWhatsAppLink": {
+      "type": "string"
+    },
+    "announcementsSent": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiGeneratedDeal": {
+      "type": "boolean",
+      "default": false
+    },
+    "aiConfidenceScore": {
+      "type": "number"
+    },
+    "aiDetectedFromBOQ": {
+      "type": "boolean",
+      "default": false
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "districtName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "productName",
+    "compoundName",
+    "minParticipants",
+    "retailPricePerUnit"
+  ]
+}

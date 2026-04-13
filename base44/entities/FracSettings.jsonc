@@ -1,0 +1,71 @@
+{
+  "name": "FracSettings",
+  "type": "object",
+  "properties": {
+    "platformFeePercent": {
+      "type": "number",
+      "default": 2.5,
+      "description": "Platform fee % on every token purchase"
+    },
+    "minPropertyValuationEGP": {
+      "type": "number",
+      "default": 500000,
+      "description": "Minimum property valuation to list"
+    },
+    "minTokensForSale": {
+      "type": "number",
+      "default": 100,
+      "description": "Minimum tokens that must be offered"
+    },
+    "maxTokensPerProperty": {
+      "type": "number",
+      "default": 10000,
+      "description": "Maximum total token supply per property"
+    },
+    "defaultTokenPriceEGP": {
+      "type": "number",
+      "default": 1000,
+      "description": "Default suggested token price in EGP"
+    },
+    "requireKYCForPurchase": {
+      "type": "boolean",
+      "default": true,
+      "description": "Require KYC before buying tokens"
+    },
+    "requireVerifyProLevel": {
+      "type": "number",
+      "default": 3,
+      "description": "Minimum Verify Pro level required to list"
+    },
+    "nearNetworkDefault": {
+      "type": "string",
+      "default": "testnet",
+      "description": "Default NEAR network (testnet or mainnet)"
+    },
+    "nearAdminAccountId": {
+      "type": "string",
+      "description": "e.g. kemefrac-admin.near"
+    },
+    "yieldPayoutDayOfMonth": {
+      "type": "number",
+      "default": 1,
+      "description": "Day of month for yield payouts"
+    },
+    "allowSecondaryMarket": {
+      "type": "boolean",
+      "default": false,
+      "description": "Allow holders to sell tokens to each other"
+    },
+    "maxOfferingDurationDays": {
+      "type": "number",
+      "default": 365,
+      "description": "Maximum offering duration in days"
+    },
+    "featuredSlotsCount": {
+      "type": "number",
+      "default": 6,
+      "description": "Number of featured slots on homepage"
+    }
+  },
+  "required": []
+}

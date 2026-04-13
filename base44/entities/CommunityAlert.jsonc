@@ -1,0 +1,104 @@
+{
+  "name": "CommunityAlert",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "reportedBy": {
+      "type": "string"
+    },
+    "reportedByName": {
+      "type": "string"
+    },
+    "verifiedBy": {
+      "type": "string"
+    },
+    "alertType": {
+      "type": "string",
+      "enum": [
+        "water_cut",
+        "power_outage",
+        "security_incident",
+        "maintenance",
+        "gas_cut",
+        "internet_outage",
+        "flooding",
+        "other_utility",
+        "noise_complaint",
+        "emergency"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "affectedArea": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "default": "warning"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedResolution": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "confirmations": {
+      "type": "number",
+      "default": 1
+    },
+    "confirmingUserIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isResolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "resolutionNote": {
+      "type": "string"
+    },
+    "notificationsSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "photoUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "communityId",
+    "reportedBy",
+    "alertType",
+    "title",
+    "description"
+  ]
+}

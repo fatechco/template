@@ -1,0 +1,65 @@
+{
+  "name": "KemeKitInstallationRequest",
+  "type": "object",
+  "properties": {
+    "calculationId": {
+      "type": "string",
+      "description": "Reference to KemeKitCalculation"
+    },
+    "templateId": {
+      "type": "string",
+      "description": "Reference to KemeKitTemplate"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (requester)"
+    },
+    "requestType": {
+      "type": "string",
+      "enum": [
+        "hire_creator",
+        "open_bidding"
+      ],
+      "description": "Type of installation request"
+    },
+    "assignedProId": {
+      "type": "string",
+      "description": "Reference to User (Kemework Professional) if hire_creator (nullable)"
+    },
+    "kemeworkTaskId": {
+      "type": "string",
+      "description": "Reference to created Kemework task (nullable)"
+    },
+    "totalMaterialCostEGP": {
+      "type": "number",
+      "description": "Snapshot of total material cost"
+    },
+    "estimatedLaborCostEGP": {
+      "type": "number",
+      "description": "Snapshot of estimated labor cost"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "task_created",
+        "cancelled"
+      ],
+      "default": "pending",
+      "description": "Installation request status"
+    }
+  },
+  "required": [
+    "calculationId",
+    "templateId",
+    "userId",
+    "requestType",
+    "totalMaterialCostEGP",
+    "estimatedLaborCostEGP",
+    "cityId"
+  ]
+}

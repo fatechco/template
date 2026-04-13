@@ -1,0 +1,44 @@
+{
+  "name": "CRMAutomationWorkflow",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "trigger": {
+      "type": "string",
+      "description": "e.g. contact_created, stage_changed, inactivity_7d"
+    },
+    "triggerConditions": {
+      "type": "object"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "runCount": {
+      "type": "number",
+      "default": 0
+    },
+    "lastRunAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "trigger"
+  ]
+}

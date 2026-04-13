@@ -1,0 +1,26 @@
+{
+  "name": "CrossMarketSearch",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "searchedMarkets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "searchCriteria": {
+      "type": "object"
+    },
+    "resultsData": {
+      "type": "object"
+    },
+    "savedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

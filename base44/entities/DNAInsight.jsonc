@@ -1,0 +1,64 @@
+{
+  "name": "DNAInsight",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "insightType": {
+      "type": "string",
+      "enum": [
+        "behavior_pattern",
+        "preference_discovered",
+        "intent_shift",
+        "churn_risk",
+        "opportunity",
+        "contradiction"
+      ]
+    },
+    "insightTitle": {
+      "type": "string"
+    },
+    "insightBody": {
+      "type": "string"
+    },
+    "insightBodyAr": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number"
+    },
+    "impact": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "actionRecommended": {
+      "type": "string"
+    },
+    "actionUrl": {
+      "type": "string"
+    },
+    "isShownToUser": {
+      "type": "boolean",
+      "default": false
+    },
+    "isShownToAdmin": {
+      "type": "boolean",
+      "default": true
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "userId",
+    "insightType",
+    "insightTitle",
+    "insightBody"
+  ]
+}

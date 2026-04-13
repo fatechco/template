@@ -1,0 +1,54 @@
+{
+  "name": "DistanceField",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name in English e.g. Metro Station"
+    },
+    "nameAr": {
+      "type": "string",
+      "description": "Name in Arabic"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji icon e.g. \ud83d\ude87"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "transport",
+        "education",
+        "health",
+        "shopping",
+        "recreation",
+        "services",
+        "religion"
+      ],
+      "description": "Category grouping"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "When OFF, hidden from all forms"
+    },
+    "enableForProperty": {
+      "type": "boolean",
+      "default": true,
+      "description": "Shows in Add Property form"
+    },
+    "enableForProject": {
+      "type": "boolean",
+      "default": true,
+      "description": "Shows in Add Project form"
+    },
+    "sortOrder": {
+      "type": "number",
+      "description": "Controls display order"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}

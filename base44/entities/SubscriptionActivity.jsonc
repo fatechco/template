@@ -1,0 +1,29 @@
+{
+  "name": "SubscriptionActivity",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Reference to Subscription"
+    },
+    "actorId": {
+      "type": "string",
+      "description": "Reference to User (null for system events)"
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. created, activated, renewed, upgraded, downgraded, suspended, cancelled, expired, payment_received, payment_failed"
+    },
+    "description": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "string",
+      "description": "JSON string for extra data (old plan, new plan, amount, etc.)"
+    }
+  },
+  "required": [
+    "subscriptionId",
+    "action"
+  ]
+}

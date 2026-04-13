@@ -1,0 +1,92 @@
+{
+  "name": "DNASignal",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "signalType": {
+      "type": "string",
+      "enum": [
+        "property_viewed",
+        "property_saved",
+        "property_unsaved",
+        "property_shared",
+        "property_contact_initiated",
+        "property_offer_made",
+        "property_tour_requested",
+        "property_ignored",
+        "property_search_performed",
+        "search_filter_applied",
+        "search_result_clicked",
+        "search_result_ignored",
+        "match_liked",
+        "match_passed",
+        "match_super_liked",
+        "match_viewed_details",
+        "match_viewed_briefly",
+        "article_read_complete",
+        "article_skipped",
+        "checklist_completed",
+        "quiz_taken",
+        "coach_step_completed",
+        "coach_question_asked",
+        "live_event_registered",
+        "live_event_attended",
+        "live_event_left_early",
+        "community_post_created",
+        "community_reacted",
+        "negotiation_started",
+        "offer_sent",
+        "offer_withdrawn",
+        "escrow_created",
+        "escrow_completed",
+        "payment_made",
+        "feature_visited",
+        "feature_abandoned",
+        "session_started",
+        "session_ended",
+        "notification_clicked",
+        "notification_dismissed",
+        "kemework_task_posted",
+        "kemework_professional_hired",
+        "kemework_job_reviewed",
+        "kemetro_product_viewed",
+        "kemetro_order_placed",
+        "kemetro_flash_purchased",
+        "kemetro_boq_generated"
+      ]
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "entityId": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "sessionId": {
+      "type": "string"
+    },
+    "deviceType": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "web",
+        "mobile"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "userId",
+    "signalType",
+    "timestamp"
+  ]
+}

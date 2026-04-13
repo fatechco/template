@@ -1,0 +1,86 @@
+{
+  "name": "PaidService",
+  "type": "object",
+  "properties": {
+    "moduleId": {
+      "type": "string",
+      "description": "Reference to SystemModule"
+    },
+    "name": {
+      "type": "string",
+      "description": "e.g. KEMEDAR VERI Service"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Unique slug e.g. kemedar-veri"
+    },
+    "shortDescription": {
+      "type": "string",
+      "description": "One-liner description"
+    },
+    "fullDescription": {
+      "type": "string",
+      "description": "Detailed description"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon name"
+    },
+    "serviceType": {
+      "type": "string",
+      "enum": [
+        "one_time",
+        "recurring",
+        "custom_quote"
+      ],
+      "description": "Pricing model"
+    },
+    "basePrice": {
+      "type": "number",
+      "description": "null for custom-quote services"
+    },
+    "priceCurrency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "priceUnit": {
+      "type": "string",
+      "description": "e.g. per property, per month, per visit"
+    },
+    "pricingTiers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "For services with multiple pricing options"
+    },
+    "requiresFranchiseOwner": {
+      "type": "boolean",
+      "default": true
+    },
+    "estimatedDeliveryDays": {
+      "type": "number"
+    },
+    "eligibleUserTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Which user roles can buy this"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "moduleId",
+    "name",
+    "slug",
+    "serviceType"
+  ]
+}

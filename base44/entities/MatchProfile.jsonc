@@ -1,0 +1,115 @@
+{
+  "name": "MatchProfile",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "buy",
+        "rent"
+      ]
+    },
+    "propertyTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "budgetMin": {
+      "type": "number"
+    },
+    "budgetMax": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "preferredCityIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferredDistrictIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bedroomsMin": {
+      "type": "number"
+    },
+    "bedroomsMax": {
+      "type": "number"
+    },
+    "areaMin": {
+      "type": "number"
+    },
+    "areaMax": {
+      "type": "number"
+    },
+    "finishingPrefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mustHaveFeatures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiLearnedPreferences": {
+      "type": "object",
+      "description": "AI detected patterns from swipes"
+    },
+    "swipeCount": {
+      "type": "number",
+      "default": 0
+    },
+    "aiConfidenceScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalSwipes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalLikes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalPasses": {
+      "type": "number",
+      "default": 0
+    },
+    "totalSuperLikes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalMatches": {
+      "type": "number",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "userId",
+    "purpose"
+  ]
+}

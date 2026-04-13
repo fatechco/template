@@ -1,0 +1,179 @@
+{
+  "name": "FOInspectionReport",
+  "type": "object",
+  "properties": {
+    "tokenId": {
+      "type": "string",
+      "description": "Reference to PropertyToken"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "sellerUserId": {
+      "type": "string",
+      "description": "Reference to seller User"
+    },
+    "foUserId": {
+      "type": "string",
+      "description": "Reference to the Franchise Owner User conducting the inspection"
+    },
+    "scheduledDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the inspection is scheduled"
+    },
+    "scheduledTime": {
+      "type": "string",
+      "description": "Time of inspection, e.g. 10:30 AM"
+    },
+    "scheduledByUserId": {
+      "type": "string",
+      "description": "Reference to User who scheduled the inspection"
+    },
+    "scheduledAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when inspection was scheduled"
+    },
+    "confirmedBySeller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the seller has confirmed the appointment"
+    },
+    "confirmedByFO": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the Franchise Owner has confirmed the appointment"
+    },
+    "inspectionStatus": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "confirmed",
+        "completed",
+        "cancelled",
+        "no_show",
+        "rescheduled"
+      ],
+      "default": "scheduled",
+      "description": "Current status of the inspection"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inspection started"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inspection was completed"
+    },
+    "gpsLat": {
+      "type": "number",
+      "description": "FO GPS latitude captured at inspection"
+    },
+    "gpsLng": {
+      "type": "number",
+      "description": "FO GPS longitude captured at inspection"
+    },
+    "gpsAccuracy": {
+      "type": "number",
+      "description": "GPS accuracy in meters"
+    },
+    "gpsMatchesListing": {
+      "type": "boolean",
+      "description": "True if FO GPS is within 500m of the listed property GPS"
+    },
+    "gpsDistanceMeters": {
+      "type": "number",
+      "description": "Calculated distance in meters between FO GPS and property GPS"
+    },
+    "inspectionPhotos": {
+      "type": "array",
+      "description": "Array of inspection photos: [{photoUrl, gpsLat, gpsLng, takenAt, label}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "photosCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of inspection photos taken"
+    },
+    "checklist": {
+      "type": "object",
+      "description": "Inspection checklist: {propertyExistsAtAddress, propertyMatchesListingPhotos, propertyMatchesListingSpecs, sellerOrRepresentativePresent, ...}"
+    },
+    "overallVerdict": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "partial",
+        "inconclusive"
+      ],
+      "description": "FO's overall inspection verdict"
+    },
+    "verdictNotes": {
+      "type": "string",
+      "description": "FO notes on the overall verdict"
+    },
+    "issuesFound": {
+      "type": "array",
+      "description": "Array of issues found during inspection: [{issueType, severity, description, photoUrl}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "issuesCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of issues found"
+    },
+    "recommendedVerificationLevel": {
+      "type": "number",
+      "description": "FO recommended verification level 1\u20135 based on inspection"
+    },
+    "foSignatureUrl": {
+      "type": "string",
+      "description": "URL to FO digital signature on the report"
+    },
+    "reportSubmittedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when FO submitted the completed report"
+    },
+    "adminReviewStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "needs_revision"
+      ],
+      "default": "pending",
+      "description": "Admin review status of the inspection report"
+    },
+    "adminReviewedByUserId": {
+      "type": "string",
+      "description": "Reference to Admin User who reviewed the report"
+    },
+    "adminReviewNotes": {
+      "type": "string",
+      "description": "Admin notes on the inspection report"
+    },
+    "adminReviewedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of admin review"
+    }
+  },
+  "required": [
+    "tokenId",
+    "propertyId",
+    "sellerUserId",
+    "foUserId",
+    "scheduledDate"
+  ]
+}

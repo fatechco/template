@@ -1,0 +1,28 @@
+{
+  "name": "SurplusSavedItem",
+  "type": "object",
+  "properties": {
+    "surplusItemId": {
+      "type": "string",
+      "description": "Reference to SurplusItem"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "notifyOnPriceChange": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify user when price drops"
+    },
+    "notifyOnSoonExpiring": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify user when listing is about to expire"
+    }
+  },
+  "required": [
+    "surplusItemId",
+    "userId"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "name": "CoachProfile",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "journeyType": {
+      "type": "string",
+      "enum": [
+        "first_time_buyer",
+        "property_upgrader",
+        "investor",
+        "first_time_renter",
+        "property_seller",
+        "expat_buyer",
+        "kemework_professional",
+        "kemetro_seller"
+      ]
+    },
+    "secondaryJourneys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "userGoal": {
+      "type": "string"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "asap",
+        "3_months",
+        "6_months",
+        "1_year",
+        "just_learning"
+      ]
+    },
+    "experienceLevel": {
+      "type": "string",
+      "enum": [
+        "complete_beginner",
+        "some_experience",
+        "experienced"
+      ]
+    },
+    "preferredLanguage": {
+      "type": "string",
+      "enum": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "default": "en"
+    },
+    "communicationStyle": {
+      "type": "string",
+      "enum": [
+        "detailed",
+        "concise",
+        "visual"
+      ],
+      "default": "concise"
+    },
+    "targetPropertyType": {
+      "type": "string"
+    },
+    "targetBudget": {
+      "type": "number"
+    },
+    "targetArea": {
+      "type": "string"
+    },
+    "currentStageId": {
+      "type": "string"
+    },
+    "currentStepId": {
+      "type": "string"
+    },
+    "completedStageIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completedStepIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skippedStepIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overallProgress": {
+      "type": "number",
+      "default": 0
+    },
+    "journeyStartedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedCompletionDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lastCoachInteractionAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalCoachMessages": {
+      "type": "number",
+      "default": 0
+    },
+    "coachSessionCount": {
+      "type": "number",
+      "default": 0
+    },
+    "streakDays": {
+      "type": "number",
+      "default": 0
+    },
+    "lastActiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "achievedMilestones": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "coachMemory": {
+      "type": "object"
+    },
+    "coachStatus": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "completed",
+        "abandoned"
+      ],
+      "default": "active"
+    },
+    "pausedUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "userId",
+    "journeyType"
+  ]
+}

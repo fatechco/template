@@ -1,0 +1,59 @@
+{
+  "name": "DeveloperEcoScore",
+  "type": "object",
+  "properties": {
+    "developerUserId": {
+      "type": "string",
+      "description": "Reference to User (developer)"
+    },
+    "totalItemsListed": {
+      "type": "number",
+      "default": 0,
+      "description": "Total surplus items listed"
+    },
+    "totalItemsSold": {
+      "type": "number",
+      "default": 0,
+      "description": "Total surplus items sold"
+    },
+    "totalWeightKgDiverted": {
+      "type": "number",
+      "default": 0,
+      "description": "Total kg diverted from landfill"
+    },
+    "totalCo2SavedKg": {
+      "type": "number",
+      "default": 0,
+      "description": "Total kg CO2 saved"
+    },
+    "totalGMVEGP": {
+      "type": "number",
+      "default": 0,
+      "description": "Total gross merchandise value in EGP"
+    },
+    "ecoTier": {
+      "type": "string",
+      "enum": [
+        "eco_starter",
+        "eco_builder",
+        "eco_champion",
+        "eco_leader"
+      ],
+      "default": "eco_starter",
+      "description": "eco_starter = < 500 kg | eco_builder = 500\u20132000 kg | eco_champion = 2000\u20135000 kg | eco_leader = > 5000 kg diverted"
+    },
+    "badgeEarnedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the current eco tier badge was earned (nullable)"
+    },
+    "lastUpdatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time scores were recalculated"
+    }
+  },
+  "required": [
+    "developerUserId"
+  ]
+}

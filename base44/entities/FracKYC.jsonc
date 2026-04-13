@@ -1,0 +1,91 @@
+{
+  "name": "FracKYC",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "fullName": {
+      "type": "string",
+      "description": "Full legal name"
+    },
+    "nationalIdNumber": {
+      "type": "string",
+      "description": "National ID or passport number"
+    },
+    "nationalIdFileUrl": {
+      "type": "string",
+      "description": "Uploaded national ID document URL"
+    },
+    "selfieWithIdUrl": {
+      "type": "string",
+      "description": "Selfie with ID photo URL"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth"
+    },
+    "nationality": {
+      "type": "string",
+      "description": "Nationality (country name or code)"
+    },
+    "residencyCountryId": {
+      "type": "string",
+      "description": "Reference to Country entity"
+    },
+    "investmentExperience": {
+      "type": "string",
+      "enum": [
+        "none",
+        "beginner",
+        "intermediate",
+        "expert"
+      ],
+      "description": "Self-declared investment experience level"
+    },
+    "politicallyExposedPerson": {
+      "type": "boolean",
+      "default": false,
+      "description": "PEP declaration"
+    },
+    "kycStatus": {
+      "type": "string",
+      "enum": [
+        "not_submitted",
+        "pending_review",
+        "approved",
+        "rejected",
+        "expired"
+      ],
+      "default": "not_submitted",
+      "description": "Current KYC verification status"
+    },
+    "reviewedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin) who reviewed"
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "Reason for rejection if applicable"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When KYC was approved"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "approved + 2 years"
+    }
+  },
+  "required": [
+    "userId",
+    "fullName",
+    "nationalIdNumber",
+    "dateOfBirth",
+    "nationality"
+  ]
+}

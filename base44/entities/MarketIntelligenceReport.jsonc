@@ -1,0 +1,68 @@
+{
+  "name": "MarketIntelligenceReport",
+  "type": "object",
+  "properties": {
+    "marketId": {
+      "type": "string"
+    },
+    "marketName": {
+      "type": "string"
+    },
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "initial_evaluation",
+        "quarterly_review",
+        "launch_readiness"
+      ]
+    },
+    "reportPeriod": {
+      "type": "string"
+    },
+    "executiveSummary": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "keyMetrics": {
+      "type": "object"
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "delay",
+        "modify_approach",
+        "exit",
+        "accelerate"
+      ]
+    },
+    "confidenceScore": {
+      "type": "number"
+    },
+    "generatedBy": {
+      "type": "string",
+      "enum": [
+        "ai",
+        "team",
+        "both"
+      ]
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "marketId",
+    "reportType"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "name": "ConciergeTaskTemplate",
+  "type": "object",
+  "properties": {
+    "journeyTemplateId": {
+      "type": "string",
+      "description": "Reference to ConciergeJourneyTemplate"
+    },
+    "title": {
+      "type": "string",
+      "description": "e.g. Book Deep Cleaning Service"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Arabic task title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Why the user needs this task"
+    },
+    "descriptionAr": {
+      "type": "string",
+      "description": "Arabic description"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon name"
+    },
+    "moduleTarget": {
+      "type": "string",
+      "enum": [
+        "kemework",
+        "kemetro",
+        "kemedar"
+      ],
+      "description": "Which module this task routes to"
+    },
+    "categoryTarget": {
+      "type": "string",
+      "description": "e.g. Cleaning Services, Moving & Packing, Furniture, Appliances, Legal & Administrative, Internet & WiFi, Pest Control, Painting & Decoration"
+    },
+    "deepLinkPath": {
+      "type": "string",
+      "description": "URL path to route the user to when they click. e.g. /kemework/post-task"
+    },
+    "autoFillParams": {
+      "type": "object",
+      "description": "Query params to pre-fill. e.g. {category: 'Cleaning Services', title: 'Move-in Deep Cleaning'}"
+    },
+    "discountCode": {
+      "type": "string",
+      "description": "Promo code applied on routing. e.g. NEWHOME5"
+    },
+    "discountPercent": {
+      "type": "number",
+      "description": "e.g. 5 for 5% off"
+    },
+    "triggerDay": {
+      "type": "number",
+      "default": 0,
+      "description": "Days after journey start to notify user. 0 = immediately."
+    },
+    "triggerDayFromMoveIn": {
+      "type": "number",
+      "description": "If set, overrides triggerDay and counts backwards from moveInDate. e.g. -7 = 7 days before move-in."
+    },
+    "accentColor": {
+      "type": "string",
+      "description": "Hex color for left card border. kemework=#14B8A6, kemetro=#0A6EBD, kemedar=#FF6B00"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order within the journey"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this task template is active"
+    }
+  },
+  "required": [
+    "journeyTemplateId",
+    "title",
+    "moduleTarget",
+    "deepLinkPath",
+    "triggerDay"
+  ]
+}

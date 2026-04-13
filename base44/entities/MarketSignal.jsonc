@@ -1,0 +1,167 @@
+{
+  "name": "MarketSignal",
+  "type": "object",
+  "properties": {
+    "signalType": {
+      "type": "string",
+      "enum": [
+        "infrastructure_project",
+        "new_development_announced",
+        "school_opening",
+        "hospital_opening",
+        "metro_line",
+        "highway_project",
+        "government_zone_designation",
+        "new_compound_launch",
+        "large_employer_moving_in",
+        "price_trend_historical",
+        "supply_change",
+        "demand_spike",
+        "economic_indicator",
+        "seasonal_pattern",
+        "foreign_investment",
+        "interest_rate_change",
+        "currency_fluctuation",
+        "political_development",
+        "custom"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "impactDirection": {
+      "type": "string",
+      "enum": [
+        "positive",
+        "negative",
+        "neutral"
+      ]
+    },
+    "impactMagnitude": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ]
+    },
+    "impactScore": {
+      "type": "number",
+      "description": "-100 to +100"
+    },
+    "affectedCountryId": {
+      "type": "string"
+    },
+    "affectedProvinceId": {
+      "type": "string"
+    },
+    "affectedCityId": {
+      "type": "string"
+    },
+    "affectedDistrictIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affectedAreaIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affectedRadius": {
+      "type": "number",
+      "description": "km"
+    },
+    "impactEpicenterLat": {
+      "type": "number"
+    },
+    "impactEpicenterLng": {
+      "type": "number"
+    },
+    "affectedPropertyTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affectedPurposes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "signalDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expectedImpactStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expectedImpactPeakDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expectedImpactEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceUrl": {
+      "type": "string"
+    },
+    "sourceType": {
+      "type": "string",
+      "enum": [
+        "government_official",
+        "news_media",
+        "kemedar_research",
+        "franchise_owner_report",
+        "user_report",
+        "ai_detected"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "likely",
+        "rumored"
+      ]
+    },
+    "addedBy": {
+      "type": "string"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "verifiedBy": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "signalType",
+    "title",
+    "impactDirection",
+    "impactMagnitude",
+    "signalDate",
+    "sourceType",
+    "confidence"
+  ]
+}

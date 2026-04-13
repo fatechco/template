@@ -1,0 +1,119 @@
+{
+  "name": "AnalyzedPropertyImage",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "imageUrl": {
+      "type": "string",
+      "description": "The exact URL of the analyzed image"
+    },
+    "imageHash": {
+      "type": "string",
+      "description": "sha256 of imageUrl \u2014 used to detect duplicates"
+    },
+    "isAnalyzed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether AI analysis has been run"
+    },
+    "analyzedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of analysis"
+    },
+    "claudeModel": {
+      "type": "string",
+      "description": "Claude model version used for analysis"
+    },
+    "roomType": {
+      "type": "string",
+      "enum": [
+        "Living Room",
+        "Bedroom",
+        "Kitchen",
+        "Dining Room",
+        "Bathroom",
+        "Outdoor"
+      ],
+      "description": "AI-detected room type"
+    },
+    "roomStyle": {
+      "type": "string",
+      "enum": [
+        "Modern Minimalist",
+        "Classic Luxury",
+        "Industrial",
+        "Bohemian",
+        "Scandinavian",
+        "Contemporary",
+        "Art Deco"
+      ],
+      "description": "AI-detected design style"
+    },
+    "colorPalette": {
+      "type": "string",
+      "description": "e.g. Neutral Grays, Mustard Yellow, Brass"
+    },
+    "dominantColors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of [{hex, name, percentage}]"
+    },
+    "hotspotCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Total hotspots identified"
+    },
+    "analysisRawJson": {
+      "type": "string",
+      "description": "Full Claude API response for debugging"
+    },
+    "isShoppable": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if at least minHotspotsPerImage found"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Admin can feature this image"
+    },
+    "qualityScore": {
+      "type": "number",
+      "description": "Quality score 0-100"
+    },
+    "isManuallyTagged": {
+      "type": "boolean",
+      "default": false
+    },
+    "manuallyTaggedByUserId": {
+      "type": "string",
+      "description": "Reference to User who manually tagged"
+    },
+    "manuallyTaggedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalViews": {
+      "type": "number",
+      "default": 0
+    },
+    "totalHotspotClicks": {
+      "type": "number",
+      "default": 0
+    },
+    "totalAddToCarts": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "propertyId",
+    "imageUrl"
+  ]
+}

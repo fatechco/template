@@ -1,0 +1,59 @@
+{
+  "name": "ModuleConfig",
+  "type": "object",
+  "properties": {
+    "moduleName": {
+      "type": "string",
+      "enum": [
+        "kemedar",
+        "kemework",
+        "kemetro"
+      ],
+      "description": "Module identifier"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable display name"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon reference"
+    },
+    "color": {
+      "type": "string",
+      "description": "Hex color code for this module"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the module"
+    },
+    "isGloballyActive": {
+      "type": "boolean",
+      "default": false,
+      "description": "Admin-controlled global visibility"
+    },
+    "launchDate": {
+      "type": "string",
+      "format": "date",
+      "description": "When this module went live"
+    },
+    "launchedBy": {
+      "type": "string",
+      "description": "Email of admin who activated the module"
+    },
+    "comingSoonText": {
+      "type": "string",
+      "description": "Message shown to users when module is not active"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order (1, 2, 3)"
+    }
+  },
+  "required": [
+    "moduleName",
+    "displayName",
+    "isGloballyActive",
+    "order"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "name": "ConciergeTask",
+  "type": "object",
+  "properties": {
+    "journeyId": {
+      "type": "string",
+      "description": "Reference to ConciergeJourney"
+    },
+    "taskTemplateId": {
+      "type": "string",
+      "description": "Reference to ConciergeTaskTemplate"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "title": {
+      "type": "string",
+      "description": "Copied from template at creation"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Arabic title, copied from template"
+    },
+    "description": {
+      "type": "string",
+      "description": "Task description, copied from template"
+    },
+    "descriptionAr": {
+      "type": "string",
+      "description": "Arabic description, copied from template"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon name, copied from template"
+    },
+    "moduleTarget": {
+      "type": "string",
+      "enum": [
+        "kemework",
+        "kemetro",
+        "kemedar"
+      ],
+      "description": "Which module this task routes to"
+    },
+    "categoryTarget": {
+      "type": "string",
+      "description": "Category within the target module"
+    },
+    "deepLinkPath": {
+      "type": "string",
+      "description": "URL path to route the user to"
+    },
+    "autoFillParams": {
+      "type": "object",
+      "description": "Query params to pre-fill on navigation"
+    },
+    "discountCode": {
+      "type": "string",
+      "description": "Promo code applied on routing"
+    },
+    "discountPercent": {
+      "type": "number",
+      "description": "Discount percentage"
+    },
+    "accentColor": {
+      "type": "string",
+      "description": "Hex color for left card border"
+    },
+    "triggerDay": {
+      "type": "number",
+      "description": "Days after journey start this task becomes Due"
+    },
+    "triggerDayFromMoveIn": {
+      "type": "number",
+      "description": "Days relative to moveInDate (negative = before). Overrides triggerDay if set."
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Due",
+        "Actioned",
+        "Completed",
+        "Skipped"
+      ],
+      "default": "Pending",
+      "description": "Current status of this task instance"
+    },
+    "isNotified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether a notification was sent for this task"
+    },
+    "notifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the notification was sent"
+    },
+    "notificationChannel": {
+      "type": "string",
+      "enum": [
+        "push",
+        "email",
+        "both"
+      ],
+      "description": "Channel used for notification"
+    },
+    "ctaClickedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user first clicked the CTA button"
+    },
+    "ctaClickCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of times user clicked the CTA"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When task was marked as Completed"
+    },
+    "skippedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When task was skipped/dismissed"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Calculated on creation: journeyStartDate + triggerDay, or moveInDate + triggerDayFromMoveIn if set"
+    }
+  },
+  "required": [
+    "journeyId",
+    "taskTemplateId",
+    "userId",
+    "propertyId",
+    "title",
+    "moduleTarget",
+    "deepLinkPath",
+    "triggerDay"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "SystemModule",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "e.g. Kemedar, Kemework, Kemetro"
+    },
+    "slug": {
+      "type": "string",
+      "description": "e.g. kemedar, kemework, kemetro"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon name"
+    },
+    "color": {
+      "type": "string",
+      "description": "Hex color for UI badge"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "name": "AuctionSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether KemedarBid\u2122 is globally enabled"
+    },
+    "sellerDepositPercent": {
+      "type": "number",
+      "default": 0.5,
+      "description": "Seller deposit as % of starting price"
+    },
+    "sellerDepositMinEGP": {
+      "type": "number",
+      "default": 2000,
+      "description": "Minimum seller deposit in EGP regardless of %"
+    },
+    "buyerDepositPercent": {
+      "type": "number",
+      "default": 1,
+      "description": "Buyer registration deposit as % of starting price"
+    },
+    "buyerDepositMinEGP": {
+      "type": "number",
+      "default": 5000,
+      "description": "Minimum buyer deposit in EGP regardless of %"
+    },
+    "winnerPaymentDeadlineHours": {
+      "type": "number",
+      "default": 48,
+      "description": "Hours winner has to complete full payment after auction ends"
+    },
+    "defaultMinBidIncrementEGP": {
+      "type": "number",
+      "default": 5000,
+      "description": "Default minimum bid increment in EGP"
+    },
+    "defaultExtensionMinutes": {
+      "type": "number",
+      "default": 5,
+      "description": "Minutes added to clock when late bid triggers extension"
+    },
+    "defaultMaxExtensions": {
+      "type": "number",
+      "default": 3,
+      "description": "Maximum number of anti-snipe extensions per auction"
+    },
+    "platformCommissionPercent": {
+      "type": "number",
+      "default": 2,
+      "description": "Platform commission charged on final winning bid amount"
+    },
+    "requireVerifyProLevel": {
+      "type": "number",
+      "default": 2,
+      "description": "Minimum Verify Pro level for property to be eligible for auction"
+    },
+    "requireBuyerKYC": {
+      "type": "boolean",
+      "default": true,
+      "description": "Bidders must complete KYC before registering"
+    },
+    "maxAuctionDurationDays": {
+      "type": "number",
+      "default": 30,
+      "description": "Maximum allowed auction duration in days"
+    },
+    "minAuctionDurationDays": {
+      "type": "number",
+      "default": 1,
+      "description": "Minimum allowed auction duration in days"
+    },
+    "featuredAuctionFeeEGP": {
+      "type": "number",
+      "default": 500,
+      "description": "Fee to feature an auction in listings"
+    },
+    "claudeModel": {
+      "type": "string",
+      "default": "claude-sonnet-4-20250514",
+      "description": "Claude model used for AI features in this module"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When settings were last updated"
+    }
+  },
+  "required": []
+}

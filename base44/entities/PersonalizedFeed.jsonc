@@ -1,0 +1,59 @@
+{
+  "name": "PersonalizedFeed",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "feedType": {
+      "type": "string",
+      "enum": [
+        "homepage",
+        "search_results",
+        "match_queue",
+        "coach_content",
+        "email_digest",
+        "notification_queue",
+        "live_events",
+        "community_posts",
+        "kemetro_deals",
+        "kemework_pros"
+      ]
+    },
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rulesApplied": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "dnaSnapshot": {
+      "type": "object"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "clickCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "userId",
+    "feedType"
+  ]
+}

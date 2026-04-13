@@ -1,0 +1,42 @@
+{
+  "name": "ServiceOrderActivity",
+  "type": "object",
+  "properties": {
+    "serviceOrderId": {
+      "type": "string",
+      "description": "Reference to ServiceOrder"
+    },
+    "actorId": {
+      "type": "string",
+      "description": "Reference to User who performed the action"
+    },
+    "actorRole": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "franchise_owner",
+        "admin",
+        "system"
+      ]
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. created, assigned, started, note_added, completed, cancelled, rated"
+    },
+    "description": {
+      "type": "string"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of file URLs"
+    }
+  },
+  "required": [
+    "serviceOrderId",
+    "actorId",
+    "action"
+  ]
+}

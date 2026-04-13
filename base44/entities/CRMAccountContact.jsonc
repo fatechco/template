@@ -1,0 +1,24 @@
+{
+  "name": "CRMAccountContact",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string"
+    },
+    "contactId": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "description": "e.g. owner, manager, agent, representative"
+    },
+    "isPrimary": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "accountId",
+    "contactId"
+  ]
+}

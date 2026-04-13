@@ -1,0 +1,221 @@
+{
+  "name": "SnapSession",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable \u2014 null = guest session, linked on login)"
+    },
+    "sessionToken": {
+      "type": "string",
+      "description": "UUID for guest tracking"
+    },
+    "originalImageUrl": {
+      "type": "string",
+      "description": "Uploaded image URL"
+    },
+    "originalImageHash": {
+      "type": "string",
+      "description": "sha256 of image file for deduplication"
+    },
+    "userNote": {
+      "type": "string",
+      "description": "Optional voice/text note from user e.g. 'This started leaking yesterday morning'"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property (nullable)"
+    },
+    "locationText": {
+      "type": "string",
+      "description": "Auto-filled from user profile or GPS"
+    },
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country (nullable)"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City (nullable)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "uploading",
+        "analyzing",
+        "completed",
+        "failed",
+        "converted",
+        "dismissed"
+      ],
+      "default": "uploading",
+      "description": "uploading=image being sent | analyzing=Claude Vision API in progress | completed=AI result ready | failed=API error or unrecognizable image | converted=user posted as formal task | dismissed=user closed without posting"
+    },
+    "analysisStartedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When Claude Vision analysis began"
+    },
+    "analysisCompletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When Claude Vision analysis completed"
+    },
+    "failureReason": {
+      "type": "string",
+      "description": "Error message if status = failed"
+    },
+    "claudeModel": {
+      "type": "string",
+      "description": "Claude model version used for analysis"
+    },
+    "diagnosedIssue": {
+      "type": "string",
+      "description": "Plain homeowner language e.g. 'Leaking P-Trap under Kitchen Sink'"
+    },
+    "diagnosedIssueAr": {
+      "type": "string",
+      "description": "Arabic translation of diagnosedIssue"
+    },
+    "kemeworkCategorySlug": {
+      "type": "string",
+      "enum": [
+        "plumbing-services",
+        "electrical-services",
+        "carpentry",
+        "painting-decoration",
+        "ac-hvac",
+        "tiling-flooring",
+        "masonry-concrete",
+        "appliance-repair",
+        "pest-control",
+        "general-maintenance"
+      ],
+      "description": "Kemework category matched to the diagnosed issue"
+    },
+    "urgencyLevel": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "emergency"
+      ],
+      "description": "low=can wait days/weeks | medium=within 1-3 days | high=needs attention today | emergency=immediate risk to safety/property"
+    },
+    "safetyWarning": {
+      "type": "string",
+      "description": "Shown as red alert if urgency=emergency e.g. 'Turn off main water valve immediately to prevent structural water damage.'"
+    },
+    "safetyWarningAr": {
+      "type": "string",
+      "description": "Arabic translation of safetyWarning"
+    },
+    "technicalDescription": {
+      "type": "string",
+      "description": "Professional scope of work in contractor language. Editable by user before posting. e.g. 'Replace 1.5-inch PVC P-trap assembly under double-basin kitchen sink. Inspect tailpiece and wall tube for corrosion. Check basket strainers.'"
+    },
+    "technicalDescriptionAr": {
+      "type": "string",
+      "description": "Arabic translation of technicalDescription"
+    },
+    "estimatedLaborHoursMin": {
+      "type": "number",
+      "description": "Minimum estimated labor hours e.g. 1"
+    },
+    "estimatedLaborHoursMax": {
+      "type": "number",
+      "description": "Maximum estimated labor hours e.g. 3"
+    },
+    "estimatedLaborCostEGPMin": {
+      "type": "number",
+      "description": "Minimum estimated labor cost in EGP (nullable)"
+    },
+    "estimatedLaborCostEGPMax": {
+      "type": "number",
+      "description": "Maximum estimated labor cost in EGP (nullable)"
+    },
+    "professionalSkillRequired": {
+      "type": "string",
+      "description": "e.g. 'Licensed Plumber' | 'Certified Electrician' | 'General Handyman'"
+    },
+    "requiredMaterials": {
+      "type": "array",
+      "description": "Array of materials needed: [{itemName, itemNameAr, quantity, unit, kemetroSearchKeywords, estimatedCostEGP, kemetroProductId}]",
+      "items": {
+        "type": "object",
+        "properties": {
+          "itemName": {
+            "type": "string"
+          },
+          "itemNameAr": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string",
+            "description": "e.g. piece | meter | liter"
+          },
+          "kemetroSearchKeywords": {
+            "type": "string"
+          },
+          "estimatedCostEGP": {
+            "type": "number"
+          },
+          "kemetroProductId": {
+            "type": "string",
+            "description": "Set after live search finds a match (nullable)"
+          }
+        }
+      }
+    },
+    "totalEstimatedMaterialsCostEGP": {
+      "type": "number",
+      "description": "Sum of all estimatedCostEGP values in requiredMaterials"
+    },
+    "materialsSuppliedBy": {
+      "type": "string",
+      "enum": [
+        "customer",
+        "professional"
+      ],
+      "default": "professional",
+      "description": "customer=user will buy on Kemetro | professional=contractor brings their own"
+    },
+    "resultingTaskId": {
+      "type": "string",
+      "description": "Reference to KemeworkTask created on conversion (nullable)"
+    },
+    "convertedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the session was converted to a formal KemeworkTask"
+    },
+    "kemetroItemsAddedToCart": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of materials the user added to Kemetro cart from this session"
+    },
+    "kemetroItemsOrdered": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of materials actually ordered on Kemetro"
+    },
+    "viewDurationSeconds": {
+      "type": "number",
+      "description": "How long user spent reviewing the diagnosis screen (nullable)"
+    },
+    "userEditedDescription": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if user manually edited the technicalDescription before posting"
+    }
+  },
+  "required": [
+    "sessionToken",
+    "originalImageUrl",
+    "status"
+  ]
+}

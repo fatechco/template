@@ -1,0 +1,42 @@
+{
+  "name": "ProjectDistance",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Reference to Project"
+    },
+    "distanceFieldId": {
+      "type": "string",
+      "description": "Reference to DistanceField"
+    },
+    "distanceValue": {
+      "type": "number",
+      "description": "Distance value"
+    },
+    "distanceUnit": {
+      "type": "string",
+      "enum": [
+        "km",
+        "m",
+        "min"
+      ],
+      "description": "Unit of measurement"
+    },
+    "transportMode": {
+      "type": "string",
+      "enum": [
+        "walking",
+        "driving",
+        "public_transport"
+      ],
+      "description": "Transport mode (when unit is min)"
+    }
+  },
+  "required": [
+    "projectId",
+    "distanceFieldId",
+    "distanceValue",
+    "distanceUnit"
+  ]
+}

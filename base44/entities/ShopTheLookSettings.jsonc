@@ -1,0 +1,54 @@
+{
+  "name": "ShopTheLookSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "triggerOnFurnishedOnly": {
+      "type": "boolean",
+      "default": true,
+      "description": "Only analyze furnished/luxury properties"
+    },
+    "minFinishingLevelToAnalyze": {
+      "type": "string",
+      "default": "Complete Finishing",
+      "description": "Minimum property finishing level required"
+    },
+    "maxHotspotsPerImage": {
+      "type": "number",
+      "default": 6
+    },
+    "minHotspotsPerImage": {
+      "type": "number",
+      "default": 2,
+      "description": "If AI finds fewer, mark isShoppable = false"
+    },
+    "claudeModel": {
+      "type": "string",
+      "default": "claude-sonnet-4-20250514"
+    },
+    "sponsoredPinCostPerDayEGP": {
+      "type": "number",
+      "default": 50
+    },
+    "sponsoredPinCostPerClickEGP": {
+      "type": "number",
+      "default": 2
+    },
+    "guestCartExpiryDays": {
+      "type": "number",
+      "default": 7
+    },
+    "featureImageOnHomepage": {
+      "type": "boolean",
+      "default": true
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

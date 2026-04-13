@@ -1,0 +1,218 @@
+{
+  "name": "NeighborhoodLifeScore",
+  "type": "object",
+  "properties": {
+    "scopeLevel": {
+      "type": "string",
+      "enum": [
+        "area",
+        "district",
+        "city"
+      ],
+      "description": "Scope level of this score"
+    },
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "provinceId": {
+      "type": "string",
+      "description": "Reference to Province (nullable)"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District (nullable)"
+    },
+    "areaId": {
+      "type": "string",
+      "description": "Reference to Area (nullable)"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name in English"
+    },
+    "displayNameAr": {
+      "type": "string",
+      "description": "Display name in Arabic"
+    },
+    "overallLifeScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall Life Score (0-100)"
+    },
+    "overallGrade": {
+      "type": "string",
+      "enum": [
+        "exceptional",
+        "excellent",
+        "very_good",
+        "good",
+        "average",
+        "below_average",
+        "poor"
+      ],
+      "description": "Grade for overall score"
+    },
+    "walkabilityScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "noiseScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "100=very quiet, 0=very noisy"
+    },
+    "greenScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "safetyScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "connectivityScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "educationScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "convenienceScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "healthcareScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "walkabilityData": {
+      "type": "object"
+    },
+    "noiseData": {
+      "type": "object"
+    },
+    "greenData": {
+      "type": "object"
+    },
+    "safetyData": {
+      "type": "object"
+    },
+    "connectivityData": {
+      "type": "object"
+    },
+    "educationData": {
+      "type": "object"
+    },
+    "convenienceData": {
+      "type": "object"
+    },
+    "healthcareData": {
+      "type": "object"
+    },
+    "aiSummary": {
+      "type": "string",
+      "description": "Claude-generated neighborhood description"
+    },
+    "aiSummaryAr": {
+      "type": "string"
+    },
+    "neighborhoodPersonality": {
+      "type": "string",
+      "description": "One-liner neighborhood description"
+    },
+    "neighborhoodPersonalityAr": {
+      "type": "string"
+    },
+    "bestFor": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Who this neighborhood suits best"
+    },
+    "notIdealFor": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "topHighlights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 5
+    },
+    "topChallenges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3
+    },
+    "userRatingCount": {
+      "type": "number",
+      "default": 0
+    },
+    "userRatingAvg": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "franchiseOwnerVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "franchiseOwnerNotes": {
+      "type": "string"
+    },
+    "dataCompleteness": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage of data fields filled"
+    },
+    "dataConfidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nextScheduledUpdate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "scopeLevel",
+    "countryId",
+    "cityId",
+    "displayName",
+    "overallLifeScore",
+    "overallGrade"
+  ]
+}

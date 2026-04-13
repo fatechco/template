@@ -1,0 +1,46 @@
+{
+  "name": "CRMAutomationRun",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string"
+    },
+    "contactId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "default": "running"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "stepsCompleted": {
+      "type": "number",
+      "default": 0
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "log": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "workflowId"
+  ]
+}

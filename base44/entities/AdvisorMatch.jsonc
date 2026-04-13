@@ -1,0 +1,57 @@
+{
+  "name": "AdvisorMatch",
+  "type": "object",
+  "properties": {
+    "profileId": {
+      "type": "string",
+      "description": "Reference to AdvisorProfile"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "matchScore": {
+      "type": "number",
+      "description": "0-100 decimal"
+    },
+    "matchBreakdown": {
+      "type": "object",
+      "description": "{featureScore, locationScore, budgetScore, wishlistScore, dealBreakerPassed, noGoPassed}"
+    },
+    "matchDetails": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "isNotified": {
+      "type": "boolean",
+      "default": false
+    },
+    "notifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notificationChannel": {
+      "type": "string"
+    },
+    "userAction": {
+      "type": "string",
+      "enum": [
+        "viewed",
+        "saved",
+        "contacted",
+        "dismissed"
+      ]
+    },
+    "userActionAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "profileId",
+    "propertyId",
+    "matchScore"
+  ]
+}

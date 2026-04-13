@@ -1,0 +1,71 @@
+{
+  "name": "AuctionEvent",
+  "type": "object",
+  "properties": {
+    "auctionId": {
+      "type": "string",
+      "description": "Reference to PropertyAuction"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "auction_created",
+        "auction_approved",
+        "seller_deposit_paid",
+        "registration_opened",
+        "bidder_registered",
+        "bid_placed",
+        "bid_outbid",
+        "autobid_triggered",
+        "time_extended",
+        "reserve_met",
+        "buy_now_triggered",
+        "auction_ended",
+        "winner_notified",
+        "payment_received",
+        "deposit_refunded",
+        "deposit_forfeited",
+        "legal_started",
+        "completed",
+        "cancelled",
+        "fraud_flagged"
+      ],
+      "description": "Type of lifecycle event"
+    },
+    "actorUserId": {
+      "type": "string",
+      "description": "Reference to User who triggered this event (nullable for system events)"
+    },
+    "actorType": {
+      "type": "string",
+      "enum": [
+        "seller",
+        "bidder",
+        "admin",
+        "system"
+      ],
+      "description": "Who triggered this event"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the event"
+    },
+    "metaData": {
+      "type": "object",
+      "description": "Flexible JSON per eventType. e.g. for bid_placed: {bidAmount, bidderCount, timeRemaining}",
+      "additionalProperties": true
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Exact timestamp when event was recorded"
+    }
+  },
+  "required": [
+    "auctionId",
+    "eventType",
+    "actorType",
+    "description",
+    "recordedAt"
+  ]
+}

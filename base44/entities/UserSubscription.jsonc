@@ -1,0 +1,157 @@
+{
+  "name": "UserSubscription",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "planId": {
+      "type": "string",
+      "description": "Reference to SubscriptionPlan entity"
+    },
+    "planCode": {
+      "type": "string",
+      "description": "Plan code for quick reference"
+    },
+    "billingCycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "annual"
+      ],
+      "default": "monthly",
+      "description": "Billing cycle type"
+    },
+    "priceEGP": {
+      "type": "number",
+      "description": "Actual amount being charged in EGP"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP",
+      "description": "Currency of subscription"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When subscription started"
+    },
+    "currentPeriodStart": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Current billing period start"
+    },
+    "currentPeriodEnd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Current billing period end (renewal date)"
+    },
+    "trialEndAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When trial ends (nullable)"
+    },
+    "cancelledAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When cancellation was requested"
+    },
+    "cancelEffectiveAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When cancellation takes effect"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "trialing",
+        "active",
+        "past_due",
+        "cancelled",
+        "expired",
+        "paused"
+      ],
+      "default": "active",
+      "description": "Subscription status"
+    },
+    "paymentMethodId": {
+      "type": "string",
+      "description": "Payment method ID (nullable)"
+    },
+    "lastPaymentAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last successful payment timestamp"
+    },
+    "lastPaymentAmount": {
+      "type": "number",
+      "description": "Amount of last payment"
+    },
+    "nextPaymentAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Next scheduled payment"
+    },
+    "nextPaymentAmount": {
+      "type": "number",
+      "description": "Amount of next payment"
+    },
+    "failedPaymentCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of failed payment attempts"
+    },
+    "lastFailedPaymentAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When last payment failed"
+    },
+    "usageThisPeriod": {
+      "type": "object",
+      "description": "Current usage metrics for this billing period"
+    },
+    "previousPlanId": {
+      "type": "string",
+      "description": "Previous plan if upgraded/downgraded"
+    },
+    "upgradeHistory": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "History of plan changes with timestamps"
+    },
+    "autoRenew": {
+      "type": "boolean",
+      "default": true,
+      "description": "Auto-renew at period end"
+    },
+    "cancelAtPeriodEnd": {
+      "type": "boolean",
+      "default": false,
+      "description": "Cancel after current period ends"
+    },
+    "promoCodeUsed": {
+      "type": "string",
+      "description": "Promo code applied (nullable)"
+    },
+    "discountPercent": {
+      "type": "number",
+      "default": 0,
+      "description": "Discount percentage applied"
+    },
+    "discountValidUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When discount expires"
+    }
+  },
+  "required": [
+    "userId",
+    "planId",
+    "planCode",
+    "priceEGP"
+  ]
+}

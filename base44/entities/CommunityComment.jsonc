@@ -1,0 +1,67 @@
+{
+  "name": "CommunityComment",
+  "type": "object",
+  "properties": {
+    "postId": {
+      "type": "string"
+    },
+    "communityId": {
+      "type": "string"
+    },
+    "authorId": {
+      "type": "string"
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "authorUnit": {
+      "type": "string"
+    },
+    "parentCommentId": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "mediaUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isAnonymous": {
+      "type": "boolean",
+      "default": false
+    },
+    "reactionsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "reactions": {
+      "type": "object"
+    },
+    "repliesCount": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "published",
+        "hidden",
+        "removed"
+      ],
+      "default": "published"
+    },
+    "reportCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "postId",
+    "communityId",
+    "authorId",
+    "content"
+  ]
+}

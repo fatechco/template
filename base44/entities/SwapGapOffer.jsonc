@@ -1,0 +1,53 @@
+{
+  "name": "SwapGapOffer",
+  "type": "object",
+  "properties": {
+    "matchId": {
+      "type": "string",
+      "description": "Reference to SwapMatch"
+    },
+    "offeredByUserId": {
+      "type": "string",
+      "description": "Reference to User who made this offer"
+    },
+    "proposedGapEGP": {
+      "type": "number",
+      "description": "The proposed cash gap amount in EGP"
+    },
+    "proposedGapDirection": {
+      "type": "string",
+      "enum": [
+        "a_pays_b",
+        "b_pays_a",
+        "equal"
+      ],
+      "description": "Who pays whom the gap amount"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "expired"
+      ],
+      "default": "pending",
+      "description": "pending = waiting for other party; accepted = agreed; rejected = countered or declined; expired = no response in 48h"
+    },
+    "respondedByUserId": {
+      "type": "string",
+      "description": "Reference to User who responded to this offer"
+    },
+    "respondedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the other party responded"
+    }
+  },
+  "required": [
+    "matchId",
+    "offeredByUserId",
+    "proposedGapEGP",
+    "proposedGapDirection"
+  ]
+}

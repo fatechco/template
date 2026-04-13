@@ -1,0 +1,69 @@
+{
+  "name": "SurplusTransaction",
+  "type": "object",
+  "properties": {
+    "surplusItemId": {
+      "type": "string",
+      "description": "Reference to SurplusItem"
+    },
+    "buyerUserId": {
+      "type": "string",
+      "description": "Reference to buyer User"
+    },
+    "sellerUserId": {
+      "type": "string",
+      "description": "Reference to seller User"
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": [
+        "reservation",
+        "cancellation",
+        "settlement",
+        "refund",
+        "expiry"
+      ],
+      "description": "reservation = escrow hold | cancellation = cancelled | settlement = QR scanned funds released | refund = dispute resolved for buyer | expiry = auto-expired"
+    },
+    "amountEGP": {
+      "type": "number",
+      "description": "Transaction amount in EGP"
+    },
+    "platformFeeEGP": {
+      "type": "number",
+      "description": "Platform fee charged"
+    },
+    "sellerNetEGP": {
+      "type": "number",
+      "description": "Seller net amount after fee"
+    },
+    "escrowReference": {
+      "type": "string",
+      "description": "XeedWallet escrow reference (nullable)"
+    },
+    "qrCodeHash": {
+      "type": "string",
+      "description": "QR code hash used in handshake (nullable)"
+    },
+    "qrScannedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When QR code was scanned (nullable)"
+    },
+    "qrScannedByUserId": {
+      "type": "string",
+      "description": "Reference to User who scanned the QR (nullable)"
+    },
+    "cancellationReason": {
+      "type": "string",
+      "description": "Reason for cancellation (nullable)"
+    }
+  },
+  "required": [
+    "surplusItemId",
+    "buyerUserId",
+    "sellerUserId",
+    "transactionType",
+    "amountEGP"
+  ]
+}

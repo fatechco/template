@@ -1,0 +1,116 @@
+{
+  "name": "InvestmentMetric",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "overallScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "investmentGrade": {
+      "type": "string",
+      "enum": [
+        "A+",
+        "A",
+        "B+",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "locationScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "priceScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "demandScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "yieldScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "growthScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "priceVsAreaAvg": {
+      "type": "number",
+      "description": "%"
+    },
+    "sizeVsAreaAvg": {
+      "type": "number",
+      "description": "%"
+    },
+    "priceVsCityAvg": {
+      "type": "number",
+      "description": "%"
+    },
+    "estimatedRentalYield": {
+      "type": "number",
+      "description": "%"
+    },
+    "estimatedCapitalGrowth": {
+      "type": "number",
+      "description": "%"
+    },
+    "estimatedROI5Year": {
+      "type": "number",
+      "description": "%"
+    },
+    "demandLevel": {
+      "type": "string",
+      "enum": [
+        "Very Low",
+        "Low",
+        "Medium",
+        "High",
+        "Very High"
+      ]
+    },
+    "avgDaysOnMarket": {
+      "type": "number"
+    },
+    "similarSoldCount": {
+      "type": "number",
+      "description": "Similar properties sold in last 6 months"
+    },
+    "pricePerSqm": {
+      "type": "number"
+    },
+    "cityAvgPricePerSqm": {
+      "type": "number"
+    },
+    "districtAvgPricePerSqm": {
+      "type": "number"
+    },
+    "trendDirection": {
+      "type": "string",
+      "enum": [
+        "Rising",
+        "Stable",
+        "Declining"
+      ]
+    },
+    "trendPercent12Months": {
+      "type": "number",
+      "description": "%"
+    },
+    "lastCalculated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "overallScore",
+    "investmentGrade"
+  ]
+}

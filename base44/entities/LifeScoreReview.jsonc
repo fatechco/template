@@ -1,0 +1,117 @@
+{
+  "name": "LifeScoreReview",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District (nullable)"
+    },
+    "areaId": {
+      "type": "string",
+      "description": "Reference to Area (nullable)"
+    },
+    "overallRating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Overall rating 1-5"
+    },
+    "dimensionRatings": {
+      "type": "object",
+      "properties": {
+        "walkability": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "noise": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "green": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "safety": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "connectivity": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "education": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "convenience": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "healthcare": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "description": "Per-dimension ratings"
+    },
+    "reviewText": {
+      "type": "string",
+      "description": "Review text in English (nullable)"
+    },
+    "reviewTextAr": {
+      "type": "string",
+      "description": "Review text in Arabic (nullable)"
+    },
+    "userContext": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "tenant",
+        "former_resident",
+        "visitor"
+      ],
+      "description": "User's context in the area"
+    },
+    "yearsLivedHere": {
+      "type": "number",
+      "description": "How many years user lived there (nullable)"
+    },
+    "isVerifiedResident": {
+      "type": "boolean",
+      "default": false,
+      "description": "Verified by property ownership or phone"
+    },
+    "helpful": {
+      "type": "number",
+      "default": 0
+    },
+    "notHelpful": {
+      "type": "number",
+      "default": 0
+    },
+    "isApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "isHidden": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "userId",
+    "overallRating"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "name": "NegotiationMessage",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "senderRole": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller",
+        "agent",
+        "franchise_owner",
+        "system",
+        "ai"
+      ]
+    },
+    "messageType": {
+      "type": "string",
+      "enum": [
+        "offer",
+        "counter_offer",
+        "chat",
+        "system_update",
+        "ai_coaching",
+        "document",
+        "acceptance",
+        "rejection"
+      ]
+    },
+    "content": {
+      "type": "string"
+    },
+    "attachmentUrl": {
+      "type": "string"
+    },
+    "attachmentType": {
+      "type": "string"
+    },
+    "isRead": {
+      "type": "boolean",
+      "default": false
+    },
+    "readAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "relatedOfferId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sessionId",
+    "senderId",
+    "senderRole",
+    "messageType",
+    "content"
+  ]
+}

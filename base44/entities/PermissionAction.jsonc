@@ -1,0 +1,43 @@
+{
+  "name": "PermissionAction",
+  "type": "object",
+  "properties": {
+    "actionKey": {
+      "type": "string",
+      "description": "Unique slug: view|create|edit|delete|submit|publish|approve|reject|verify|feature|export|import|bid|assign|accredit|message|purchase|refund|withdraw|upload_media|access_dashboard|manage|bulk_action"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable action name"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this action does"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "read",
+        "write",
+        "admin",
+        "financial",
+        "communication",
+        "moderation"
+      ],
+      "description": "Action category"
+    },
+    "isDestructive": {
+      "type": "boolean",
+      "default": false,
+      "description": "Destructive actions require extra confirmation"
+    },
+    "sortOrder": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "actionKey",
+    "displayName",
+    "category"
+  ]
+}

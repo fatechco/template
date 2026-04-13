@@ -1,0 +1,68 @@
+{
+  "name": "SystemRole",
+  "type": "object",
+  "properties": {
+    "roleKey": {
+      "type": "string",
+      "description": "Unique slug: guest|common_user|agent|agency|developer|franchise_owner_area|franchise_owner_country|professional|customer_kemework|finishing_company|product_seller|product_buyer|shipper|admin|super_admin"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable role name in English"
+    },
+    "displayNameAr": {
+      "type": "string",
+      "description": "Role name in Arabic"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "shared",
+        "kemedar",
+        "kemework",
+        "kemetro",
+        "admin"
+      ],
+      "description": "Which module this role belongs to"
+    },
+    "color": {
+      "type": "string",
+      "description": "Hex color code for this role"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji icon for this role"
+    },
+    "description": {
+      "type": "string",
+      "description": "Role description and responsibilities"
+    },
+    "isSystem": {
+      "type": "boolean",
+      "default": false,
+      "description": "System role cannot be deleted"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "sortOrder": {
+      "type": "number",
+      "description": "Display sort order"
+    },
+    "parentRoleId": {
+      "type": "string",
+      "description": "Reference to SystemRole (inherits from)"
+    },
+    "userCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Cached count of users with this role"
+    }
+  },
+  "required": [
+    "roleKey",
+    "displayName",
+    "module"
+  ]
+}

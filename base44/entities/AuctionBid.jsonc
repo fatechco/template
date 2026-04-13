@@ -1,0 +1,75 @@
+{
+  "name": "AuctionBid",
+  "type": "object",
+  "properties": {
+    "auctionId": {
+      "type": "string",
+      "description": "Reference to PropertyAuction"
+    },
+    "bidderUserId": {
+      "type": "string",
+      "description": "Reference to User (bidder)"
+    },
+    "bidAmountEGP": {
+      "type": "number",
+      "description": "Bid amount in EGP"
+    },
+    "bidType": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "auto_max",
+        "buy_now"
+      ],
+      "description": "manual=typed amount | auto_max=autobid sequence | buy_now=triggered buy now price"
+    },
+    "isWinning": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this is current highest bid"
+    },
+    "isAutoBid": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if placed by autobid system on behalf of bidder"
+    },
+    "autoMaxAmountEGP": {
+      "type": "number",
+      "description": "Autobid ceiling set by bidder (nullable)"
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "Bidder IP address for fraud detection"
+    },
+    "deviceInfo": {
+      "type": "string",
+      "description": "Browser/device fingerprint for fraud detection"
+    },
+    "bidSequenceNumber": {
+      "type": "number",
+      "description": "1=first bid placed, 2=second, etc. Sequential counter for display"
+    },
+    "wasExtended": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this bid triggered a time extension"
+    },
+    "extensionMinutesAdded": {
+      "type": "number",
+      "description": "How many minutes were added by this bid (nullable)"
+    },
+    "bidPlacedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Exact server timestamp when bid was recorded"
+    }
+  },
+  "required": [
+    "auctionId",
+    "bidderUserId",
+    "bidAmountEGP",
+    "bidType",
+    "bidSequenceNumber",
+    "bidPlacedAt"
+  ]
+}

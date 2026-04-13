@@ -1,0 +1,91 @@
+{
+  "name": "ThinkDarAPIRequest",
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "contactName": {
+      "type": "string",
+      "description": "Contact person name"
+    },
+    "workEmail": {
+      "type": "string",
+      "description": "Work email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "companyType": {
+      "type": "string",
+      "enum": [
+        "agency",
+        "developer",
+        "bank",
+        "mortgage",
+        "investment_fund",
+        "proptech",
+        "government",
+        "other"
+      ],
+      "description": "Type of company"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country"
+    },
+    "apisRequested": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of API endpoints requested"
+    },
+    "expectedMonthlyCalls": {
+      "type": "string",
+      "enum": [
+        "under_1k",
+        "1k_10k",
+        "10k_100k",
+        "100k_plus"
+      ],
+      "description": "Expected monthly API call volume"
+    },
+    "useCase": {
+      "type": "string",
+      "description": "Description of intended use case"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "reviewing",
+        "approved",
+        "rejected",
+        "waitlisted"
+      ],
+      "default": "pending",
+      "description": "Review status"
+    },
+    "apiKeyIssued": {
+      "type": "string",
+      "description": "Issued API key (nullable)"
+    },
+    "reviewedByAdminId": {
+      "type": "string",
+      "description": "Admin user ID who reviewed (nullable)"
+    },
+    "reviewNotes": {
+      "type": "string",
+      "description": "Internal review notes"
+    }
+  },
+  "required": [
+    "companyName",
+    "contactName",
+    "workEmail",
+    "companyType"
+  ]
+}

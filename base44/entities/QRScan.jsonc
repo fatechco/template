@@ -1,0 +1,80 @@
+{
+  "name": "QRScan",
+  "type": "object",
+  "properties": {
+    "qrCodeId": {
+      "type": "string",
+      "description": "Reference to QRCode"
+    },
+    "qrCodeUID": {
+      "type": "string",
+      "description": "Snapshot of QR code UID"
+    },
+    "ownerUserId": {
+      "type": "string",
+      "description": "Snapshot of owner User ID"
+    },
+    "targetType": {
+      "type": "string",
+      "description": "Snapshot of target type"
+    },
+    "targetId": {
+      "type": "string",
+      "description": "Snapshot of target ID"
+    },
+    "scannedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the scan occurred"
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "Hashed IP address for privacy"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country derived from IP (nullable)"
+    },
+    "city": {
+      "type": "string",
+      "description": "City derived from IP (nullable)"
+    },
+    "deviceType": {
+      "type": "string",
+      "enum": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ]
+    },
+    "operatingSystem": {
+      "type": "string",
+      "description": "e.g. iOS, Android, Windows (nullable)"
+    },
+    "browser": {
+      "type": "string",
+      "description": "Browser name (nullable)"
+    },
+    "referrerUrl": {
+      "type": "string",
+      "description": "Referrer URL (nullable)"
+    },
+    "redirectedTo": {
+      "type": "string",
+      "description": "Final URL the user was redirected to"
+    },
+    "redirectSuccess": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "qrCodeId",
+    "qrCodeUID",
+    "ownerUserId",
+    "targetType",
+    "targetId",
+    "scannedAt",
+    "redirectedTo"
+  ]
+}

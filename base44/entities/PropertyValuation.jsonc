@@ -1,0 +1,241 @@
+{
+  "name": "PropertyValuation",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property (nullable)"
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Reference to Project (nullable)"
+    },
+    "valuationGoal": {
+      "type": "string",
+      "enum": [
+        "own_property",
+        "check_value"
+      ],
+      "description": "Reason for valuation"
+    },
+    "propertyType": {
+      "type": "string",
+      "description": "Apartment | Villa | Chalet | Land | Commercial | etc."
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "Sale",
+        "Rent"
+      ],
+      "description": "Sale or Rent"
+    },
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "provinceId": {
+      "type": "string",
+      "description": "Reference to Province"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District"
+    },
+    "areaId": {
+      "type": "string",
+      "description": "Reference to Area (nullable)"
+    },
+    "totalArea": {
+      "type": "number",
+      "description": "Total area in sqm"
+    },
+    "bedrooms": {
+      "type": "number",
+      "description": "Number of bedrooms"
+    },
+    "bathrooms": {
+      "type": "number",
+      "description": "Number of bathrooms"
+    },
+    "floor": {
+      "type": "number",
+      "description": "Floor number"
+    },
+    "finishing": {
+      "type": "string",
+      "enum": [
+        "Unfinished",
+        "Semi-finished",
+        "Finished",
+        "Fully Furnished"
+      ],
+      "description": "Finishing level"
+    },
+    "yearBuilt": {
+      "type": "number",
+      "description": "Year the property was built"
+    },
+    "hasParking": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasPool": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasGarden": {
+      "type": "boolean",
+      "default": false
+    },
+    "viewType": {
+      "type": "string",
+      "enum": [
+        "Street",
+        "Garden",
+        "Sea",
+        "City",
+        "Pool",
+        "None"
+      ],
+      "description": "View type"
+    },
+    "estimatedPriceMin": {
+      "type": "number",
+      "description": "Minimum estimated price"
+    },
+    "estimatedPriceMax": {
+      "type": "number",
+      "description": "Maximum estimated price"
+    },
+    "estimatedPriceMid": {
+      "type": "number",
+      "description": "Mid estimated price"
+    },
+    "pricePerSqm": {
+      "type": "number",
+      "description": "Estimated price per sqm"
+    },
+    "marketAveragePricePerSqm": {
+      "type": "number",
+      "description": "Market average price per sqm"
+    },
+    "accuracyScore": {
+      "type": "number",
+      "description": "Accuracy score 0-100"
+    },
+    "demandLevel": {
+      "type": "string",
+      "enum": [
+        "Very Low",
+        "Low",
+        "Medium",
+        "High",
+        "Very High"
+      ]
+    },
+    "demandScore": {
+      "type": "number",
+      "description": "Demand score 0-100"
+    },
+    "priceVsMarket": {
+      "type": "number",
+      "description": "% above/below market average"
+    },
+    "sizeVsMarket": {
+      "type": "number",
+      "description": "% above/below market average size"
+    },
+    "rentalYield": {
+      "type": "number",
+      "description": "Annual rental yield %"
+    },
+    "roiScore": {
+      "type": "number",
+      "description": "ROI score 0-100"
+    },
+    "investmentGrade": {
+      "type": "string",
+      "enum": [
+        "A+",
+        "A",
+        "B+",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "priceIndex": {
+      "type": "number",
+      "description": "Price index"
+    },
+    "trendDirection": {
+      "type": "string",
+      "enum": [
+        "Rising",
+        "Stable",
+        "Declining"
+      ]
+    },
+    "trendPercentage": {
+      "type": "number",
+      "description": "Price trend % last 12 months"
+    },
+    "valuationNotes": {
+      "type": "string",
+      "description": "Additional notes"
+    },
+    "savedToPortfolio": {
+      "type": "boolean",
+      "default": false
+    },
+    "savedToMyValuations": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Completed",
+        "Failed"
+      ],
+      "default": "Pending"
+    },
+    "calculatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "locationLabel": {
+      "type": "string",
+      "description": "Human readable location string"
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "districtName": {
+      "type": "string"
+    },
+    "countryName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "valuationGoal",
+    "propertyType",
+    "purpose",
+    "totalArea"
+  ]
+}

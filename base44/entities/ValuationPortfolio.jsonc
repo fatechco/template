@@ -1,0 +1,54 @@
+{
+  "name": "ValuationPortfolio",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "valuationId": {
+      "type": "string",
+      "description": "Reference to PropertyValuation"
+    },
+    "portfolioType": {
+      "type": "string",
+      "enum": [
+        "portfolio",
+        "watchlist",
+        "comparison"
+      ],
+      "default": "portfolio"
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Optional name for this entry"
+    },
+    "purchasePrice": {
+      "type": "number",
+      "description": "Actual purchase price"
+    },
+    "purchaseDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "currentEstimate": {
+      "type": "number"
+    },
+    "gainLoss": {
+      "type": "number",
+      "description": "Calculated gain/loss"
+    },
+    "gainLossPercent": {
+      "type": "number",
+      "description": "Gain/loss %"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "valuationId",
+    "portfolioType"
+  ]
+}

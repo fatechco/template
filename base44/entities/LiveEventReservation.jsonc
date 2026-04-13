@@ -1,0 +1,69 @@
+{
+  "name": "LiveEventReservation",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "registrationId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "propertyId": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "unitType": {
+      "type": "string"
+    },
+    "reservationAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "isEventExclusive": {
+      "type": "boolean",
+      "default": false
+    },
+    "eventDiscountApplied": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "converted_to_deal",
+        "cancelled",
+        "expired"
+      ],
+      "default": "pending"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "escrowDealId": {
+      "type": "string"
+    },
+    "reservationRef": {
+      "type": "string"
+    },
+    "unitDetails": {
+      "type": "object"
+    },
+    "paymentPlan": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "eventId",
+    "userId"
+  ]
+}

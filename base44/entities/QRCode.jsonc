@@ -1,0 +1,195 @@
+{
+  "name": "QRCode",
+  "type": "object",
+  "properties": {
+    "qrCodeUID": {
+      "type": "string",
+      "description": "Unique 8-char code e.g. KQR-A1B2C3D4"
+    },
+    "ownerUserId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "ownerRole": {
+      "type": "string",
+      "enum": [
+        "agent",
+        "developer",
+        "agency",
+        "franchise_owner",
+        "professional",
+        "kemetro_seller",
+        "common_user"
+      ]
+    },
+    "targetType": {
+      "type": "string",
+      "enum": [
+        "property",
+        "project",
+        "product",
+        "store",
+        "service",
+        "professional_profile",
+        "agent_profile",
+        "agency_profile",
+        "developer_profile",
+        "franchise_profile"
+      ]
+    },
+    "targetId": {
+      "type": "string",
+      "description": "ID of the target record"
+    },
+    "targetTitle": {
+      "type": "string",
+      "description": "Snapshot of target name"
+    },
+    "targetUrl": {
+      "type": "string",
+      "description": "Full destination URL"
+    },
+    "trackingUrl": {
+      "type": "string",
+      "description": "Tracking URL e.g. https://kemedar.com/qr/KQR-A1B2C3D4"
+    },
+    "foregroundColor": {
+      "type": "string",
+      "default": "#FF6B00"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "includeLogo": {
+      "type": "boolean",
+      "default": true
+    },
+    "logoType": {
+      "type": "string",
+      "enum": [
+        "kemedar",
+        "kemework",
+        "kemetro",
+        "thinkdar",
+        "custom",
+        "none"
+      ],
+      "default": "kemedar"
+    },
+    "customLogoUrl": {
+      "type": "string",
+      "description": "User uploaded custom logo URL (nullable)"
+    },
+    "includeFrame": {
+      "type": "boolean",
+      "default": true
+    },
+    "frameStyle": {
+      "type": "string",
+      "enum": [
+        "simple",
+        "branded",
+        "rounded",
+        "dots",
+        "none"
+      ],
+      "default": "branded"
+    },
+    "frameText": {
+      "type": "string",
+      "description": "Text shown below QR in frame (nullable)"
+    },
+    "frameTextAr": {
+      "type": "string",
+      "description": "Arabic frame text (nullable)"
+    },
+    "qrStyle": {
+      "type": "string",
+      "enum": [
+        "square",
+        "rounded",
+        "dots",
+        "classy"
+      ],
+      "default": "square"
+    },
+    "errorCorrectionLevel": {
+      "type": "string",
+      "enum": [
+        "L",
+        "M",
+        "Q",
+        "H"
+      ],
+      "default": "H"
+    },
+    "qrImagePngUrl": {
+      "type": "string",
+      "description": "Generated PNG file URL (nullable)"
+    },
+    "qrImageSvgUrl": {
+      "type": "string",
+      "description": "Generated SVG file URL (nullable)"
+    },
+    "qrImagePdfUrl": {
+      "type": "string",
+      "description": "Generated PDF file URL (nullable)"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When files were generated (nullable)"
+    },
+    "planRequired": {
+      "type": "string",
+      "enum": [
+        "any_paid",
+        "pro",
+        "premium"
+      ],
+      "default": "any_paid"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "archived",
+        "expired"
+      ],
+      "default": "active"
+    },
+    "totalScans": {
+      "type": "number",
+      "default": 0
+    },
+    "uniqueScans": {
+      "type": "number",
+      "default": 0
+    },
+    "lastScannedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last scan timestamp (nullable)"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false,
+      "description": "Default QR for the target"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp (nullable)"
+    }
+  },
+  "required": [
+    "qrCodeUID",
+    "ownerUserId",
+    "targetType",
+    "targetId",
+    "targetUrl",
+    "trackingUrl"
+  ]
+}

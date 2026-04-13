@@ -1,0 +1,120 @@
+{
+  "name": "KemeKitItem",
+  "type": "object",
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "description": "Reference to KemeKitTemplate"
+    },
+    "productId": {
+      "type": "string",
+      "description": "Reference to KemetroProduct"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Snapshot of product name at linking"
+    },
+    "productImageUrl": {
+      "type": "string",
+      "description": "Snapshot of product image URL"
+    },
+    "productPriceEGP": {
+      "type": "number",
+      "description": "Snapshot of product price at linking"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "primary_floor_tile",
+        "accent_floor_tile",
+        "primary_wall_tile",
+        "accent_wall_tile",
+        "paint_wall",
+        "paint_ceiling",
+        "waterproofing",
+        "adhesive",
+        "grout",
+        "skirting_baseboard",
+        "fixture_toilet",
+        "fixture_sink",
+        "fixture_bathtub",
+        "fixture_shower",
+        "fixture_vanity",
+        "fixture_mirror",
+        "fixture_lighting",
+        "consumable",
+        "decor_optional"
+      ],
+      "description": "Item role in the design"
+    },
+    "calculationRule": {
+      "type": "string",
+      "enum": [
+        "floor_sqm",
+        "wall_sqm",
+        "ceiling_sqm",
+        "floor_wall_sqm",
+        "linear_meter",
+        "fixed_quantity",
+        "ratio_to_parent"
+      ],
+      "description": "BOQ calculation rule"
+    },
+    "coveragePerUnit": {
+      "type": "number",
+      "description": "How much area/length one unit covers (nullable)"
+    },
+    "coverageUnit": {
+      "type": "string",
+      "enum": [
+        "sqm_per_box",
+        "sqm_per_gallon",
+        "sqm_per_bag",
+        "lm_per_piece",
+        "sqm_per_roll"
+      ],
+      "description": "Unit of coverage measurement (nullable)"
+    },
+    "wasteMarginPercent": {
+      "type": "number",
+      "default": 10,
+      "description": "Industry standard waste buffer percentage"
+    },
+    "fixedQuantity": {
+      "type": "number",
+      "description": "Fixed quantity when calculationRule = fixed_quantity (nullable)"
+    },
+    "parentItemId": {
+      "type": "string",
+      "description": "Reference to parent KemeKitItem for ratio calculations (nullable)"
+    },
+    "ratioMultiplier": {
+      "type": "number",
+      "description": "Ratio multiplier for ratio_to_parent calculations (nullable)"
+    },
+    "isOptional": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this an optional item"
+    },
+    "isHighlighted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a signature item of the design"
+    },
+    "displayOrder": {
+      "type": "number",
+      "description": "Order shown in BOQ list"
+    }
+  },
+  "required": [
+    "templateId",
+    "productId",
+    "productName",
+    "productImageUrl",
+    "productPriceEGP",
+    "role",
+    "calculationRule",
+    "displayOrder"
+  ]
+}

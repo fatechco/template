@@ -1,0 +1,53 @@
+{
+  "name": "NegotiationAnalytics",
+  "type": "object",
+  "properties": {
+    "districtId": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "propertyType": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string",
+      "description": "YYYY-MM"
+    },
+    "avgNegotiationDiscount": {
+      "type": "number"
+    },
+    "avgRoundsToClose": {
+      "type": "number"
+    },
+    "avgDaysToClose": {
+      "type": "number"
+    },
+    "acceptanceRate": {
+      "type": "number"
+    },
+    "avgOpeningOfferPercent": {
+      "type": "number"
+    },
+    "mostCommonPaymentMethod": {
+      "type": "string"
+    },
+    "totalSessions": {
+      "type": "number",
+      "default": 0
+    },
+    "completedSessions": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "propertyType",
+    "purpose",
+    "period"
+  ]
+}

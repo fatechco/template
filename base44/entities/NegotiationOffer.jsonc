@@ -1,0 +1,120 @@
+{
+  "name": "NegotiationOffer",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "roundNumber": {
+      "type": "number"
+    },
+    "offeredBy": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller"
+      ]
+    },
+    "offererId": {
+      "type": "string"
+    },
+    "offerAmount": {
+      "type": "number"
+    },
+    "offerCurrency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "offerPerSqm": {
+      "type": "number"
+    },
+    "percentOfListed": {
+      "type": "number"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "cash",
+        "mortgage",
+        "installment",
+        "mixed"
+      ]
+    },
+    "paymentTimeline": {
+      "type": "string"
+    },
+    "conditions": {
+      "type": "string"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "offerMessage": {
+      "type": "string"
+    },
+    "messageLanguage": {
+      "type": "string",
+      "enum": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "default": "en"
+    },
+    "isAiDrafted": {
+      "type": "boolean",
+      "default": false
+    },
+    "aiDraftAccepted": {
+      "type": "boolean"
+    },
+    "aiCoachingSummary": {
+      "type": "string"
+    },
+    "aiRecommendedAmount": {
+      "type": "number"
+    },
+    "userFollowedAiAdvice": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "sent",
+        "read",
+        "accepted",
+        "countered",
+        "rejected",
+        "withdrawn",
+        "expired"
+      ],
+      "default": "pending_review"
+    },
+    "readAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "respondedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "responseType": {
+      "type": "string"
+    },
+    "digitalOfferUrl": {
+      "type": "string"
+    },
+    "digitalOfferSignedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "sessionId",
+    "offeredBy",
+    "offererId",
+    "offerAmount"
+  ]
+}

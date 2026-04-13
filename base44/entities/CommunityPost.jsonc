@@ -1,0 +1,250 @@
+{
+  "name": "CommunityPost",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "authorId": {
+      "type": "string"
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "authorUnit": {
+      "type": "string"
+    },
+    "postType": {
+      "type": "string",
+      "enum": [
+        "announcement",
+        "general",
+        "question",
+        "recommendation",
+        "alert",
+        "marketplace",
+        "poll",
+        "event",
+        "appreciation",
+        "complaint",
+        "lost_found",
+        "help_request"
+      ],
+      "default": "general"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "contentAr": {
+      "type": "string"
+    },
+    "mediaUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linkUrl": {
+      "type": "string"
+    },
+    "isAnonymous": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "pinnedUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pinnedBy": {
+      "type": "string"
+    },
+    "isAnnouncement": {
+      "type": "boolean",
+      "default": false
+    },
+    "announcementUrgency": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ]
+    },
+    "requiresAction": {
+      "type": "boolean",
+      "default": false
+    },
+    "actionDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "community",
+        "members_only",
+        "verified_only",
+        "admins_only"
+      ],
+      "default": "community"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "reactionsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "commentsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "sharesCount": {
+      "type": "number",
+      "default": 0
+    },
+    "reactions": {
+      "type": "object"
+    },
+    "userReactions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_approval",
+        "published",
+        "hidden",
+        "removed",
+        "flagged"
+      ],
+      "default": "published"
+    },
+    "reportCount": {
+      "type": "number",
+      "default": 0
+    },
+    "moderatedBy": {
+      "type": "string"
+    },
+    "moderationNote": {
+      "type": "string"
+    },
+    "pollOptions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "pollEndsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pollMultipleChoice": {
+      "type": "boolean",
+      "default": false
+    },
+    "pollAnonymous": {
+      "type": "boolean",
+      "default": true
+    },
+    "totalPollVotes": {
+      "type": "number",
+      "default": 0
+    },
+    "pollVoterIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alertType": {
+      "type": "string",
+      "enum": [
+        "water_cut",
+        "power_outage",
+        "security_incident",
+        "maintenance",
+        "gas_cut",
+        "internet_outage",
+        "flooding",
+        "other_utility",
+        "noise_complaint",
+        "emergency"
+      ]
+    },
+    "alertArea": {
+      "type": "string"
+    },
+    "alertStartsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "alertEndsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "alertResolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "alertResolvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "alertConfirmations": {
+      "type": "number",
+      "default": 0
+    },
+    "alertConfirmingUserIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "marketplaceItemId": {
+      "type": "string"
+    },
+    "suggestedKemeworkCategory": {
+      "type": "string"
+    },
+    "kemeworkTaskCreated": {
+      "type": "boolean",
+      "default": false
+    },
+    "kemeworkTaskId": {
+      "type": "string"
+    },
+    "aiModerated": {
+      "type": "boolean",
+      "default": false
+    },
+    "aiModerationScore": {
+      "type": "number"
+    },
+    "aiCategoryDetected": {
+      "type": "string"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "communityId",
+    "authorId",
+    "content",
+    "postType"
+  ]
+}

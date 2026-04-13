@@ -1,0 +1,46 @@
+{
+  "name": "PermissionGroup",
+  "type": "object",
+  "properties": {
+    "groupName": {
+      "type": "string",
+      "description": "Preset template name"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this permission group provides"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resourceKey": {
+            "type": "string"
+          },
+          "actionKey": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Array of permission assignments"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of roleKeys this group applies to"
+    }
+  },
+  "required": [
+    "groupName"
+  ]
+}

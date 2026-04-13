@@ -1,0 +1,95 @@
+{
+  "name": "LifeScoreDataPoint",
+  "type": "object",
+  "properties": {
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District (nullable)"
+    },
+    "areaId": {
+      "type": "string",
+      "description": "Reference to Area (nullable)"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "amenity",
+        "transport",
+        "safety_report",
+        "noise_reading",
+        "school_info",
+        "healthcare_info",
+        "connectivity",
+        "green_space",
+        "user_report",
+        "fo_report",
+        "osm_import",
+        "admin_entry"
+      ],
+      "description": "Type of data point"
+    },
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "walkability",
+        "noise",
+        "green",
+        "safety",
+        "connectivity",
+        "education",
+        "convenience",
+        "healthcare"
+      ],
+      "description": "Which dimension this contributes to"
+    },
+    "value": {
+      "type": "object",
+      "description": "Flexible JSON value per data type"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of data"
+    },
+    "sourceUrl": {
+      "type": "string",
+      "description": "URL of source (nullable)"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude coordinate (nullable)"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude coordinate (nullable)"
+    },
+    "accuracy": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "estimated",
+        "user_reported"
+      ],
+      "description": "Accuracy level of data"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "verifiedBy": {
+      "type": "string",
+      "description": "User ID who verified this data (nullable)"
+    }
+  },
+  "required": [
+    "cityId",
+    "dataType",
+    "dimension",
+    "value",
+    "source",
+    "accuracy"
+  ]
+}

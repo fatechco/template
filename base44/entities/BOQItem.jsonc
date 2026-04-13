@@ -1,0 +1,168 @@
+{
+  "name": "BOQItem",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Reference to BuildProject"
+    },
+    "sectionId": {
+      "type": "string"
+    },
+    "sectionName": {
+      "type": "string"
+    },
+    "sectionNameAr": {
+      "type": "string"
+    },
+    "itemCategory": {
+      "type": "string",
+      "enum": [
+        "flooring",
+        "wall_tiles",
+        "ceiling",
+        "paint",
+        "electrical",
+        "plumbing",
+        "doors",
+        "windows",
+        "kitchen",
+        "bathroom_fixtures",
+        "carpentry",
+        "insulation",
+        "waterproofing",
+        "adhesives",
+        "grouting",
+        "accessories",
+        "labor",
+        "other"
+      ]
+    },
+    "itemName": {
+      "type": "string"
+    },
+    "itemNameAr": {
+      "type": "string"
+    },
+    "itemDescription": {
+      "type": "string"
+    },
+    "specification": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string",
+      "enum": [
+        "m\u00b2",
+        "m",
+        "pcs",
+        "kg",
+        "liter",
+        "bag",
+        "set",
+        "point"
+      ]
+    },
+    "netQuantity": {
+      "type": "number"
+    },
+    "wastePercent": {
+      "type": "number",
+      "default": 10
+    },
+    "orderQuantity": {
+      "type": "number"
+    },
+    "unitCostMin": {
+      "type": "number"
+    },
+    "unitCostMax": {
+      "type": "number"
+    },
+    "unitCostRecommended": {
+      "type": "number"
+    },
+    "totalCostMin": {
+      "type": "number"
+    },
+    "totalCostMax": {
+      "type": "number"
+    },
+    "totalCostRecommended": {
+      "type": "number"
+    },
+    "finishingLevel": {
+      "type": "string"
+    },
+    "kemetroSearchKeyword": {
+      "type": "string"
+    },
+    "matchedProductId": {
+      "type": "string"
+    },
+    "matchedProductName": {
+      "type": "string"
+    },
+    "matchedProductUrl": {
+      "type": "string"
+    },
+    "matchedProductPrice": {
+      "type": "number"
+    },
+    "matchedProductImage": {
+      "type": "string"
+    },
+    "matchedSellerId": {
+      "type": "string"
+    },
+    "matchConfidence": {
+      "type": "number"
+    },
+    "alternativeProductIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isSelected": {
+      "type": "boolean",
+      "default": true
+    },
+    "isOrdered": {
+      "type": "boolean",
+      "default": false
+    },
+    "orderedQuantity": {
+      "type": "number"
+    },
+    "orderedPrice": {
+      "type": "number"
+    },
+    "isMandatory": {
+      "type": "boolean",
+      "default": true
+    },
+    "isAiGenerated": {
+      "type": "boolean",
+      "default": true
+    },
+    "userModified": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "installationNote": {
+      "type": "string"
+    },
+    "sortOrder": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "projectId",
+    "itemName",
+    "unit"
+  ]
+}

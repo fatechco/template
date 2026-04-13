@@ -1,0 +1,79 @@
+{
+  "name": "SurplusShipmentRequest",
+  "type": "object",
+  "properties": {
+    "surplusItemId": {
+      "type": "string",
+      "description": "Reference to SurplusItem"
+    },
+    "transactionId": {
+      "type": "string",
+      "description": "Reference to SurplusTransaction"
+    },
+    "buyerUserId": {
+      "type": "string",
+      "description": "Reference to buyer User"
+    },
+    "sellerUserId": {
+      "type": "string",
+      "description": "Reference to seller User"
+    },
+    "assignedShipperId": {
+      "type": "string",
+      "description": "Reference to shipper User (nullable)"
+    },
+    "pickupAddress": {
+      "type": "string",
+      "description": "Seller pickup address"
+    },
+    "pickupLat": {
+      "type": "number",
+      "description": "Pickup GPS latitude"
+    },
+    "pickupLng": {
+      "type": "number",
+      "description": "Pickup GPS longitude"
+    },
+    "deliveryAddress": {
+      "type": "string",
+      "description": "Buyer delivery address"
+    },
+    "deliveryLat": {
+      "type": "number",
+      "description": "Delivery GPS latitude"
+    },
+    "deliveryLng": {
+      "type": "number",
+      "description": "Delivery GPS longitude"
+    },
+    "estimatedWeightKg": {
+      "type": "number",
+      "description": "Estimated shipment weight in kg"
+    },
+    "shippingCostEGP": {
+      "type": "number",
+      "description": "Shipping cost in EGP"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "accepted",
+        "picked_up",
+        "delivered",
+        "failed"
+      ],
+      "default": "open",
+      "description": "open = awaiting shipper | accepted = shipper assigned | picked_up = collected from seller | delivered = delivered to buyer | failed = delivery failed"
+    }
+  },
+  "required": [
+    "surplusItemId",
+    "transactionId",
+    "buyerUserId",
+    "sellerUserId",
+    "pickupAddress",
+    "deliveryAddress",
+    "shippingCostEGP"
+  ]
+}

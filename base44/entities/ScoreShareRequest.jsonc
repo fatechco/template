@@ -1,0 +1,47 @@
+{
+  "name": "ScoreShareRequest",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "shareToken": {
+      "type": "string"
+    },
+    "sharedWith": {
+      "type": "string"
+    },
+    "scoreAtTimeOfShare": {
+      "type": "number"
+    },
+    "gradeAtTimeOfShare": {
+      "type": "string"
+    },
+    "dimensionsShared": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "lastViewedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isRevoked": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "userId",
+    "shareToken"
+  ]
+}

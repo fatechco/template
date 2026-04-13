@@ -1,0 +1,229 @@
+{
+  "name": "FinishProject",
+  "type": "object",
+  "properties": {
+    "projectNumber": {
+      "type": "string",
+      "description": "Auto: KFP-YYYYMMDD-XXXXX"
+    },
+    "ownerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property (nullable)"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "projectType": {
+      "type": "string",
+      "enum": [
+        "new_finishing",
+        "renovation",
+        "partial_renovation",
+        "luxury_upgrade",
+        "commercial_fit_out"
+      ]
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": [
+        "apartment",
+        "villa",
+        "duplex",
+        "studio",
+        "commercial",
+        "other"
+      ]
+    },
+    "totalAreaSqm": {
+      "type": "number"
+    },
+    "numberOfRooms": {
+      "type": "number"
+    },
+    "numberOfBathrooms": {
+      "type": "number"
+    },
+    "floorNumber": {
+      "type": "number"
+    },
+    "propertyAddress": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "designStyle": {
+      "type": "string",
+      "enum": [
+        "modern",
+        "contemporary",
+        "classic",
+        "minimalist",
+        "luxury",
+        "scandinavian",
+        "industrial",
+        "custom"
+      ]
+    },
+    "colorPalette": {
+      "type": "object",
+      "description": "JSON: {primary, secondary, accent, walls, ceilings, floors}"
+    },
+    "finishingLevel": {
+      "type": "string",
+      "enum": [
+        "economy",
+        "standard",
+        "premium",
+        "luxury"
+      ]
+    },
+    "floorPlanUrl": {
+      "type": "string"
+    },
+    "floorPlanAiExtracted": {
+      "type": "boolean",
+      "default": false
+    },
+    "estimatedBudget": {
+      "type": "number"
+    },
+    "approvedBudget": {
+      "type": "number"
+    },
+    "actualSpent": {
+      "type": "number",
+      "default": 0
+    },
+    "budgetCurrency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "budgetBreakdown": {
+      "type": "object",
+      "description": "JSON: {materials, labor, supervision, contingency, kemedarFee}"
+    },
+    "boqStatus": {
+      "type": "string",
+      "enum": [
+        "not_generated",
+        "generating",
+        "generated",
+        "approved",
+        "modified"
+      ],
+      "default": "not_generated"
+    },
+    "boqData": {
+      "type": "object"
+    },
+    "boqApprovedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boqApprovedBy": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "estimatedEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "estimatedDurationWeeks": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planning",
+        "design_approved",
+        "materials_ordered",
+        "in_progress",
+        "phase_complete",
+        "snagging",
+        "completed",
+        "on_hold",
+        "cancelled"
+      ],
+      "default": "planning"
+    },
+    "currentPhase": {
+      "type": "number",
+      "default": 1
+    },
+    "currentPhaseStatus": {
+      "type": "string"
+    },
+    "completionPercent": {
+      "type": "number",
+      "default": 0
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "projectManagerId": {
+      "type": "string"
+    },
+    "assignedProfessionals": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "escrowDealId": {
+      "type": "string"
+    },
+    "totalEscrowAmount": {
+      "type": "number"
+    },
+    "requiresFOSupervision": {
+      "type": "boolean",
+      "default": false
+    },
+    "foInspectionCount": {
+      "type": "number",
+      "default": 0
+    },
+    "hasActiveSnaggingList": {
+      "type": "boolean",
+      "default": false
+    },
+    "ownerSatisfactionRating": {
+      "type": "number"
+    },
+    "aiProjectSummary": {
+      "type": "string"
+    },
+    "aiRiskFlags": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiRecommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "ownerId",
+    "projectName",
+    "projectType"
+  ]
+}

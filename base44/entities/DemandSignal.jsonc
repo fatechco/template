@@ -1,0 +1,101 @@
+{
+  "name": "DemandSignal",
+  "type": "object",
+  "properties": {
+    "signalType": {
+      "type": "string",
+      "enum": [
+        "boq_multiple_users",
+        "search_pattern",
+        "wishlist_concentration",
+        "advisor_profile_match",
+        "seasonal_pattern",
+        "new_compound_detected",
+        "finish_projects_cluster"
+      ]
+    },
+    "productCategory": {
+      "type": "string"
+    },
+    "specificProduct": {
+      "type": "string"
+    },
+    "locationCityId": {
+      "type": "string"
+    },
+    "locationDistrictId": {
+      "type": "string"
+    },
+    "locationAreaId": {
+      "type": "string"
+    },
+    "compoundName": {
+      "type": "string"
+    },
+    "estimatedDemandQty": {
+      "type": "number"
+    },
+    "estimatedBuyerCount": {
+      "type": "number"
+    },
+    "signalStrength": {
+      "type": "number"
+    },
+    "confidenceScore": {
+      "type": "number"
+    },
+    "potentialGroupBuyValue": {
+      "type": "number"
+    },
+    "estimatedSavingsIfGrouped": {
+      "type": "number"
+    },
+    "targetUserIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "targetSellerIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "detected",
+        "notified",
+        "deal_created",
+        "expired",
+        "ignored"
+      ],
+      "default": "detected"
+    },
+    "dealCreatedId": {
+      "type": "string"
+    },
+    "detectedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "districtName": {
+      "type": "string"
+    },
+    "aiGeneratedOffer": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "signalType",
+    "productCategory"
+  ]
+}

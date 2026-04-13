@@ -1,0 +1,41 @@
+{
+  "name": "CRMPipeline",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sales",
+        "activation",
+        "onboarding",
+        "retention",
+        "custom"
+      ],
+      "default": "sales"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "ownerId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "ShopTheLookCart",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Browser session identifier"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (null = guest)"
+    },
+    "hotspotId": {
+      "type": "string",
+      "description": "Reference to ImageHotspot"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "productId": {
+      "type": "string",
+      "description": "Reference to KemetroProduct"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Snapshot of product name at add time"
+    },
+    "productImageUrl": {
+      "type": "string",
+      "description": "Snapshot of product image URL"
+    },
+    "productPriceEGP": {
+      "type": "number",
+      "description": "Snapshot of price at add time"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "addedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isConverted": {
+      "type": "boolean",
+      "default": false,
+      "description": "True when merged into real Kemetro cart"
+    },
+    "convertedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "sessionId + 7 days"
+    }
+  },
+  "required": [
+    "sessionId",
+    "hotspotId",
+    "propertyId",
+    "productId"
+  ]
+}

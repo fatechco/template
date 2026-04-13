@@ -1,0 +1,29 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "super_user",
+        "admin",
+        "user",
+        "agent",
+        "agency",
+        "developer",
+        "franchise_owner",
+        "franchise_owner_area",
+        "franchise_owner_country",
+        "product_seller",
+        "kemetro_seller",
+        "product_buyer",
+        "shipper",
+        "kemework_professional",
+        "kemework_company",
+        "kemework_customer",
+        "customer_kemework"
+      ],
+      "default": "user"
+    }
+  }
+}

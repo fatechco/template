@@ -1,0 +1,75 @@
+{
+  "name": "FracToken",
+  "type": "object",
+  "properties": {
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "holderUserId": {
+      "type": "string",
+      "description": "Reference to User (token holder)"
+    },
+    "holderNearWalletAddress": {
+      "type": "string",
+      "description": "Holder's NEAR wallet address, nullable"
+    },
+    "tokensHeld": {
+      "type": "number",
+      "description": "Current token balance"
+    },
+    "tokensHeldPercent": {
+      "type": "number",
+      "description": "tokensHeld / totalSupply \u00d7 100"
+    },
+    "averagePurchasePriceEGP": {
+      "type": "number",
+      "description": "Average cost per token in EGP"
+    },
+    "totalInvestedEGP": {
+      "type": "number",
+      "description": "Total EGP paid across all purchases"
+    },
+    "nearTokenBalance": {
+      "type": "number",
+      "description": "Balance confirmed on NEAR chain"
+    },
+    "nearLastSyncedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time NEAR balance was synced"
+    },
+    "nearTransactionHashes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All purchase transaction hashes on NEAR"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether holding is active"
+    },
+    "firstPurchasedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of first purchase"
+    },
+    "lastTransactionAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last transaction"
+    }
+  },
+  "required": [
+    "fracPropertyId",
+    "propertyId",
+    "holderUserId",
+    "tokensHeld"
+  ]
+}

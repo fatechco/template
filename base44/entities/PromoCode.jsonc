@@ -1,0 +1,60 @@
+{
+  "name": "PromoCode",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Unique promo code"
+    },
+    "discountType": {
+      "type": "string",
+      "enum": [
+        "percent",
+        "fixed_egp",
+        "free_months"
+      ],
+      "description": "Type of discount"
+    },
+    "discountValue": {
+      "type": "number",
+      "description": "Discount amount or percentage"
+    },
+    "applicablePlans": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Plan codes this applies to"
+    },
+    "maxUses": {
+      "type": "number",
+      "description": "Maximum number of times code can be used (nullable)"
+    },
+    "usedCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times code has been used"
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When promo becomes valid"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When promo expires (nullable)"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Promo code is active"
+    }
+  },
+  "required": [
+    "code",
+    "discountType",
+    "discountValue",
+    "validFrom"
+  ]
+}

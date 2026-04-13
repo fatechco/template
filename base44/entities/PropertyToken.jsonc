@@ -1,0 +1,130 @@
+{
+  "name": "PropertyToken",
+  "type": "object",
+  "properties": {
+    "tokenId": {
+      "type": "string",
+      "description": "Unique token identifier: KVP- + propertyId.slice(0,6) + - + random 6-char hex"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "tokenName": {
+      "type": "string",
+      "description": "Human-readable token name, e.g. Kemedar Verified Property #00142"
+    },
+    "tokenDescription": {
+      "type": "string",
+      "description": "AI-generated property summary"
+    },
+    "tokenImageUrl": {
+      "type": "string",
+      "description": "Generated certificate image URL"
+    },
+    "tokenAttributes": {
+      "type": "array",
+      "description": "NFT-style attributes array: [{trait_type, value}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "currentOwnerUserId": {
+      "type": "string",
+      "description": "Reference to current owner User"
+    },
+    "currentOwnerWalletAddress": {
+      "type": "string",
+      "description": "Current owner's wallet address"
+    },
+    "mintedByUserId": {
+      "type": "string",
+      "description": "Reference to User who minted this token"
+    },
+    "mintedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when token was minted"
+    },
+    "genesisHash": {
+      "type": "string",
+      "description": "sha256 of tokenId + propertyId + mintedAt \u2014 immutable"
+    },
+    "currentChainHash": {
+      "type": "string",
+      "description": "Latest hash in the verification chain"
+    },
+    "chainLength": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of records in the chain"
+    },
+    "verificationLevel": {
+      "type": "number",
+      "default": 1,
+      "description": "Verification level 1\u20135"
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_review",
+        "verified",
+        "expired",
+        "suspended",
+        "fraud_flagged"
+      ],
+      "default": "pending",
+      "description": "Current verification status of this token"
+    },
+    "certificateIssued": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the certificate has been issued"
+    },
+    "certificateIssuedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when certificate was issued"
+    },
+    "certificateExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Certificate expiry: +365 days from issuance"
+    },
+    "certificateRenewedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last certificate renewal"
+    },
+    "certificatePdfUrl": {
+      "type": "string",
+      "description": "URL to the certificate PDF file"
+    },
+    "certificateQrCode": {
+      "type": "string",
+      "description": "URL-encoded QR code content for certificate verification"
+    },
+    "transferHistory": {
+      "type": "array",
+      "description": "Array of ownership transfer records: [{fromUserId, toUserId, transferDate, dealId, transactionHash}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the token is active"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp"
+    }
+  },
+  "required": [
+    "tokenId",
+    "propertyId"
+  ]
+}

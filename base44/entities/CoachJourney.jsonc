@@ -1,0 +1,48 @@
+{
+  "name": "CoachJourney",
+  "type": "object",
+  "properties": {
+    "journeyType": {
+      "type": "string"
+    },
+    "journeyName": {
+      "type": "string"
+    },
+    "journeyNameAr": {
+      "type": "string"
+    },
+    "journeyDescription": {
+      "type": "string"
+    },
+    "journeyDescriptionAr": {
+      "type": "string"
+    },
+    "estimatedWeeks": {
+      "type": "number"
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0"
+    }
+  },
+  "required": [
+    "journeyType",
+    "journeyName"
+  ]
+}

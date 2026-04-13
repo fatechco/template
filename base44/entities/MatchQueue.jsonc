@@ -1,0 +1,50 @@
+{
+  "name": "MatchQueue",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "matchProfileId": {
+      "type": "string"
+    },
+    "propertyIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "currentIndex": {
+      "type": "number",
+      "default": 0
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalInQueue": {
+      "type": "number"
+    },
+    "aiFiltersApplied": {
+      "type": "object"
+    },
+    "aiSortingWeights": {
+      "type": "object"
+    },
+    "includesBoosts": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

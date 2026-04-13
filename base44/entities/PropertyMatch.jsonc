@@ -1,0 +1,108 @@
+{
+  "name": "PropertyMatch",
+  "type": "object",
+  "properties": {
+    "buyerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "sellerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "matchType": {
+      "type": "string",
+      "enum": [
+        "mutual_like",
+        "super_like_responded",
+        "seller_initiated",
+        "ai_suggested"
+      ]
+    },
+    "buyerAction": {
+      "type": "string",
+      "enum": [
+        "like",
+        "super_like"
+      ]
+    },
+    "buyerActionAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sellerAction": {
+      "type": "string",
+      "enum": [
+        "like_back",
+        "super_like_back"
+      ]
+    },
+    "sellerActionAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "matchScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "matched",
+        "negotiation_started",
+        "offer_made",
+        "deal_closed",
+        "expired",
+        "unmatched"
+      ],
+      "default": "matched"
+    },
+    "buyerOpened": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerOpenedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sellerOpened": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerOpenedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "negotiationSessionId": {
+      "type": "string"
+    },
+    "franchiseOwnerNotified": {
+      "type": "boolean",
+      "default": false
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "firstMessageSentAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalMessages": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "buyerId",
+    "propertyId"
+  ]
+}

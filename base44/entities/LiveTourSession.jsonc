@@ -1,0 +1,200 @@
+{
+  "name": "LiveTourSession",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "hostId": {
+      "type": "string",
+      "description": "Reference to User (seller or agent)"
+    },
+    "sessionType": {
+      "type": "string",
+      "enum": [
+        "buyer_tour",
+        "verification_tour",
+        "agent_preview",
+        "open_house"
+      ],
+      "default": "buyer_tour"
+    },
+    "title": {
+      "type": "string",
+      "description": "Tour title"
+    },
+    "description": {
+      "type": "string"
+    },
+    "scheduledFor": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Planned duration in minutes"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Africa/Cairo"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "waiting_room",
+        "live",
+        "paused",
+        "ended",
+        "cancelled",
+        "no_show"
+      ],
+      "default": "scheduled"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actualDuration": {
+      "type": "number",
+      "description": "Actual duration in minutes"
+    },
+    "maxParticipants": {
+      "type": "number",
+      "default": 50
+    },
+    "registeredParticipants": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "peakParticipants": {
+      "type": "number",
+      "default": 0
+    },
+    "franchiseOwnerIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "agentIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false
+    },
+    "requiresRegistration": {
+      "type": "boolean",
+      "default": true
+    },
+    "inviteLink": {
+      "type": "string",
+      "description": "Unique invite URL"
+    },
+    "inviteCode": {
+      "type": "string",
+      "description": "6-character code"
+    },
+    "passwordProtected": {
+      "type": "boolean",
+      "default": false
+    },
+    "sessionPassword": {
+      "type": "string"
+    },
+    "isRecorded": {
+      "type": "boolean",
+      "default": true
+    },
+    "recordingUrl": {
+      "type": "string"
+    },
+    "recordingDuration": {
+      "type": "number",
+      "description": "Duration in minutes"
+    },
+    "recordingSize": {
+      "type": "number",
+      "description": "Size in MB"
+    },
+    "recordingStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "recording",
+        "processing",
+        "ready",
+        "failed"
+      ],
+      "default": "not_started"
+    },
+    "recordingPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "totalMessages": {
+      "type": "number",
+      "default": 0
+    },
+    "totalQuestions": {
+      "type": "number",
+      "default": 0
+    },
+    "totalReactions": {
+      "type": "number",
+      "default": 0
+    },
+    "aiSessionSummary": {
+      "type": "string"
+    },
+    "aiKeyMoments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiQuestionsAnswered": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "propertySnapshot": {
+      "type": "object"
+    },
+    "verificationRequested": {
+      "type": "boolean",
+      "default": false
+    },
+    "verificationStatus": {
+      "type": "string"
+    },
+    "verificationCompletedBy": {
+      "type": "string",
+      "description": "Reference to User (FO)"
+    },
+    "verificationNotes": {
+      "type": "string"
+    },
+    "verificationCompletedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "hostId",
+    "title"
+  ]
+}

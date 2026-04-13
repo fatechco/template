@@ -1,0 +1,87 @@
+{
+  "name": "FinishBOQ",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Reference to FinishProject"
+    },
+    "version": {
+      "type": "number",
+      "default": 1
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of room sections with items"
+    },
+    "laborItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Labor estimates per trade"
+    },
+    "totalMaterialsCost": {
+      "type": "number",
+      "default": 0
+    },
+    "totalLaborCost": {
+      "type": "number",
+      "default": 0
+    },
+    "totalSupervisionCost": {
+      "type": "number",
+      "default": 0
+    },
+    "contingencyPercent": {
+      "type": "number",
+      "default": 10
+    },
+    "contingencyAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "platformFeePercent": {
+      "type": "number",
+      "default": 5
+    },
+    "platformFeeAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "grandTotal": {
+      "type": "number",
+      "default": 0
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "isApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "aiGeneratedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "aiModelUsed": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "projectId"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "UserDNA",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "propertyDNA": {
+      "type": "object"
+    },
+    "financialDNA": {
+      "type": "object"
+    },
+    "timingDNA": {
+      "type": "object"
+    },
+    "geographicDNA": {
+      "type": "object"
+    },
+    "intentDNA": {
+      "type": "object"
+    },
+    "platformDNA": {
+      "type": "object"
+    },
+    "communicationDNA": {
+      "type": "object"
+    },
+    "learningDNA": {
+      "type": "object"
+    },
+    "crossModuleSignals": {
+      "type": "object"
+    },
+    "predictions": {
+      "type": "object"
+    },
+    "dnaVersion": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "dnaCompleteness": {
+      "type": "number",
+      "default": 0
+    },
+    "lastRecalculated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalSignalsProcessed": {
+      "type": "number",
+      "default": 0
+    },
+    "privacySettings": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

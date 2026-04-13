@@ -1,0 +1,179 @@
+{
+  "name": "FinishPhase",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Reference to FinishProject"
+    },
+    "phaseNumber": {
+      "type": "number"
+    },
+    "phaseName": {
+      "type": "string"
+    },
+    "phaseNameAr": {
+      "type": "string"
+    },
+    "phaseType": {
+      "type": "string",
+      "enum": [
+        "demolition",
+        "structural",
+        "plumbing_rough",
+        "electrical_rough",
+        "insulation",
+        "plastering",
+        "tiling_flooring",
+        "plumbing_finish",
+        "electrical_finish",
+        "painting",
+        "carpentry_doors",
+        "kitchen_installation",
+        "bathroom_fixtures",
+        "lighting_fixtures",
+        "cleaning",
+        "snagging",
+        "custom"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "plannedStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "plannedEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "actualEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "estimatedDays": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "materials_pending",
+        "in_progress",
+        "awaiting_inspection",
+        "owner_review",
+        "completed",
+        "blocked",
+        "disputed"
+      ],
+      "default": "not_started"
+    },
+    "completionPercent": {
+      "type": "number",
+      "default": 0
+    },
+    "assignedProfessionalId": {
+      "type": "string"
+    },
+    "kemeworkTaskId": {
+      "type": "string"
+    },
+    "kemeworkOrderId": {
+      "type": "string"
+    },
+    "requiredMaterials": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "materialsStatus": {
+      "type": "string",
+      "enum": [
+        "not_ordered",
+        "ordered",
+        "partially_delivered",
+        "delivered",
+        "used"
+      ],
+      "default": "not_ordered"
+    },
+    "phasePaymentAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "paymentStatus": {
+      "type": "string",
+      "enum": [
+        "not_due",
+        "due",
+        "released",
+        "disputed"
+      ],
+      "default": "not_due"
+    },
+    "escrowMilestoneId": {
+      "type": "string"
+    },
+    "requiredPhotos": {
+      "type": "number",
+      "default": 5
+    },
+    "uploadedPhotos": {
+      "type": "number",
+      "default": 0
+    },
+    "foInspectionRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "foInspectionCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "foInspectionDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "foInspectionNotes": {
+      "type": "string"
+    },
+    "foInspectionPhotos": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiQualityScore": {
+      "type": "number"
+    },
+    "aiQualityNotes": {
+      "type": "string"
+    },
+    "ownerApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "ownerApprovedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ownerNotes": {
+      "type": "string"
+    },
+    "blockedReason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "projectId",
+    "phaseNumber",
+    "phaseName",
+    "phaseType"
+  ]
+}

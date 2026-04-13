@@ -1,0 +1,112 @@
+{
+  "name": "ServiceOrder",
+  "type": "object",
+  "properties": {
+    "orderCode": {
+      "type": "string",
+      "description": "Format: SVO-XXXXXX"
+    },
+    "buyerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "serviceId": {
+      "type": "string",
+      "description": "Reference to PaidService"
+    },
+    "moduleId": {
+      "type": "string",
+      "description": "Reference to SystemModule (denormalized)"
+    },
+    "pricingTierLabel": {
+      "type": "string",
+      "description": "e.g. Property Verification from pricingTiers"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "unitPrice": {
+      "type": "number",
+      "description": "Price at time of purchase"
+    },
+    "totalPrice": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "assigned",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "refunded",
+        "on_hold"
+      ],
+      "default": "pending"
+    },
+    "franchiseOwnerId": {
+      "type": "string",
+      "description": "Assigned franchise owner"
+    },
+    "assignedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "startedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "completedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "relatedEntityType": {
+      "type": "string",
+      "description": "e.g. property, project, product, profile"
+    },
+    "relatedEntityId": {
+      "type": "string",
+      "description": "ID of the related entity"
+    },
+    "buyerNotes": {
+      "type": "string"
+    },
+    "franchiseNotes": {
+      "type": "string"
+    },
+    "adminNotes": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number",
+      "description": "1-5 rating by buyer"
+    },
+    "reviewText": {
+      "type": "string"
+    },
+    "cancellationReason": {
+      "type": "string"
+    },
+    "refundAmount": {
+      "type": "number"
+    },
+    "refundDate": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "buyerId",
+    "serviceId",
+    "moduleId",
+    "unitPrice",
+    "totalPrice"
+  ]
+}

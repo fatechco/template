@@ -1,0 +1,74 @@
+{
+  "name": "SnapMaterialCartItem",
+  "type": "object",
+  "properties": {
+    "snapSessionId": {
+      "type": "string",
+      "description": "Reference to SnapSession"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable for guest sessions)"
+    },
+    "sessionToken": {
+      "type": "string",
+      "description": "Guest tracking token \u2014 matches SnapSession.sessionToken"
+    },
+    "materialIndex": {
+      "type": "number",
+      "description": "Index in the SnapSession.requiredMaterials array"
+    },
+    "itemName": {
+      "type": "string",
+      "description": "Snapshot of item name at add time"
+    },
+    "kemetroSearchKeywords": {
+      "type": "string",
+      "description": "Search keywords used to find this item on Kemetro"
+    },
+    "kemetroProductId": {
+      "type": "string",
+      "description": "Set if user selected a specific Kemetro product (nullable)"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Snapshot of selected product name (nullable)"
+    },
+    "productImageUrl": {
+      "type": "string",
+      "description": "Snapshot of selected product image URL (nullable)"
+    },
+    "productPriceEGP": {
+      "type": "number",
+      "description": "Snapshot of product price at add time (nullable)"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1,
+      "description": "Quantity added to cart"
+    },
+    "addedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this item was added to the cart"
+    },
+    "isOrdered": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the user completed an order for this item on Kemetro"
+    },
+    "orderedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the Kemetro order was placed (nullable)"
+    }
+  },
+  "required": [
+    "snapSessionId",
+    "sessionToken",
+    "materialIndex",
+    "itemName",
+    "kemetroSearchKeywords",
+    "addedAt"
+  ]
+}

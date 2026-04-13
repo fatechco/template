@@ -1,0 +1,53 @@
+{
+  "name": "AdvisorReport",
+  "type": "object",
+  "properties": {
+    "profileId": {
+      "type": "string",
+      "description": "Reference to AdvisorProfile"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable)"
+    },
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "initial",
+        "update",
+        "market_insight"
+      ],
+      "default": "initial"
+    },
+    "reportContent": {
+      "type": "object",
+      "description": "Full structured report from AI"
+    },
+    "propertyMatchesSnapshot": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "shareToken": {
+      "type": "string",
+      "description": "UUID for shareable public link"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "profileId",
+    "reportType"
+  ]
+}

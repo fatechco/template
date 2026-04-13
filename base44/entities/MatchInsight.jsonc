@@ -1,0 +1,101 @@
+{
+  "name": "MatchInsight",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "totalSwipes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalLikes": {
+      "type": "number",
+      "default": 0
+    },
+    "totalPasses": {
+      "type": "number",
+      "default": 0
+    },
+    "totalSuperLikes": {
+      "type": "number",
+      "default": 0
+    },
+    "likeRate": {
+      "type": "number"
+    },
+    "superLikeRate": {
+      "type": "number"
+    },
+    "avgViewerBudgetMin": {
+      "type": "number"
+    },
+    "avgViewerBudgetMax": {
+      "type": "number"
+    },
+    "topViewerCities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "topViewerPropertyTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "avgViewDuration": {
+      "type": "number"
+    },
+    "avgPhotosViewed": {
+      "type": "number"
+    },
+    "aiInsightsSummary": {
+      "type": "string"
+    },
+    "aiTopStrengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiTopWeaknesses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiPriceAssessment": {
+      "type": "string"
+    },
+    "aiPhotoAssessment": {
+      "type": "string"
+    },
+    "aiRecommendations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "periodStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date"
+    },
+    "lastCalculated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "sellerId"
+  ]
+}

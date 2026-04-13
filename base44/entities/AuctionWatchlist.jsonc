@@ -1,0 +1,48 @@
+{
+  "name": "AuctionWatchlist",
+  "type": "object",
+  "properties": {
+    "auctionId": {
+      "type": "string",
+      "description": "Reference to PropertyAuction"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "notifyOnNewBid": {
+      "type": "boolean",
+      "default": false,
+      "description": "Notify when any new bid is placed"
+    },
+    "notifyOnPriceThreshold": {
+      "type": "number",
+      "description": "Notify if bid reaches this EGP amount (nullable)"
+    },
+    "notifyOnExtension": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when auction time is extended"
+    },
+    "notifyOnEnding": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify at 1 hour, 30 min, 10 min remaining"
+    },
+    "notifyOnResult": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when auction concludes with result"
+    },
+    "addedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user added auction to watchlist"
+    }
+  },
+  "required": [
+    "auctionId",
+    "userId",
+    "addedAt"
+  ]
+}

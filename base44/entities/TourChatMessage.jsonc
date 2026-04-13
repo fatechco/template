@@ -1,0 +1,85 @@
+{
+  "name": "TourChatMessage",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Reference to LiveTourSession"
+    },
+    "senderId": {
+      "type": "string",
+      "description": "Reference to User (nullable for guests)"
+    },
+    "senderName": {
+      "type": "string"
+    },
+    "senderRole": {
+      "type": "string",
+      "enum": [
+        "host",
+        "buyer",
+        "agent",
+        "franchise_owner",
+        "guest"
+      ],
+      "default": "buyer"
+    },
+    "messageType": {
+      "type": "string",
+      "enum": [
+        "chat",
+        "question",
+        "reaction",
+        "system",
+        "answer",
+        "highlight"
+      ],
+      "default": "chat"
+    },
+    "content": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "isQuestion": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAnswered": {
+      "type": "boolean",
+      "default": false
+    },
+    "answeredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "answerContent": {
+      "type": "string"
+    },
+    "isPinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "isHighlighted": {
+      "type": "boolean",
+      "default": false
+    },
+    "reactionType": {
+      "type": "string",
+      "enum": [
+        "\u2764\ufe0f",
+        "\ud83d\udc4d",
+        "\ud83d\udc4f",
+        "\ud83d\ude2e",
+        "\ud83c\udfe0"
+      ]
+    }
+  },
+  "required": [
+    "sessionId",
+    "senderName",
+    "content"
+  ]
+}

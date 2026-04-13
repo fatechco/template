@@ -1,0 +1,135 @@
+{
+  "name": "ImageHotspot",
+  "type": "object",
+  "properties": {
+    "imageId": {
+      "type": "string",
+      "description": "Reference to AnalyzedPropertyImage"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "xPercent": {
+      "type": "number",
+      "description": "Horizontal position from left edge (0-100)"
+    },
+    "yPercent": {
+      "type": "number",
+      "description": "Vertical position from top edge (0-100)"
+    },
+    "itemLabel": {
+      "type": "string",
+      "description": "e.g. Tufted Velvet Navy Blue Sofa"
+    },
+    "itemLabelAr": {
+      "type": "string",
+      "description": "Arabic translation of item label"
+    },
+    "itemDescription": {
+      "type": "string",
+      "description": "Brief description of style/material/color"
+    },
+    "kemetroCategorySlug": {
+      "type": "string",
+      "enum": [
+        "furniture",
+        "lighting",
+        "decor",
+        "rugs",
+        "curtains",
+        "wall-art",
+        "kitchen-accessories",
+        "outdoor-furniture"
+      ],
+      "description": "Kemetro category slug"
+    },
+    "searchKeywords": {
+      "type": "string",
+      "description": "Optimized Kemetro search query"
+    },
+    "searchKeywordsAr": {
+      "type": "string",
+      "description": "Arabic search keywords"
+    },
+    "deepLinkUrl": {
+      "type": "string",
+      "description": "Auto-built Kemetro search URL"
+    },
+    "isSponsored": {
+      "type": "boolean",
+      "default": false
+    },
+    "sponsoredProductId": {
+      "type": "string",
+      "description": "Reference to KemetroProduct"
+    },
+    "sponsoredBySellerId": {
+      "type": "string",
+      "description": "Reference to User (seller)"
+    },
+    "sponsorshipStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sponsorshipEndDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sponsorshipDailyBudgetEGP": {
+      "type": "number"
+    },
+    "sponsorshipTotalSpentEGP": {
+      "type": "number",
+      "default": 0
+    },
+    "sponsorshipStatus": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "ended",
+        "pending"
+      ],
+      "description": "Current sponsorship status"
+    },
+    "clickCount": {
+      "type": "number",
+      "default": 0
+    },
+    "addToCartCount": {
+      "type": "number",
+      "default": 0
+    },
+    "lastClickedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isManual": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if admin dropped this pin manually"
+    },
+    "manualProductUrl": {
+      "type": "string",
+      "description": "Exact Kemetro product URL for manual tags"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "imageId",
+    "propertyId",
+    "xPercent",
+    "yPercent",
+    "itemLabel",
+    "kemetroCategorySlug",
+    "searchKeywords"
+  ]
+}

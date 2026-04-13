@@ -1,0 +1,59 @@
+{
+  "name": "CRMConversation",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "email",
+        "sms",
+        "phone",
+        "app",
+        "instagram",
+        "facebook"
+      ]
+    },
+    "subject": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "pending",
+        "resolved",
+        "archived"
+      ],
+      "default": "open"
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "User ID of assigned rep"
+    },
+    "lastMessageAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastMessagePreview": {
+      "type": "string"
+    },
+    "unreadCount": {
+      "type": "number",
+      "default": 0
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "contactId",
+    "channel"
+  ]
+}

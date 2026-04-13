@@ -1,0 +1,46 @@
+{
+  "name": "CRMContactChannel",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string",
+      "description": "Reference to CRMContact"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "whatsapp",
+        "email",
+        "telegram",
+        "instagram",
+        "facebook",
+        "linkedin"
+      ]
+    },
+    "value": {
+      "type": "string"
+    },
+    "isPrimary": {
+      "type": "boolean",
+      "default": false
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "optedIn": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string",
+      "description": "e.g. work, personal, business"
+    }
+  },
+  "required": [
+    "contactId",
+    "channel",
+    "value"
+  ]
+}

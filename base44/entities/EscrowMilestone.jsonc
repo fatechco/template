@@ -1,0 +1,143 @@
+{
+  "name": "EscrowMilestone",
+  "type": "object",
+  "properties": {
+    "dealId": {
+      "type": "string"
+    },
+    "milestoneOrder": {
+      "type": "number"
+    },
+    "milestoneName": {
+      "type": "string"
+    },
+    "milestoneNameAr": {
+      "type": "string"
+    },
+    "milestoneType": {
+      "type": "string",
+      "enum": [
+        "earnest_deposit",
+        "contract_signing",
+        "legal_verification",
+        "inspection_complete",
+        "title_search",
+        "mortgage_approval",
+        "balance_payment",
+        "keys_handover",
+        "registration_complete",
+        "custom"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "paymentAmount": {
+      "type": "number"
+    },
+    "paymentPercent": {
+      "type": "number"
+    },
+    "paymentOnCompletion": {
+      "type": "boolean",
+      "default": false
+    },
+    "paymentReleased": {
+      "type": "boolean",
+      "default": false
+    },
+    "paymentReleasedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "awaiting_buyer_confirm",
+        "awaiting_seller_confirm",
+        "awaiting_both",
+        "completed",
+        "disputed",
+        "skipped"
+      ],
+      "default": "pending"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buyerConfirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buyerEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "buyerNotes": {
+      "type": "string"
+    },
+    "sellerConfirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerConfirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sellerEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sellerNotes": {
+      "type": "string"
+    },
+    "foVerified": {
+      "type": "boolean"
+    },
+    "foVerifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "foNotes": {
+      "type": "string"
+    },
+    "requiredDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "uploadedDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "autoReleaseAfterDays": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "dealId",
+    "milestoneName",
+    "milestoneOrder"
+  ]
+}

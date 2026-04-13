@@ -1,0 +1,180 @@
+{
+  "name": "PricePrediction",
+  "type": "object",
+  "properties": {
+    "predictionScope": {
+      "type": "string",
+      "enum": [
+        "area",
+        "district",
+        "city",
+        "province"
+      ]
+    },
+    "countryId": {
+      "type": "string"
+    },
+    "provinceId": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "areaId": {
+      "type": "string"
+    },
+    "locationLabel": {
+      "type": "string",
+      "description": "Human-readable location name"
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": [
+        "all",
+        "apartment",
+        "villa",
+        "commercial",
+        "land",
+        "studio"
+      ],
+      "default": "all"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "sale",
+        "rent",
+        "all"
+      ],
+      "default": "sale"
+    },
+    "baselinePricePerSqm": {
+      "type": "number"
+    },
+    "baselineDataPoints": {
+      "type": "number"
+    },
+    "baselineDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "baselineCurrency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "prediction6Months": {
+      "type": "object",
+      "description": "JSON: pricePerSqm, changePercent, confidence, range"
+    },
+    "prediction12Months": {
+      "type": "object"
+    },
+    "prediction24Months": {
+      "type": "object"
+    },
+    "prediction36Months": {
+      "type": "object"
+    },
+    "overallTrend": {
+      "type": "string",
+      "enum": [
+        "strong_rise",
+        "moderate_rise",
+        "stable",
+        "moderate_decline",
+        "strong_decline"
+      ]
+    },
+    "trendStrength": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "overallConfidence": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "aiSummary": {
+      "type": "string"
+    },
+    "aiSummaryAr": {
+      "type": "string"
+    },
+    "aiBullCase": {
+      "type": "string"
+    },
+    "aiBearCase": {
+      "type": "string"
+    },
+    "investmentGrade": {
+      "type": "string",
+      "enum": [
+        "buy_now",
+        "strong_buy",
+        "hold",
+        "wait",
+        "avoid"
+      ]
+    },
+    "investmentGradeReason": {
+      "type": "string"
+    },
+    "keyDrivers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "keyRisks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "signalsUsed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "listingsAnalyzed": {
+      "type": "number"
+    },
+    "modelVersion": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nextScheduledUpdate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lowDataConfidence": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "predictionScope",
+    "propertyType",
+    "purpose",
+    "baselinePricePerSqm",
+    "overallTrend"
+  ]
+}

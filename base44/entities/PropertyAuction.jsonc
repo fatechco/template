@@ -1,0 +1,290 @@
+{
+  "name": "PropertyAuction",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "sellerUserId": {
+      "type": "string",
+      "description": "Reference to User (seller)"
+    },
+    "auctionCode": {
+      "type": "string",
+      "description": "Public auction code e.g. KBA-A1B2C3"
+    },
+    "auctionTitle": {
+      "type": "string",
+      "description": "Auto-generated or custom auction title"
+    },
+    "auctionTitleAr": {
+      "type": "string",
+      "description": "Arabic auction title"
+    },
+    "auctionDescription": {
+      "type": "string",
+      "description": "Why this property is being auctioned, special notes"
+    },
+    "auctionDescriptionAr": {
+      "type": "string",
+      "description": "Arabic auction description"
+    },
+    "auctionType": {
+      "type": "string",
+      "enum": [
+        "open",
+        "sealed",
+        "reserve",
+        "absolute"
+      ],
+      "description": "open=all bids visible | sealed=bids hidden until end | reserve=hidden reserve price | absolute=no reserve"
+    },
+    "startingPriceEGP": {
+      "type": "number",
+      "description": "Minimum first bid amount in EGP"
+    },
+    "reservePriceEGP": {
+      "type": "number",
+      "description": "Hidden minimum the seller will accept. null = absolute auction (nullable)"
+    },
+    "reserveMet": {
+      "type": "boolean",
+      "default": false,
+      "description": "Auto-set true when highest bid >= reserve"
+    },
+    "buyNowPriceEGP": {
+      "type": "number",
+      "description": "If set, bidder can end auction instantly at this price (nullable)"
+    },
+    "minimumBidIncrementEGP": {
+      "type": "number",
+      "description": "Smallest allowed raise above current bid e.g. 5000 EGP"
+    },
+    "currentHighestBidEGP": {
+      "type": "number",
+      "default": 0,
+      "description": "Current highest bid amount"
+    },
+    "currentHighestBidderUserId": {
+      "type": "string",
+      "description": "Reference to User with current highest bid (nullable)"
+    },
+    "totalBids": {
+      "type": "number",
+      "default": 0,
+      "description": "Total bids placed"
+    },
+    "totalUniqueBidders": {
+      "type": "number",
+      "default": 0,
+      "description": "Unique bidders who placed bids"
+    },
+    "sellerDepositEGP": {
+      "type": "number",
+      "description": "Refundable deposit seller pays to list. Forfeited if seller withdraws after approval."
+    },
+    "sellerDepositPaid": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerDepositPaidAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When seller paid deposit (nullable)"
+    },
+    "sellerDepositTransactionId": {
+      "type": "string",
+      "description": "Payment transaction reference (nullable)"
+    },
+    "sellerDepositRefunded": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerDepositRefundedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When seller deposit was refunded (nullable)"
+    },
+    "buyerDepositEGP": {
+      "type": "number",
+      "description": "Refundable deposit ALL bidders must pay before placing any bid"
+    },
+    "buyerDepositDescription": {
+      "type": "string",
+      "description": "Displayed to buyers: refund policy summary"
+    },
+    "registrationOpenAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When buyers can start registering to bid"
+    },
+    "registrationCloseAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deadline to register \u2014 usually 24h before start"
+    },
+    "auctionStartAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Auction go-live time"
+    },
+    "auctionEndAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled end time"
+    },
+    "extensionMinutes": {
+      "type": "number",
+      "default": 5,
+      "description": "If a bid is placed in final X minutes, clock extends by this amount (anti-sniping)"
+    },
+    "maxExtensions": {
+      "type": "number",
+      "default": 3,
+      "description": "Maximum number of time extensions allowed"
+    },
+    "extensionsUsed": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of extensions triggered so far"
+    },
+    "finalEndAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Actual end time after all extensions (nullable)"
+    },
+    "requireVerifyProLevel": {
+      "type": "number",
+      "default": 2,
+      "description": "Property must have this Verify Pro level to be eligible"
+    },
+    "requireBuyerKYC": {
+      "type": "boolean",
+      "default": true,
+      "description": "Bidders must be KYC verified"
+    },
+    "requireBuyerProofOfFunds": {
+      "type": "boolean",
+      "default": false,
+      "description": "Seller can require bidders to upload bank statement or pre-approval letter"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_review",
+        "deposit_pending",
+        "scheduled",
+        "registration",
+        "live",
+        "extended",
+        "ended",
+        "reserve_not_met",
+        "awaiting_payment",
+        "payment_received",
+        "legal_transfer",
+        "completed",
+        "cancelled",
+        "failed"
+      ],
+      "default": "draft",
+      "description": "draft=building | pending_review=admin reviewing | deposit_pending=awaiting seller deposit | scheduled=ready | registration=accepting bidders | live=bidding open | extended=time extended | ended=bidding closed | reserve_not_met=ended below reserve | awaiting_payment=winner must pay | payment_received=winner paid | legal_transfer=contracts being signed | completed=ownership transferred | cancelled=cancelled before live | failed=winner failed to pay"
+    },
+    "winnerUserId": {
+      "type": "string",
+      "description": "Reference to winning User (nullable)"
+    },
+    "winnerBidEGP": {
+      "type": "number",
+      "description": "Winning bid amount (nullable)"
+    },
+    "winnerNotifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When winner was notified (nullable)"
+    },
+    "winnerPaymentDeadlineAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Winner has 48 hours to complete full payment"
+    },
+    "winnerPaymentCompletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When winner completed payment (nullable)"
+    },
+    "reviewedByAdminId": {
+      "type": "string",
+      "description": "Reference to admin User who reviewed (nullable)"
+    },
+    "reviewedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When admin reviewed (nullable)"
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "Reason for rejection if rejected (nullable)"
+    },
+    "adminNotes": {
+      "type": "string",
+      "description": "Internal admin notes (nullable)"
+    },
+    "featuredAuction": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured in auction listings"
+    },
+    "isFeaturedHomepage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured on homepage"
+    },
+    "kemeworkLegalTaskId": {
+      "type": "string",
+      "description": "Reference to Kemework legal task (nullable)"
+    },
+    "xeedWalletEscrowReference": {
+      "type": "string",
+      "description": "XeedWallet escrow reference (nullable)"
+    },
+    "escrowActivatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When escrow was activated (nullable)"
+    },
+    "totalRegisteredBidders": {
+      "type": "number",
+      "default": 0
+    },
+    "totalPageViews": {
+      "type": "number",
+      "default": 0
+    },
+    "totalWatchlisted": {
+      "type": "number",
+      "default": 0
+    },
+    "peakConcurrentViewers": {
+      "type": "number",
+      "default": 0
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp (nullable)"
+    }
+  },
+  "required": [
+    "propertyId",
+    "sellerUserId",
+    "auctionType",
+    "startingPriceEGP",
+    "minimumBidIncrementEGP",
+    "buyerDepositEGP",
+    "sellerDepositEGP",
+    "auctionStartAt",
+    "auctionEndAt"
+  ]
+}

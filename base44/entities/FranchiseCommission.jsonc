@@ -1,0 +1,70 @@
+{
+  "name": "FranchiseCommission",
+  "type": "object",
+  "properties": {
+    "franchiseOwnerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "sourceType": {
+      "type": "string",
+      "enum": [
+        "subscription",
+        "service_order"
+      ]
+    },
+    "subscriptionId": {
+      "type": "string",
+      "description": "Reference to Subscription (nullable)"
+    },
+    "serviceOrderId": {
+      "type": "string",
+      "description": "Reference to ServiceOrder (nullable)"
+    },
+    "grossAmount": {
+      "type": "number",
+      "description": "Original transaction amount"
+    },
+    "commissionPercent": {
+      "type": "number"
+    },
+    "commissionAmount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "paid",
+        "disputed"
+      ],
+      "default": "pending"
+    },
+    "paidDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "paymentReference": {
+      "type": "string"
+    },
+    "periodStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "franchiseOwnerId",
+    "sourceType",
+    "grossAmount",
+    "commissionPercent",
+    "commissionAmount"
+  ]
+}

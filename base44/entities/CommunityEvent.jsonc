@@ -1,0 +1,94 @@
+{
+  "name": "CommunityEvent",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "organizerId": {
+      "type": "string"
+    },
+    "organizerName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "meeting",
+        "maintenance",
+        "social",
+        "sports",
+        "children",
+        "market",
+        "cleaning",
+        "other"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "startsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "maxAttendees": {
+      "type": "number"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "attendeeCount": {
+      "type": "number",
+      "default": 0
+    },
+    "isRecurring": {
+      "type": "boolean",
+      "default": false
+    },
+    "recurringPattern": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "ongoing",
+        "completed",
+        "cancelled"
+      ],
+      "default": "upcoming"
+    },
+    "photoUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isOfficial": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "communityId",
+    "organizerId",
+    "title",
+    "startsAt"
+  ]
+}

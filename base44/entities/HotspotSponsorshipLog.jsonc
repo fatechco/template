@@ -1,0 +1,46 @@
+{
+  "name": "HotspotSponsorshipLog",
+  "type": "object",
+  "properties": {
+    "hotspotId": {
+      "type": "string",
+      "description": "Reference to ImageHotspot"
+    },
+    "sellerId": {
+      "type": "string",
+      "description": "Reference to User (seller)"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "impression",
+        "click",
+        "add_to_cart"
+      ],
+      "description": "Type of billing event"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User who triggered event (nullable)"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Browser session identifier"
+    },
+    "costEGP": {
+      "type": "number",
+      "description": "Amount charged for this event"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "hotspotId",
+    "sellerId",
+    "eventType",
+    "sessionId",
+    "recordedAt"
+  ]
+}

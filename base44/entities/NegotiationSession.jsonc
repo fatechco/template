@@ -1,0 +1,134 @@
+{
+  "name": "NegotiationSession",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string"
+    },
+    "buyerId": {
+      "type": "string"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "offer_sent",
+        "counter_offered",
+        "negotiating",
+        "accepted",
+        "rejected",
+        "withdrawn",
+        "expired",
+        "deal_closed"
+      ],
+      "default": "draft"
+    },
+    "currentRound": {
+      "type": "number",
+      "default": 0
+    },
+    "propertySnapshot": {
+      "type": "object"
+    },
+    "listedPrice": {
+      "type": "number"
+    },
+    "listedCurrency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "listedPricePerSqm": {
+      "type": "number"
+    },
+    "marketSnapshotAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "marketAvgPricePerSqm": {
+      "type": "number"
+    },
+    "marketDaysOnMarket": {
+      "type": "number"
+    },
+    "propertyDaysListed": {
+      "type": "number"
+    },
+    "comparableCount": {
+      "type": "number"
+    },
+    "priceReductionCount": {
+      "type": "number",
+      "default": 0
+    },
+    "buyerStrategy": {
+      "type": "object"
+    },
+    "sellerStrategy": {
+      "type": "object"
+    },
+    "currentOfferAmount": {
+      "type": "number"
+    },
+    "currentOfferBy": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller"
+      ]
+    },
+    "currentOfferAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currentOfferExpiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "agreedPrice": {
+      "type": "number"
+    },
+    "agreedPaymentMethod": {
+      "type": "string"
+    },
+    "agreedTimeline": {
+      "type": "string"
+    },
+    "agreedConditions": {
+      "type": "string"
+    },
+    "dealClosedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isFacilitated": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEscrowRequested": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasDigitalOffer": {
+      "type": "boolean",
+      "default": false
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "buyerId",
+    "sellerId"
+  ]
+}

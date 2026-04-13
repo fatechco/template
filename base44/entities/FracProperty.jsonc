@@ -1,0 +1,221 @@
+{
+  "name": "FracProperty",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "submittedByUserId": {
+      "type": "string",
+      "description": "Reference to User (seller)"
+    },
+    "approvedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin), nullable"
+    },
+    "offeringTitle": {
+      "type": "string",
+      "description": "e.g. New Cairo Apartment \u2014 Fracs"
+    },
+    "offeringTitleAr": {
+      "type": "string",
+      "description": "Arabic offering title"
+    },
+    "offeringDescription": {
+      "type": "string",
+      "description": "Investment pitch in English"
+    },
+    "offeringDescriptionAr": {
+      "type": "string",
+      "description": "Investment pitch in Arabic"
+    },
+    "offeringSlug": {
+      "type": "string",
+      "description": "URL-friendly slug e.g. new-cairo-apt-2026"
+    },
+    "propertyValuationEGP": {
+      "type": "number",
+      "description": "Agreed full valuation in EGP"
+    },
+    "propertyValuationUSD": {
+      "type": "number",
+      "description": "Auto-converted USD valuation"
+    },
+    "valuationCurrencyId": {
+      "type": "string",
+      "description": "Reference to Currency"
+    },
+    "valuationApprovedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin), nullable"
+    },
+    "valuationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date valuation was set"
+    },
+    "totalTokenSupply": {
+      "type": "number",
+      "description": "Total tokens representing 100% ownership e.g. 1000"
+    },
+    "tokenPriceEGP": {
+      "type": "number",
+      "description": "Price per token in EGP"
+    },
+    "tokenPriceUSD": {
+      "type": "number",
+      "description": "Price per token in USD"
+    },
+    "tokenSymbol": {
+      "type": "string",
+      "description": "e.g. KMF-NC001"
+    },
+    "tokenName": {
+      "type": "string",
+      "description": "e.g. KemeFrac New Cairo Apt #001"
+    },
+    "tokensForSale": {
+      "type": "number",
+      "description": "How many tokens seller offers for sale"
+    },
+    "tokensRetainedBySeller": {
+      "type": "number",
+      "description": "Tokens seller keeps"
+    },
+    "tokensSold": {
+      "type": "number",
+      "default": 0,
+      "description": "Tokens sold so far"
+    },
+    "tokensAvailable": {
+      "type": "number",
+      "description": "Auto: tokensForSale - tokensSold"
+    },
+    "minTokensPerBuyer": {
+      "type": "number",
+      "default": 1,
+      "description": "Minimum tokens per buyer"
+    },
+    "maxTokensPerBuyer": {
+      "type": "number",
+      "description": "Maximum tokens per buyer, nullable"
+    },
+    "offeringType": {
+      "type": "string",
+      "enum": [
+        "fractional_sale",
+        "fractional_investment",
+        "hybrid"
+      ],
+      "description": "Type of fractional offering"
+    },
+    "expectedAnnualYieldPercent": {
+      "type": "number",
+      "description": "Expected annual yield % e.g. 8.5"
+    },
+    "yieldFrequency": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "annual"
+      ],
+      "description": "How often yield is paid"
+    },
+    "yieldCurrencyId": {
+      "type": "string",
+      "description": "Reference to Currency for yield payments"
+    },
+    "offeringStartDate": {
+      "type": "string",
+      "format": "date",
+      "description": "When offering opens"
+    },
+    "offeringEndDate": {
+      "type": "string",
+      "format": "date",
+      "description": "When offering closes, null = open-ended"
+    },
+    "nearContractAddress": {
+      "type": "string",
+      "description": "e.g. kmf-nc001.kemefrac.near"
+    },
+    "nearTokenContractDeployed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether NEAR contract is deployed"
+    },
+    "nearDeployedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When contract was deployed"
+    },
+    "nearDeployedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin) who deployed"
+    },
+    "nearNetworkType": {
+      "type": "string",
+      "enum": [
+        "mainnet",
+        "testnet"
+      ],
+      "default": "testnet",
+      "description": "NEAR network"
+    },
+    "nearTransactionHash": {
+      "type": "string",
+      "description": "Deploy transaction hash on NEAR"
+    },
+    "nearExplorerUrl": {
+      "type": "string",
+      "description": "Link to NEAR explorer for this contract"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "under_review",
+        "valuation_set",
+        "approved",
+        "tokenizing",
+        "live",
+        "sold_out",
+        "closed",
+        "rejected",
+        "suspended"
+      ],
+      "default": "draft",
+      "description": "Current offering status"
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "Reason for rejection, nullable"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured on KemeFrac homepage"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Reflects Verify Pro level >= 3"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of views"
+    }
+  },
+  "required": [
+    "propertyId",
+    "submittedByUserId",
+    "offeringTitle",
+    "offeringType",
+    "totalTokenSupply",
+    "tokenPriceEGP",
+    "tokensForSale"
+  ]
+}

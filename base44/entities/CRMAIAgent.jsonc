@@ -1,0 +1,56 @@
+{
+  "name": "CRMAIAgent",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "activation",
+        "follow_up",
+        "qualification",
+        "onboarding",
+        "retention",
+        "support"
+      ],
+      "default": "follow_up"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowedActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiresApproval": {
+      "type": "boolean",
+      "default": true
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "systemPrompt": {
+      "type": "string"
+    },
+    "actionsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ]
+}

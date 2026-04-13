@@ -1,0 +1,127 @@
+{
+  "name": "VirtualTour",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Reference to User (seller/agent)"
+    },
+    "tourType": {
+      "type": "string",
+      "enum": [
+        "virtual_360",
+        "photo_walkthrough",
+        "floor_plan_3d",
+        "hybrid"
+      ],
+      "default": "photo_walkthrough"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "processing",
+        "ready",
+        "published",
+        "archived",
+        "failed"
+      ],
+      "default": "draft"
+    },
+    "tourScenes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of scene objects with photos, hotspots, measurements"
+    },
+    "floorPlanUrl": {
+      "type": "string",
+      "description": "URL to floor plan image/PDF (nullable)"
+    },
+    "floorPlanInteractiveData": {
+      "type": "object",
+      "description": "Interactive hotspot data for floor plan"
+    },
+    "captureGuideCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "captureProgress": {
+      "type": "object",
+      "description": "Progress tracking for guided capture"
+    },
+    "aiProcessingStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "stitching",
+        "analyzing",
+        "optimizing",
+        "complete",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "aiProcessingLog": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "totalViews": {
+      "type": "number",
+      "default": 0
+    },
+    "uniqueViewers": {
+      "type": "number",
+      "default": 0
+    },
+    "avgViewDuration": {
+      "type": "number",
+      "description": "Average duration in seconds"
+    },
+    "mostViewedScene": {
+      "type": "string"
+    },
+    "completionRate": {
+      "type": "number",
+      "description": "Percentage who view all scenes"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMeasurements": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFloorPlan": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowDownload": {
+      "type": "boolean",
+      "default": false
+    },
+    "watermarkEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "watermarkText": {
+      "type": "string"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "propertyId",
+    "createdBy"
+  ]
+}

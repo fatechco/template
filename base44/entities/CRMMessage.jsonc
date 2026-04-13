@@ -1,0 +1,76 @@
+{
+  "name": "CRMMessage",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string"
+    },
+    "contactId": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound"
+      ]
+    },
+    "channel": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "bodyType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "html",
+        "template"
+      ],
+      "default": "text"
+    },
+    "templateId": {
+      "type": "string"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sentBy": {
+      "type": "string",
+      "description": "User ID or 'ai_agent'"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "sent",
+        "delivered",
+        "read",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "sentAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deliveredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "readAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "conversationId",
+    "direction",
+    "channel",
+    "body"
+  ]
+}

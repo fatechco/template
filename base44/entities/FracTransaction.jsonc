@@ -1,0 +1,94 @@
+{
+  "name": "FracTransaction",
+  "type": "object",
+  "properties": {
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty"
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": [
+        "purchase",
+        "transfer",
+        "yield_paid",
+        "refund"
+      ],
+      "description": "Type of transaction"
+    },
+    "fromUserId": {
+      "type": "string",
+      "description": "Reference to User (sender), nullable for purchases"
+    },
+    "toUserId": {
+      "type": "string",
+      "description": "Reference to User (recipient)"
+    },
+    "tokensAmount": {
+      "type": "number",
+      "description": "Number of tokens in this transaction"
+    },
+    "pricePerTokenEGP": {
+      "type": "number",
+      "description": "Price per token at time of transaction"
+    },
+    "totalAmountEGP": {
+      "type": "number",
+      "description": "Total transaction amount in EGP"
+    },
+    "platformFeeEGP": {
+      "type": "number",
+      "description": "Kemedar platform fee charged"
+    },
+    "nearTransactionHash": {
+      "type": "string",
+      "description": "NEAR blockchain transaction hash, nullable"
+    },
+    "nearConfirmed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether NEAR tx is confirmed"
+    },
+    "nearConfirmedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When NEAR tx was confirmed"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "card",
+        "bank_transfer",
+        "wallet",
+        "kemecoins"
+      ],
+      "description": "Payment method used"
+    },
+    "paymentReference": {
+      "type": "string",
+      "description": "External payment reference ID, nullable"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "failed",
+        "refunded"
+      ],
+      "default": "pending",
+      "description": "Transaction status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes on this transaction"
+    }
+  },
+  "required": [
+    "fracPropertyId",
+    "transactionType",
+    "toUserId",
+    "tokensAmount",
+    "totalAmountEGP"
+  ]
+}

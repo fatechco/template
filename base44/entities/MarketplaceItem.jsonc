@@ -1,0 +1,149 @@
+{
+  "name": "MarketplaceItem",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "sellerName": {
+      "type": "string"
+    },
+    "sellerUnit": {
+      "type": "string"
+    },
+    "listingType": {
+      "type": "string",
+      "enum": [
+        "for_sale",
+        "for_rent",
+        "free_giveaway",
+        "wanted",
+        "swap",
+        "service_offer"
+      ],
+      "default": "for_sale"
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "furniture",
+        "appliances",
+        "electronics",
+        "clothing",
+        "kids_items",
+        "books",
+        "plants",
+        "food_homemade",
+        "services",
+        "vehicles",
+        "building_materials",
+        "sports",
+        "art",
+        "other"
+      ]
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "new",
+        "like_new",
+        "good",
+        "fair",
+        "for_parts"
+      ]
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "price": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "isNegotiable": {
+      "type": "boolean",
+      "default": true
+    },
+    "isFree": {
+      "type": "boolean",
+      "default": false
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "availableUntil": {
+      "type": "string",
+      "format": "date"
+    },
+    "pickupOnly": {
+      "type": "boolean",
+      "default": true
+    },
+    "deliveryAvailable": {
+      "type": "boolean",
+      "default": false
+    },
+    "deliveryNotes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "reserved",
+        "sold",
+        "expired",
+        "removed"
+      ],
+      "default": "active"
+    },
+    "reservedFor": {
+      "type": "string"
+    },
+    "soldTo": {
+      "type": "string"
+    },
+    "soldAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "interestedCount": {
+      "type": "number",
+      "default": 0
+    },
+    "relatedKemetroProductId": {
+      "type": "string"
+    },
+    "relatedKemeworkCategory": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "communityId",
+    "sellerId",
+    "title",
+    "listingType"
+  ]
+}

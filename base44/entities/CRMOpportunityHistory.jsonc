@@ -1,0 +1,29 @@
+{
+  "name": "CRMOpportunityHistory",
+  "type": "object",
+  "properties": {
+    "opportunityId": {
+      "type": "string"
+    },
+    "fromStageId": {
+      "type": "string"
+    },
+    "toStageId": {
+      "type": "string"
+    },
+    "changedBy": {
+      "type": "string"
+    },
+    "changedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "opportunityId",
+    "toStageId"
+  ]
+}

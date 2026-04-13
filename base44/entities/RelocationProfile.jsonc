@@ -1,0 +1,67 @@
+{
+  "name": "RelocationProfile",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "currentCity": {
+      "type": "string"
+    },
+    "consideringMarketIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relocationReason": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediately",
+        "6_months",
+        "1_year",
+        "2_years",
+        "exploring"
+      ]
+    },
+    "familySize": {
+      "type": "number"
+    },
+    "hasChildren": {
+      "type": "boolean"
+    },
+    "childrenAges": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "priorities": {
+      "type": "object"
+    },
+    "budget": {
+      "type": "object"
+    },
+    "aiMatchScore": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "assignedFOIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "name": "Community",
+  "type": "object",
+  "properties": {
+    "communityNumber": {
+      "type": "string",
+      "description": "KCM-XXXXXXXX"
+    },
+    "communityName": {
+      "type": "string"
+    },
+    "communityNameAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "coverPhotoUrl": {
+      "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "communityType": {
+      "type": "string",
+      "enum": [
+        "compound",
+        "building",
+        "street",
+        "district",
+        "city",
+        "interest_group"
+      ],
+      "default": "compound"
+    },
+    "privacyLevel": {
+      "type": "string",
+      "enum": [
+        "private",
+        "semi_private",
+        "public"
+      ],
+      "default": "semi_private"
+    },
+    "countryId": {
+      "type": "string"
+    },
+    "provinceId": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "areaId": {
+      "type": "string"
+    },
+    "compoundName": {
+      "type": "string"
+    },
+    "compoundId": {
+      "type": "string"
+    },
+    "buildingNumber": {
+      "type": "string"
+    },
+    "coordinates": {
+      "type": "object"
+    },
+    "totalMembers": {
+      "type": "number",
+      "default": 0
+    },
+    "activeMembers": {
+      "type": "number",
+      "default": 0
+    },
+    "pendingMembers": {
+      "type": "number",
+      "default": 0
+    },
+    "membershipRequirements": {
+      "type": "object"
+    },
+    "franchiseOwnerId": {
+      "type": "string"
+    },
+    "adminUserIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "moderatorUserIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowMemberPosts": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowMarketplace": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowPolls": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowAlerts": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowAnnouncements": {
+      "type": "boolean",
+      "default": true
+    },
+    "requirePostApproval": {
+      "type": "boolean",
+      "default": false
+    },
+    "totalPosts": {
+      "type": "number",
+      "default": 0
+    },
+    "totalMarketplaceItems": {
+      "type": "number",
+      "default": 0
+    },
+    "postsThisWeek": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "archived"
+      ],
+      "default": "active"
+    },
+    "verifiedCommunity": {
+      "type": "boolean",
+      "default": false
+    },
+    "kemetroGroupBuyEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "districtName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "communityName",
+    "communityType"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "name": "ScoreBadge",
+  "type": "object",
+  "properties": {
+    "badgeCode": {
+      "type": "string"
+    },
+    "badgeName": {
+      "type": "string"
+    },
+    "badgeNameAr": {
+      "type": "string"
+    },
+    "badgeDescription": {
+      "type": "string"
+    },
+    "badgeDescriptionAr": {
+      "type": "string"
+    },
+    "badgeIcon": {
+      "type": "string"
+    },
+    "badgeColor": {
+      "type": "string"
+    },
+    "badgeCategory": {
+      "type": "string",
+      "enum": [
+        "verification",
+        "transaction",
+        "community",
+        "quality",
+        "loyalty",
+        "special"
+      ],
+      "default": "verification"
+    },
+    "applicableRoles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirementType": {
+      "type": "string",
+      "enum": [
+        "score_threshold",
+        "event_count",
+        "streak",
+        "manual_award"
+      ]
+    },
+    "requirementValue": {
+      "type": "number"
+    },
+    "requirementEventType": {
+      "type": "string"
+    },
+    "requirementCount": {
+      "type": "number"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "showOnProfile": {
+      "type": "boolean",
+      "default": true
+    },
+    "hasExpiry": {
+      "type": "boolean",
+      "default": false
+    },
+    "validityDays": {
+      "type": "number"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "badgeCode",
+    "badgeName"
+  ]
+}

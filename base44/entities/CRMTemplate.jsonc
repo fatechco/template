@@ -1,0 +1,85 @@
+{
+  "name": "CRMTemplate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "email",
+        "sms",
+        "call_script",
+        "note"
+      ],
+      "default": "whatsapp"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "activation",
+        "follow_up",
+        "onboarding",
+        "retention",
+        "promotion",
+        "general"
+      ],
+      "default": "general"
+    },
+    "subject": {
+      "type": "string",
+      "description": "For email templates"
+    },
+    "body": {
+      "type": "string"
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. [{{name}}, {{phone}}]"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "default": "ar"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_approval",
+        "approved",
+        "rejected",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "usageCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "body"
+  ]
+}

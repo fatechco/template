@@ -1,0 +1,48 @@
+{
+  "name": "CRMActivityLog",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "opportunityId": {
+      "type": "string"
+    },
+    "actorId": {
+      "type": "string",
+      "description": "User or AI agent that performed the action"
+    },
+    "actorType": {
+      "type": "string",
+      "enum": [
+        "user",
+        "ai_agent",
+        "system"
+      ],
+      "default": "user"
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. contact_created, note_added, stage_changed, call_logged"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "entityId": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "action"
+  ]
+}

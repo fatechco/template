@@ -1,0 +1,111 @@
+{
+  "name": "FinishProgressUpdate",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "submittedBy": {
+      "type": "string"
+    },
+    "submitterRole": {
+      "type": "string",
+      "enum": [
+        "professional",
+        "owner",
+        "franchise_owner",
+        "supervisor"
+      ]
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of {photoUrl, roomArea, caption, captionAr, takenAt, gpsLat, gpsLng}"
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "progressNotes": {
+      "type": "string"
+    },
+    "progressNotesAr": {
+      "type": "string"
+    },
+    "workCompletedToday": {
+      "type": "string"
+    },
+    "workPlannedTomorrow": {
+      "type": "string"
+    },
+    "materialsUsedToday": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "issuesEncountered": {
+      "type": "string"
+    },
+    "aiAnalysisStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "analyzed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "aiQualityScore": {
+      "type": "number"
+    },
+    "aiDetectedProgress": {
+      "type": "string"
+    },
+    "aiIssuesDetected": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiPhaseCompletion": {
+      "type": "number"
+    },
+    "aiComparisonWithPrevious": {
+      "type": "string"
+    },
+    "ownerSeen": {
+      "type": "boolean",
+      "default": false
+    },
+    "ownerSeenAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ownerReaction": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "question",
+        "concern"
+      ]
+    },
+    "ownerComment": {
+      "type": "string"
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "projectId",
+    "phaseId",
+    "submittedBy",
+    "progressNotes"
+  ]
+}

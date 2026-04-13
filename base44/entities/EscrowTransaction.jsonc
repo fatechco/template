@@ -1,0 +1,105 @@
+{
+  "name": "EscrowTransaction",
+  "type": "object",
+  "properties": {
+    "transactionNumber": {
+      "type": "string",
+      "description": "KET-XXXXXXXXXXXXXXXX"
+    },
+    "dealId": {
+      "type": "string"
+    },
+    "escrowAccountId": {
+      "type": "string"
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": [
+        "deposit",
+        "escrow_lock",
+        "milestone_release",
+        "platform_fee",
+        "agent_fee",
+        "fo_fee",
+        "refund",
+        "partial_refund",
+        "penalty_deduction",
+        "withdrawal",
+        "adjustment"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "in",
+        "out"
+      ]
+    },
+    "amount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "fromUserId": {
+      "type": "string"
+    },
+    "toUserId": {
+      "type": "string"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "xeed_wallet",
+        "bank_transfer",
+        "card",
+        "internal_transfer"
+      ]
+    },
+    "paymentReference": {
+      "type": "string"
+    },
+    "gatewayTransactionId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed",
+        "reversed"
+      ],
+      "default": "pending"
+    },
+    "balanceBefore": {
+      "type": "number"
+    },
+    "balanceAfter": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "processedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "failureReason": {
+      "type": "string"
+    },
+    "receiptUrl": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "transactionType",
+    "direction",
+    "amount"
+  ]
+}

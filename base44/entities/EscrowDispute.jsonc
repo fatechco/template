@@ -1,0 +1,185 @@
+{
+  "name": "EscrowDispute",
+  "type": "object",
+  "properties": {
+    "disputeNumber": {
+      "type": "string",
+      "description": "KED-DSP-XXXXXXXX"
+    },
+    "dealId": {
+      "type": "string"
+    },
+    "milestoneId": {
+      "type": "string"
+    },
+    "raisedBy": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller"
+      ]
+    },
+    "raisedById": {
+      "type": "string"
+    },
+    "raisedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "disputeType": {
+      "type": "string",
+      "enum": [
+        "milestone_not_completed",
+        "property_misrepresentation",
+        "payment_not_received",
+        "deal_terms_violated",
+        "fraud_suspicion",
+        "inspection_failed",
+        "title_issue",
+        "force_majeure",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "evidenceUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "amountDisputed": {
+      "type": "number"
+    },
+    "respondedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "respondentDescription": {
+      "type": "string"
+    },
+    "respondentEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiEvaluationStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "analyzing",
+        "evaluated",
+        "human_review"
+      ],
+      "default": "pending"
+    },
+    "aiEvaluationResult": {
+      "type": "object"
+    },
+    "aiEvaluatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "foMediationRequested": {
+      "type": "boolean",
+      "default": false
+    },
+    "foMediatorId": {
+      "type": "string"
+    },
+    "foMediationNotes": {
+      "type": "string"
+    },
+    "foMediationDecision": {
+      "type": "string"
+    },
+    "foMediationAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "adminReviewRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "adminReviewerId": {
+      "type": "string"
+    },
+    "adminDecision": {
+      "type": "string"
+    },
+    "adminDecisionNotes": {
+      "type": "string"
+    },
+    "adminDecisionAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "under_review",
+        "mediation",
+        "admin_review",
+        "resolved_buyer_wins",
+        "resolved_seller_wins",
+        "resolved_split",
+        "resolved_mutual",
+        "escalated_legal",
+        "closed"
+      ],
+      "default": "open"
+    },
+    "resolution": {
+      "type": "string"
+    },
+    "resolutionAr": {
+      "type": "string"
+    },
+    "refundToBuyer": {
+      "type": "number"
+    },
+    "releaseToSeller": {
+      "type": "number"
+    },
+    "penaltyAmount": {
+      "type": "number"
+    },
+    "penaltyPaidBy": {
+      "type": "string"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolvedBy": {
+      "type": "string"
+    },
+    "appealFiled": {
+      "type": "boolean",
+      "default": false
+    },
+    "appealFiledAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "appealReason": {
+      "type": "string"
+    },
+    "appealDecision": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "dealId",
+    "raisedBy",
+    "raisedById",
+    "disputeType",
+    "description"
+  ]
+}

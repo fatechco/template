@@ -1,0 +1,54 @@
+{
+  "name": "PredictSubscription",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "areaId": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "locationLabel": {
+      "type": "string"
+    },
+    "propertyType": {
+      "type": "string",
+      "default": "all"
+    },
+    "purpose": {
+      "type": "string",
+      "default": "all"
+    },
+    "notifyOn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "new_prediction, trend_change, signal_added, grade_change"
+    },
+    "notificationChannels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "email, whatsapp, sms, app"
+    },
+    "email": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "userId",
+    "locationLabel"
+  ]
+}

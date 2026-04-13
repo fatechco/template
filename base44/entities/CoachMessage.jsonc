@@ -1,0 +1,71 @@
+{
+  "name": "CoachMessage",
+  "type": "object",
+  "properties": {
+    "coachProfileId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "sessionId": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "user",
+        "coach"
+      ]
+    },
+    "messageType": {
+      "type": "string",
+      "enum": [
+        "chat",
+        "tip",
+        "step_guidance",
+        "milestone",
+        "nudge",
+        "question",
+        "answer",
+        "celebration",
+        "warning"
+      ]
+    },
+    "content": {
+      "type": "string"
+    },
+    "contentAr": {
+      "type": "string"
+    },
+    "relatedStepId": {
+      "type": "string"
+    },
+    "relatedStageId": {
+      "type": "string"
+    },
+    "attachedContent": {
+      "type": "object"
+    },
+    "isRead": {
+      "type": "boolean",
+      "default": false
+    },
+    "readAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "aiModel": {
+      "type": "string"
+    },
+    "aiPromptTokens": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "coachProfileId",
+    "userId",
+    "direction",
+    "content"
+  ]
+}

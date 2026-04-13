@@ -1,0 +1,150 @@
+{
+  "name": "SwapIntent",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (owner of the swap listing)"
+    },
+    "offeredPropertyId": {
+      "type": "string",
+      "description": "Reference to Property being offered. Must be owned by userId and have Verify Pro level >= 2."
+    },
+    "desiredCategories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "e.g. ['Villa', 'Townhouse', 'Twin House']"
+    },
+    "desiredCityIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "References to City entities the user would accept"
+    },
+    "desiredProvinceIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "References to Province entities accepted (broader than city)"
+    },
+    "desiredMinBedrooms": {
+      "type": "number",
+      "description": "Minimum bedrooms desired"
+    },
+    "desiredMaxBedrooms": {
+      "type": "number",
+      "description": "Maximum bedrooms desired"
+    },
+    "desiredMinAreaSqm": {
+      "type": "number",
+      "description": "Minimum area in sqm desired"
+    },
+    "desiredMaxAreaSqm": {
+      "type": "number",
+      "description": "Maximum area in sqm desired"
+    },
+    "desiredMinFloor": {
+      "type": "number",
+      "description": "Minimum floor number desired"
+    },
+    "desiredSuitableForIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "References to PropertySuitableFor entities e.g. Residential, Commercial"
+    },
+    "desiredKeywords": {
+      "type": "string",
+      "description": "Free text describing desired property, used by AI for qualitative matching"
+    },
+    "swapDirection": {
+      "type": "string",
+      "enum": [
+        "upgrade",
+        "downsize",
+        "equal"
+      ],
+      "description": "upgrade = willing to pay extra cash; downsize = expects to receive cash; equal = similar value swap only"
+    },
+    "cashGapAvailableEGP": {
+      "type": "number",
+      "description": "Max extra cash user will pay (for upgrades)"
+    },
+    "cashGapExpectedEGP": {
+      "type": "number",
+      "description": "Min cash user expects to receive (for downsizes)"
+    },
+    "currencyId": {
+      "type": "string",
+      "description": "Reference to Currency entity, defaults to EGP"
+    },
+    "offeredPropertyEstimatedValueEGP": {
+      "type": "number",
+      "description": "Auto-filled from AI valuation module on creation"
+    },
+    "valuationConfidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "Confidence level of the AI valuation"
+    },
+    "valuationUpdatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the AI valuation was last updated"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "matched",
+        "in_negotiation",
+        "completed",
+        "paused",
+        "expired",
+        "cancelled"
+      ],
+      "default": "draft",
+      "description": "Current lifecycle status of this swap intent"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this intent was published to the swap pool"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "publishedAt + 90 days"
+    },
+    "matchCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Total SwapMatch records linked to this intent"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times this intent has been viewed"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp"
+    }
+  },
+  "required": [
+    "userId",
+    "offeredPropertyId",
+    "swapDirection"
+  ]
+}

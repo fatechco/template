@@ -1,0 +1,237 @@
+{
+  "name": "FlashDeal",
+  "type": "object",
+  "properties": {
+    "dealNumber": {
+      "type": "string",
+      "description": "KFD-YYYYMMDD-XXXXX"
+    },
+    "sellerId": {
+      "type": "string"
+    },
+    "dealType": {
+      "type": "string",
+      "enum": [
+        "flash_sale",
+        "bulk_clearance",
+        "seasonal_offer",
+        "new_arrival",
+        "bundle_deal"
+      ],
+      "default": "flash_sale"
+    },
+    "productId": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productNameAr": {
+      "type": "string"
+    },
+    "productDescription": {
+      "type": "string"
+    },
+    "productImages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string",
+      "default": "m\u00b2"
+    },
+    "specifications": {
+      "type": "object"
+    },
+    "originalPrice": {
+      "type": "number"
+    },
+    "dealPrice": {
+      "type": "number"
+    },
+    "discountPercent": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "minimumOrderQty": {
+      "type": "number",
+      "default": 1
+    },
+    "maximumOrderQtyPerBuyer": {
+      "type": "number"
+    },
+    "totalStockAvailable": {
+      "type": "number"
+    },
+    "stockRemaining": {
+      "type": "number"
+    },
+    "reservedStock": {
+      "type": "number",
+      "default": 0
+    },
+    "hasTieredPricing": {
+      "type": "boolean",
+      "default": false
+    },
+    "priceTiers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "dealStartsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dealEndsAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "availableInCityIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "availableNationwide": {
+      "type": "boolean",
+      "default": false
+    },
+    "deliveryOption": {
+      "type": "string",
+      "enum": [
+        "seller_delivers",
+        "buyer_collects",
+        "both",
+        "kemetro_logistics"
+      ],
+      "default": "seller_delivers"
+    },
+    "deliveryLeadDays": {
+      "type": "number"
+    },
+    "deliveryZones": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "freeDeliveryThreshold": {
+      "type": "number"
+    },
+    "deliveryCostPerUnit": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "scheduled",
+        "active",
+        "paused",
+        "sold_out",
+        "expired",
+        "cancelled",
+        "completed"
+      ],
+      "default": "draft"
+    },
+    "totalOrders": {
+      "type": "number",
+      "default": 0
+    },
+    "totalUnitsSold": {
+      "type": "number",
+      "default": 0
+    },
+    "totalRevenue": {
+      "type": "number",
+      "default": 0
+    },
+    "uniqueBuyers": {
+      "type": "number",
+      "default": 0
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "wishlistCount": {
+      "type": "number",
+      "default": 0
+    },
+    "isAdminApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "featuredDeal": {
+      "type": "boolean",
+      "default": false
+    },
+    "featuredUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isBestSeller": {
+      "type": "boolean",
+      "default": false
+    },
+    "isNewArrival": {
+      "type": "boolean",
+      "default": false
+    },
+    "requiresVerification": {
+      "type": "boolean",
+      "default": false
+    },
+    "dealTags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aiDemandScore": {
+      "type": "number"
+    },
+    "aiTargetAudienceIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sellerName": {
+      "type": "string"
+    },
+    "sellerRating": {
+      "type": "number"
+    },
+    "bundleItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "productName",
+    "dealType",
+    "originalPrice",
+    "dealPrice"
+  ]
+}

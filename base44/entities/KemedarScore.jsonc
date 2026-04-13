@@ -1,0 +1,167 @@
+{
+  "name": "KemedarScore",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "primaryRole": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller",
+        "agent",
+        "professional",
+        "seller_kemetro",
+        "franchise_owner",
+        "developer"
+      ],
+      "default": "buyer"
+    },
+    "overallScore": {
+      "type": "number",
+      "default": 0
+    },
+    "overallGrade": {
+      "type": "string",
+      "enum": [
+        "Platinum",
+        "Gold",
+        "Silver",
+        "Bronze",
+        "Starter",
+        "Restricted"
+      ],
+      "default": "Starter"
+    },
+    "buyerScore": {
+      "type": "number"
+    },
+    "sellerScore": {
+      "type": "number"
+    },
+    "professionalScore": {
+      "type": "number"
+    },
+    "agentScore": {
+      "type": "number"
+    },
+    "foScore": {
+      "type": "number"
+    },
+    "financialReadiness": {
+      "type": "number",
+      "default": 0
+    },
+    "platformBehavior": {
+      "type": "number",
+      "default": 0
+    },
+    "verificationLevel": {
+      "type": "number",
+      "default": 0
+    },
+    "communityStanding": {
+      "type": "number",
+      "default": 0
+    },
+    "listingQuality": {
+      "type": "number",
+      "default": 0
+    },
+    "transactionHistory": {
+      "type": "number",
+      "default": 0
+    },
+    "responseBehavior": {
+      "type": "number",
+      "default": 0
+    },
+    "sellerVerification": {
+      "type": "number",
+      "default": 0
+    },
+    "jobCompletion": {
+      "type": "number",
+      "default": 0
+    },
+    "clientRatings": {
+      "type": "number",
+      "default": 0
+    },
+    "professionalVerification": {
+      "type": "number",
+      "default": 0
+    },
+    "professionalBehavior": {
+      "type": "number",
+      "default": 0
+    },
+    "previousScore": {
+      "type": "number"
+    },
+    "scoreChange": {
+      "type": "number"
+    },
+    "scoreTrend": {
+      "type": "string",
+      "enum": [
+        "rising",
+        "stable",
+        "falling"
+      ],
+      "default": "stable"
+    },
+    "trendPeriod": {
+      "type": "string",
+      "default": "30_days"
+    },
+    "earnedBadges": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "activeWarnings": {
+      "type": "number",
+      "default": 0
+    },
+    "totalWarnings": {
+      "type": "number",
+      "default": 0
+    },
+    "isRestricted": {
+      "type": "boolean",
+      "default": false
+    },
+    "restrictionReason": {
+      "type": "string"
+    },
+    "restrictionUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scoreVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "shareableScoreToken": {
+      "type": "string"
+    },
+    "lastCalculated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nextScheduledCalc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "calculationVersion": {
+      "type": "string",
+      "default": "1.0"
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "SnapSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether Snap & Fix feature is globally enabled"
+    },
+    "allowGuestAnalysis": {
+      "type": "boolean",
+      "default": true,
+      "description": "Guests can use camera and see diagnosis but cannot post without logging in"
+    },
+    "maxImageSizeMB": {
+      "type": "number",
+      "default": 10,
+      "description": "Maximum uploaded image size in megabytes"
+    },
+    "claudeModel": {
+      "type": "string",
+      "default": "claude-sonnet-4-20250514",
+      "description": "Claude model version used for Vision analysis"
+    },
+    "defaultCurrency": {
+      "type": "string",
+      "default": "EGP",
+      "description": "Default currency for cost estimates"
+    },
+    "laborCostPerHourEGP": {
+      "type": "number",
+      "default": 150,
+      "description": "Base hourly labor rate in EGP used to estimate min/max labor cost range"
+    },
+    "emergencyUrgencyAutoNotifyAdmin": {
+      "type": "boolean",
+      "default": true,
+      "description": "Admin is alerted automatically on all emergency-level diagnoses"
+    },
+    "sessionExpiryHours": {
+      "type": "number",
+      "default": 48,
+      "description": "Unconverted SnapSessions expire after this many hours"
+    },
+    "enableVoiceNote": {
+      "type": "boolean",
+      "default": true,
+      "description": "Allow users to attach a voice note alongside the photo"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When settings were last updated"
+    }
+  },
+  "required": []
+}

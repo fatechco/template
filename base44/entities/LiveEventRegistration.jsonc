@@ -1,0 +1,96 @@
+{
+  "name": "LiveEventRegistration",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "guestName": {
+      "type": "string"
+    },
+    "guestEmail": {
+      "type": "string"
+    },
+    "guestPhone": {
+      "type": "string"
+    },
+    "registrantType": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "investor",
+        "agent",
+        "expat",
+        "general",
+        "press"
+      ],
+      "default": "general"
+    },
+    "budget": {
+      "type": "string"
+    },
+    "countryOfResidence": {
+      "type": "string"
+    },
+    "interestedInUnit": {
+      "type": "string"
+    },
+    "attended": {
+      "type": "boolean",
+      "default": false
+    },
+    "joinedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "leftAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "watchDuration": {
+      "type": "number"
+    },
+    "reminderSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "reminderSentAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "feedbackRating": {
+      "type": "number"
+    },
+    "feedbackComment": {
+      "type": "string"
+    },
+    "interestedInProperty": {
+      "type": "boolean"
+    },
+    "requestedCallback": {
+      "type": "boolean",
+      "default": false
+    },
+    "callbackScheduledAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "madeReservation": {
+      "type": "boolean",
+      "default": false
+    },
+    "reservationId": {
+      "type": "string"
+    },
+    "registeredAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "eventId"
+  ]
+}

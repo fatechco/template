@@ -1,0 +1,202 @@
+{
+  "name": "KemeKitTemplate",
+  "type": "object",
+  "properties": {
+    "creatorId": {
+      "type": "string",
+      "description": "Reference to User (Kemework Professional)"
+    },
+    "creatorName": {
+      "type": "string",
+      "description": "Designer name snapshot at creation"
+    },
+    "title": {
+      "type": "string",
+      "description": "e.g. Modern Minimalist Matte Black Bathroom"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Arabic title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly unique identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Designer notes on style and inspiration"
+    },
+    "descriptionAr": {
+      "type": "string",
+      "description": "Arabic description"
+    },
+    "roomType": {
+      "type": "string",
+      "enum": [
+        "bathroom",
+        "kitchen",
+        "living_room",
+        "bedroom",
+        "dining_room",
+        "outdoor",
+        "office",
+        "kids_room"
+      ],
+      "description": "Type of room"
+    },
+    "styleCategory": {
+      "type": "string",
+      "enum": [
+        "modern",
+        "classic",
+        "bohemian",
+        "industrial",
+        "scandinavian",
+        "art_deco",
+        "contemporary",
+        "rustic"
+      ],
+      "description": "Design style"
+    },
+    "budgetTier": {
+      "type": "string",
+      "enum": [
+        "economy",
+        "standard",
+        "premium",
+        "luxury"
+      ],
+      "description": "Budget tier classification"
+    },
+    "heroImageUrl": {
+      "type": "string",
+      "description": "Main hero image URL"
+    },
+    "gallery": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional gallery image URLs (max 10)"
+    },
+    "videoUrl": {
+      "type": "string",
+      "description": "Walkthrough video URL (nullable)"
+    },
+    "baseLaborRatePerSqmEGP": {
+      "type": "number",
+      "description": "Kemework installation cost per sqm"
+    },
+    "estimatedInstallDays": {
+      "type": "number",
+      "description": "Typical days to complete installation"
+    },
+    "requiredProfessionalSkill": {
+      "type": "string",
+      "description": "e.g. Tiler + Plumber, Painter, Carpenter"
+    },
+    "commissionPercent": {
+      "type": "number",
+      "default": 3,
+      "description": "Commission percent of GMV earned by designer"
+    },
+    "totalCommissionsEarnedEGP": {
+      "type": "number",
+      "default": 0,
+      "description": "Total commissions earned in EGP"
+    },
+    "totalViews": {
+      "type": "number",
+      "default": 0,
+      "description": "Total template views"
+    },
+    "totalSaves": {
+      "type": "number",
+      "default": 0,
+      "description": "Total template saves"
+    },
+    "totalCalculationsRun": {
+      "type": "number",
+      "default": 0,
+      "description": "Total calculations run"
+    },
+    "totalCartsGenerated": {
+      "type": "number",
+      "default": 0,
+      "description": "Total shopping carts generated"
+    },
+    "totalPurchases": {
+      "type": "number",
+      "default": 0,
+      "description": "Total purchases made from this template"
+    },
+    "totalGMVEGP": {
+      "type": "number",
+      "default": 0,
+      "description": "Total GMV in EGP"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_approval",
+        "active",
+        "archived",
+        "rejected"
+      ],
+      "default": "draft",
+      "description": "Template status"
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "Reason for rejection if rejected (nullable)"
+    },
+    "approvedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin) who approved (nullable)"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Approval timestamp (nullable)"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication timestamp (nullable)"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is featured on homepage"
+    },
+    "isEditorsPick": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is marked as editor's pick"
+    },
+    "sortWeight": {
+      "type": "number",
+      "default": 0,
+      "description": "Higher = appears earlier in lists"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp (nullable)"
+    }
+  },
+  "required": [
+    "creatorId",
+    "creatorName",
+    "title",
+    "slug",
+    "roomType",
+    "styleCategory",
+    "budgetTier",
+    "heroImageUrl",
+    "baseLaborRatePerSqmEGP",
+    "estimatedInstallDays",
+    "requiredProfessionalSkill"
+  ]
+}

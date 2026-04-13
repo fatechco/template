@@ -1,0 +1,97 @@
+{
+  "name": "ConciergeJourney",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "templateId": {
+      "type": "string",
+      "description": "Reference to ConciergeJourneyTemplate. Auto-selected based on property country/city."
+    },
+    "journeyType": {
+      "type": "string",
+      "enum": [
+        "Bought",
+        "Rented"
+      ],
+      "description": "Whether the user bought or rented the property"
+    },
+    "moveInDate": {
+      "type": "string",
+      "format": "date",
+      "description": "User-set move-in date. If null, triggerDay is used from journeyStartDate."
+    },
+    "journeyStartDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the card was moved into Bought/Rented column"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Completed",
+        "Dismissed"
+      ],
+      "default": "Active",
+      "description": "Overall journey status"
+    },
+    "completionPercentage": {
+      "type": "number",
+      "default": 0,
+      "description": "Auto-calculated: completedTasks / totalTasks \u00d7 100"
+    },
+    "totalTasks": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of tasks in this journey"
+    },
+    "completedTasks": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of tasks marked as Completed"
+    },
+    "actionedTasks": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of tasks where user clicked the CTA"
+    },
+    "skippedTasks": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of tasks dismissed/skipped"
+    },
+    "celebrationModalShown": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the completion celebration modal has been shown"
+    },
+    "celebrationModalShownAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the celebration modal was shown"
+    },
+    "celebrationModalDismissed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the celebration modal was dismissed"
+    },
+    "lastActivityAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time user interacted with any task in this journey"
+    }
+  },
+  "required": [
+    "userId",
+    "propertyId",
+    "journeyType",
+    "journeyStartDate"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "name": "GroupBuySession",
+  "type": "object",
+  "properties": {
+    "sessionNumber": {
+      "type": "string",
+      "description": "KGB-XXXXXXXX"
+    },
+    "initiatorId": {
+      "type": "string"
+    },
+    "groupName": {
+      "type": "string"
+    },
+    "groupDescription": {
+      "type": "string"
+    },
+    "targetMaterial": {
+      "type": "string"
+    },
+    "targetProductId": {
+      "type": "string"
+    },
+    "targetQuantityPerUnit": {
+      "type": "number"
+    },
+    "minimumParticipants": {
+      "type": "number"
+    },
+    "maximumParticipants": {
+      "type": "number"
+    },
+    "currentParticipants": {
+      "type": "number",
+      "default": 0
+    },
+    "totalQuantity": {
+      "type": "number",
+      "default": 0
+    },
+    "retailPrice": {
+      "type": "number"
+    },
+    "targetDiscountPercent": {
+      "type": "number"
+    },
+    "achievedDiscountPercent": {
+      "type": "number"
+    },
+    "priceBreakdown": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "compoundName": {
+      "type": "string"
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "districtId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "forming",
+        "active",
+        "threshold_reached",
+        "ordering",
+        "ordered",
+        "delivered",
+        "cancelled",
+        "expired"
+      ],
+      "default": "forming"
+    },
+    "closingDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "kemetroSellerId": {
+      "type": "string"
+    },
+    "sellerConfirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "sellerOrderId": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "initiatorId",
+    "groupName",
+    "targetMaterial",
+    "minimumParticipants"
+  ]
+}

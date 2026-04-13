@@ -1,0 +1,27 @@
+{
+  "name": "LifeScoreComparison",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "comparisonName": {
+      "type": "string",
+      "description": "Custom name for this comparison (nullable)"
+    },
+    "areaIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "maxItems": 4,
+      "description": "2-4 area IDs being compared"
+    }
+  },
+  "required": [
+    "userId",
+    "areaIds"
+  ]
+}

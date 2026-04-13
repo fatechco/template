@@ -1,0 +1,23 @@
+{
+  "name": "KemeKitSave",
+  "type": "object",
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "description": "Reference to KemeKitTemplate"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "savedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the template was saved"
+    }
+  },
+  "required": [
+    "templateId",
+    "userId"
+  ]
+}

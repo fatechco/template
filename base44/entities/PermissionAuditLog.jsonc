@@ -1,0 +1,50 @@
+{
+  "name": "PermissionAuditLog",
+  "type": "object",
+  "properties": {
+    "changedBy": {
+      "type": "string",
+      "description": "Reference to User (admin)"
+    },
+    "changedByEmail": {
+      "type": "string"
+    },
+    "roleKey": {
+      "type": "string",
+      "description": "Which role was affected"
+    },
+    "resourceKey": {
+      "type": "string"
+    },
+    "actionKey": {
+      "type": "string"
+    },
+    "oldValue": {
+      "type": "string",
+      "description": "Previous permission level"
+    },
+    "newValue": {
+      "type": "string",
+      "description": "New permission level"
+    },
+    "oldGuestBehavior": {
+      "type": "string"
+    },
+    "newGuestBehavior": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "permissionId": {
+      "type": "string",
+      "description": "Reference to RolePermission"
+    }
+  },
+  "required": [
+    "changedBy",
+    "roleKey",
+    "resourceKey",
+    "actionKey"
+  ]
+}

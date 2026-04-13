@@ -1,0 +1,97 @@
+{
+  "name": "LiveEventMessage",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "senderName": {
+      "type": "string"
+    },
+    "senderType": {
+      "type": "string",
+      "enum": [
+        "host",
+        "co_host",
+        "viewer",
+        "moderator",
+        "system",
+        "ai"
+      ],
+      "default": "viewer"
+    },
+    "messageType": {
+      "type": "string",
+      "enum": [
+        "chat",
+        "question",
+        "answer",
+        "reaction",
+        "system_update",
+        "highlight",
+        "poll_launch",
+        "cta"
+      ],
+      "default": "chat"
+    },
+    "content": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "isQuestion": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "isHighlighted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAnswered": {
+      "type": "boolean",
+      "default": false
+    },
+    "isModeratorApproved": {
+      "type": "boolean",
+      "default": true
+    },
+    "reactionType": {
+      "type": "string"
+    },
+    "upvotes": {
+      "type": "number",
+      "default": 0
+    },
+    "upvotedBy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "answeredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "answerContent": {
+      "type": "string"
+    },
+    "streamTimestamp": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "eventId",
+    "senderName",
+    "content",
+    "messageType"
+  ]
+}

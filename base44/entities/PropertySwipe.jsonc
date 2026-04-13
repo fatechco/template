@@ -1,0 +1,54 @@
+{
+  "name": "PropertySwipe",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "matchProfileId": {
+      "type": "string",
+      "description": "Reference to MatchProfile"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "like",
+        "pass",
+        "super_like",
+        "undo",
+        "rewind"
+      ]
+    },
+    "viewDuration": {
+      "type": "number",
+      "description": "Seconds card was viewed before swipe"
+    },
+    "photosViewed": {
+      "type": "number",
+      "description": "How many photos scrolled through"
+    },
+    "priceVisible": {
+      "type": "boolean"
+    },
+    "detailsExpanded": {
+      "type": "boolean"
+    },
+    "cardPositionInStack": {
+      "type": "number"
+    },
+    "swipedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "userId",
+    "propertyId",
+    "action"
+  ]
+}

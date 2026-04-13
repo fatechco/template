@@ -1,0 +1,278 @@
+{
+  "name": "AdvisorProfile",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable for guests)"
+    },
+    "guestToken": {
+      "type": "string",
+      "description": "For guest session tracking"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "default": "en"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "buy",
+        "rent",
+        "invest"
+      ]
+    },
+    "isFirstTime": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "renting_want_to_buy",
+        "owning_want_to_rent"
+      ]
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "soon",
+        "planning",
+        "exploring"
+      ]
+    },
+    "propertyTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "furnishingPreference": {
+      "type": "string",
+      "enum": [
+        "fully_furnished",
+        "semi_furnished",
+        "unfurnished",
+        "no_preference"
+      ]
+    },
+    "usageCategory": {
+      "type": "string"
+    },
+    "householdCount": {
+      "type": "number"
+    },
+    "householdComposition": {
+      "type": "object"
+    },
+    "hasPets": {
+      "type": "string",
+      "enum": [
+        "none",
+        "cat",
+        "dog",
+        "other",
+        "planning"
+      ]
+    },
+    "accessibilityNeeds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "worksFromHome": {
+      "type": "string",
+      "enum": [
+        "no",
+        "yes",
+        "hybrid",
+        "multiple"
+      ]
+    },
+    "carOwnership": {
+      "type": "string",
+      "enum": [
+        "one",
+        "multiple",
+        "public_transport",
+        "alternative"
+      ]
+    },
+    "incomeRange": {
+      "type": "string"
+    },
+    "budgetMin": {
+      "type": "number"
+    },
+    "budgetMax": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "cash",
+        "mortgage",
+        "installment",
+        "any",
+        "unsure"
+      ]
+    },
+    "installmentMax": {
+      "type": "number"
+    },
+    "downPaymentRange": {
+      "type": "string"
+    },
+    "rentFrequency": {
+      "type": "string"
+    },
+    "leaseDuration": {
+      "type": "string"
+    },
+    "expectedReturn": {
+      "type": "string"
+    },
+    "preferredLocationIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferredLocationsOpen": {
+      "type": "boolean",
+      "default": false
+    },
+    "workLocation": {
+      "type": "object"
+    },
+    "maxCommuteMinutes": {
+      "type": "number"
+    },
+    "commuteMethod": {
+      "type": "string"
+    },
+    "schoolTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxSchoolCommuteMinutes": {
+      "type": "number"
+    },
+    "proximityNeeds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prioritiesRanked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "viewPreference": {
+      "type": "string"
+    },
+    "floorPreference": {
+      "type": "string"
+    },
+    "noiseTolerance": {
+      "type": "string",
+      "enum": [
+        "silent",
+        "quiet",
+        "normal",
+        "lively"
+      ]
+    },
+    "communityStyle": {
+      "type": "string"
+    },
+    "mustHaveFeatures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "noGoFeatures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "wishlistFeatures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "freeTextNotes": {
+      "type": "string"
+    },
+    "aiRecommendedSpecs": {
+      "type": "object"
+    },
+    "aiRecommendedLocations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiFinancialAnalysis": {
+      "type": "object"
+    },
+    "aiMarketInsights": {
+      "type": "object"
+    },
+    "currentStep": {
+      "type": "number",
+      "default": 1
+    },
+    "completionPercent": {
+      "type": "number",
+      "default": 0
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "notificationFrequency": {
+      "type": "string",
+      "default": "daily"
+    },
+    "notificationChannels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastReportGeneratedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nextRefreshPromptAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

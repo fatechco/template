@@ -1,0 +1,99 @@
+{
+  "name": "CoachContent",
+  "type": "object",
+  "properties": {
+    "contentKey": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "string",
+      "enum": [
+        "article",
+        "checklist",
+        "video_script",
+        "quiz",
+        "decision_tree",
+        "calculator",
+        "tip",
+        "warning",
+        "celebration"
+      ]
+    },
+    "journeyTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "titleFr": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "bodyAr": {
+      "type": "string"
+    },
+    "bodyFr": {
+      "type": "string"
+    },
+    "checklistItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "quizQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tips": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relatedFeatures": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "estimatedReadMinutes": {
+      "type": "number",
+      "default": 5
+    },
+    "difficultyLevel": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "intermediate",
+        "advanced"
+      ],
+      "default": "basic"
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "contentKey",
+    "contentType",
+    "title"
+  ]
+}

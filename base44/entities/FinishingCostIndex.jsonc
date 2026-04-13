@@ -1,0 +1,46 @@
+{
+  "name": "FinishingCostIndex",
+  "type": "object",
+  "properties": {
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "qualityTier": {
+      "type": "string",
+      "enum": [
+        "Economy",
+        "Standard",
+        "Premium",
+        "Luxury"
+      ]
+    },
+    "baseMaterialCostPerSqm": {
+      "type": "number"
+    },
+    "baseLaborCostPerSqm": {
+      "type": "number"
+    },
+    "currencyId": {
+      "type": "string",
+      "description": "Reference to Currency"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedBy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "countryId",
+    "qualityTier",
+    "baseMaterialCostPerSqm",
+    "baseLaborCostPerSqm"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "FracPropertyUpdate",
+  "type": "object",
+  "properties": {
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty"
+    },
+    "postedByUserId": {
+      "type": "string",
+      "description": "Reference to User (poster)"
+    },
+    "updateType": {
+      "type": "string",
+      "enum": [
+        "financial_report",
+        "maintenance_update",
+        "tenant_news",
+        "yield_announcement",
+        "general_news",
+        "milestone"
+      ],
+      "description": "Type of update"
+    },
+    "title": {
+      "type": "string",
+      "description": "Update title in English"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Update title in Arabic"
+    },
+    "body": {
+      "type": "string",
+      "description": "Full update body in English"
+    },
+    "bodyAr": {
+      "type": "string",
+      "description": "Full update body in Arabic"
+    },
+    "attachmentUrl": {
+      "type": "string",
+      "description": "Optional attachment file URL"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether update is public to all investors"
+    }
+  },
+  "required": [
+    "fracPropertyId",
+    "postedByUserId",
+    "updateType",
+    "title",
+    "body"
+  ]
+}

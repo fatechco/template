@@ -1,0 +1,73 @@
+{
+  "name": "PersonalizationRule",
+  "type": "object",
+  "properties": {
+    "ruleName": {
+      "type": "string"
+    },
+    "ruleDescription": {
+      "type": "string"
+    },
+    "targetDimension": {
+      "type": "string"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "show_feature",
+        "hide_feature",
+        "reorder_content",
+        "personalize_message",
+        "trigger_notification",
+        "surface_property",
+        "show_banner",
+        "suggest_action"
+      ]
+    },
+    "actionTarget": {
+      "type": "string"
+    },
+    "actionPayload": {
+      "type": "object"
+    },
+    "impressions": {
+      "type": "number",
+      "default": 0
+    },
+    "conversions": {
+      "type": "number",
+      "default": 0
+    },
+    "conversionRate": {
+      "type": "number",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "priority": {
+      "type": "number",
+      "default": 50
+    },
+    "abTestVariant": {
+      "type": "string"
+    },
+    "abTestGroupA": {
+      "type": "string"
+    },
+    "abTestGroupB": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ruleName",
+    "actionType"
+  ]
+}

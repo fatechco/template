@@ -1,0 +1,62 @@
+{
+  "name": "LiveEventPoll",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "questionAr": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "pollType": {
+      "type": "string",
+      "enum": [
+        "single_choice",
+        "multiple_choice",
+        "rating",
+        "yes_no"
+      ],
+      "default": "single_choice"
+    },
+    "launchedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "closedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "totalResponses": {
+      "type": "number",
+      "default": 0
+    },
+    "showResultsToViewers": {
+      "type": "boolean",
+      "default": true
+    },
+    "streamTimestamp": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "eventId",
+    "question",
+    "options"
+  ]
+}

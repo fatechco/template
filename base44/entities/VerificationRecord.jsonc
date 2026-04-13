@@ -1,0 +1,122 @@
+{
+  "name": "VerificationRecord",
+  "type": "object",
+  "properties": {
+    "tokenId": {
+      "type": "string",
+      "description": "Reference to PropertyToken"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "recordNumber": {
+      "type": "number",
+      "description": "Auto-increment per token, starts at 1"
+    },
+    "recordType": {
+      "type": "string",
+      "enum": [
+        "property_listed",
+        "seller_identity_verified",
+        "seller_signed_pledge",
+        "document_uploaded",
+        "document_ai_analyzed",
+        "document_fo_verified",
+        "fo_inspection_scheduled",
+        "fo_inspection_completed",
+        "legal_doc_submitted",
+        "admin_manual_review",
+        "certificate_issued",
+        "certificate_renewed",
+        "ownership_transferred",
+        "fraud_flag_raised",
+        "fraud_flag_cleared",
+        "suspension_applied",
+        "suspension_lifted",
+        "level_upgraded",
+        "custom_admin_note"
+      ],
+      "description": "Type of verification event"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable summary of the event in English"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Arabic version of the event title"
+    },
+    "details": {
+      "type": "string",
+      "description": "Full description of the event in English"
+    },
+    "detailsAr": {
+      "type": "string",
+      "description": "Full description of the event in Arabic"
+    },
+    "attachmentUrl": {
+      "type": "string",
+      "description": "Optional attachment URL"
+    },
+    "attachmentType": {
+      "type": "string",
+      "enum": [
+        "document",
+        "photo",
+        "video",
+        "gps"
+      ],
+      "description": "Type of attachment"
+    },
+    "metaData": {
+      "type": "object",
+      "description": "Flexible JSON object per recordType \u2014 e.g. aiScore, inspectorId, gpsLat, fromUserId, etc."
+    },
+    "actorType": {
+      "type": "string",
+      "enum": [
+        "system",
+        "seller",
+        "buyer",
+        "franchise_owner",
+        "admin",
+        "claude_ai"
+      ],
+      "description": "Who performed this action"
+    },
+    "actorUserId": {
+      "type": "string",
+      "description": "Reference to User who performed the action (nullable for system/ai)"
+    },
+    "actorLabel": {
+      "type": "string",
+      "description": "Human-readable actor label, e.g. System, FO: Cairo East, AI Engine"
+    },
+    "previousHash": {
+      "type": "string",
+      "description": "recordHash of the previous record in chain, or GENESIS if first"
+    },
+    "recordHash": {
+      "type": "string",
+      "description": "sha256 of this record's full data concatenated with previousHash"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": true,
+      "description": "True if chain integrity check passes for this record"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Exact server timestamp when this record was created"
+    }
+  },
+  "required": [
+    "tokenId",
+    "propertyId",
+    "recordType",
+    "actorType",
+    "recordedAt"
+  ]
+}

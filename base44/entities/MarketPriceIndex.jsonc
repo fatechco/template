@@ -1,0 +1,115 @@
+{
+  "name": "MarketPriceIndex",
+  "type": "object",
+  "properties": {
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "provinceId": {
+      "type": "string",
+      "description": "Reference to Province"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District (nullable)"
+    },
+    "areaId": {
+      "type": "string",
+      "description": "Reference to Area (nullable)"
+    },
+    "cityName": {
+      "type": "string"
+    },
+    "districtName": {
+      "type": "string"
+    },
+    "propertyType": {
+      "type": "string",
+      "description": "Property type"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "Sale",
+        "Rent"
+      ]
+    },
+    "avgPricePerSqm": {
+      "type": "number"
+    },
+    "medianPricePerSqm": {
+      "type": "number"
+    },
+    "minPricePerSqm": {
+      "type": "number"
+    },
+    "maxPricePerSqm": {
+      "type": "number"
+    },
+    "avgTotalPrice": {
+      "type": "number"
+    },
+    "avgSize": {
+      "type": "number",
+      "description": "Average size in sqm"
+    },
+    "totalListings": {
+      "type": "number"
+    },
+    "activeListings": {
+      "type": "number"
+    },
+    "demandScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "supplyScore": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "priceChange1Month": {
+      "type": "number",
+      "description": "% change"
+    },
+    "priceChange3Months": {
+      "type": "number"
+    },
+    "priceChange6Months": {
+      "type": "number"
+    },
+    "priceChange12Months": {
+      "type": "number"
+    },
+    "avgDaysOnMarket": {
+      "type": "number"
+    },
+    "avgRentalYield": {
+      "type": "number",
+      "description": "% annually"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dataSource": {
+      "type": "string",
+      "enum": [
+        "kemedar_listings",
+        "imported",
+        "manual"
+      ],
+      "default": "kemedar_listings"
+    }
+  },
+  "required": [
+    "cityId",
+    "propertyType",
+    "purpose",
+    "avgPricePerSqm"
+  ]
+}

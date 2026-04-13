@@ -1,0 +1,319 @@
+{
+  "name": "SurplusItem",
+  "type": "object",
+  "properties": {
+    "sellerId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "sellerType": {
+      "type": "string",
+      "enum": [
+        "homeowner",
+        "professional",
+        "developer",
+        "store"
+      ],
+      "description": "Type of seller"
+    },
+    "categoryId": {
+      "type": "string",
+      "description": "Reference to KemetroCategory"
+    },
+    "title": {
+      "type": "string",
+      "description": "e.g. 3 Boxes Cleopatra Carrara White Floor Tiles"
+    },
+    "titleAr": {
+      "type": "string",
+      "description": "Arabic title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description"
+    },
+    "descriptionAr": {
+      "type": "string",
+      "description": "Arabic description"
+    },
+    "scannedBarcode": {
+      "type": "string",
+      "description": "Barcode string from scanner (nullable)"
+    },
+    "aiMatchedProductId": {
+      "type": "string",
+      "description": "Reference to KemetroProduct if AI found a catalog match (nullable)"
+    },
+    "aiMatchedProductName": {
+      "type": "string",
+      "description": "Snapshot of matched product name (nullable)"
+    },
+    "aiMatchedProductRetailPriceEGP": {
+      "type": "number",
+      "description": "Retail price of matched product (nullable)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "brand_new_excess",
+        "open_box",
+        "lightly_used",
+        "salvaged"
+      ],
+      "description": "Physical condition of the surplus item"
+    },
+    "conditionLabel": {
+      "type": "string",
+      "description": "Display label e.g. Brand New (Excess)"
+    },
+    "quantityAvailable": {
+      "type": "number",
+      "description": "Quantity in stock"
+    },
+    "unit": {
+      "type": "string",
+      "enum": [
+        "boxes",
+        "pieces",
+        "gallons",
+        "liters",
+        "sqm",
+        "meters",
+        "kg",
+        "tons",
+        "rolls",
+        "sheets",
+        "sets"
+      ],
+      "description": "Unit of measure"
+    },
+    "originalRetailPriceEGP": {
+      "type": "number",
+      "description": "Original retail price for discount calculation (nullable)"
+    },
+    "surplusPriceEGP": {
+      "type": "number",
+      "description": "Asking price in EGP"
+    },
+    "currencyId": {
+      "type": "string",
+      "description": "Reference to Currency, default EGP"
+    },
+    "discountPercent": {
+      "type": "number",
+      "description": "Auto-calculated: (1 - surplusPrice/originalRetailPrice) \u00d7 100 (nullable)"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image file URLs (min 1, max 8)"
+    },
+    "primaryImageUrl": {
+      "type": "string",
+      "description": "First image, shown on cards"
+    },
+    "aiSuggestedTitle": {
+      "type": "string",
+      "description": "AI suggested title (nullable)"
+    },
+    "aiSuggestedCategory": {
+      "type": "string",
+      "description": "AI suggested category (nullable)"
+    },
+    "aiConditionEstimate": {
+      "type": "string",
+      "description": "AI estimated condition (nullable)"
+    },
+    "aiEstimatedQuantity": {
+      "type": "number",
+      "description": "AI estimated quantity (nullable)"
+    },
+    "aiSuggestedUnit": {
+      "type": "string",
+      "description": "AI suggested unit (nullable)"
+    },
+    "aiSuggestedDiscountPercent": {
+      "type": "number",
+      "description": "AI suggested discount percent (nullable)"
+    },
+    "aiDescription": {
+      "type": "string",
+      "description": "AI generated description (nullable)"
+    },
+    "aiDescriptionAr": {
+      "type": "string",
+      "description": "AI generated Arabic description (nullable)"
+    },
+    "claudeModel": {
+      "type": "string",
+      "description": "Claude model used for analysis (nullable)"
+    },
+    "aiAnalyzedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When AI analysis was completed (nullable)"
+    },
+    "estimatedWeightKg": {
+      "type": "number",
+      "description": "Weight of full lot in kg \u2014 used to calculate landfill waste diverted (nullable)"
+    },
+    "estimatedCo2SavedKg": {
+      "type": "number",
+      "description": "Estimated carbon savings from reuse vs landfill (nullable)"
+    },
+    "ecoImpactNote": {
+      "type": "string",
+      "description": "AI-generated sustainability note for display (nullable)"
+    },
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "provinceId": {
+      "type": "string",
+      "description": "Reference to Province"
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "districtId": {
+      "type": "string",
+      "description": "Reference to District (nullable)"
+    },
+    "addressText": {
+      "type": "string",
+      "description": "Approximate address \u2014 not exact for privacy (nullable)"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "GPS latitude (nullable)"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "GPS longitude (nullable)"
+    },
+    "deliveryOption": {
+      "type": "string",
+      "enum": [
+        "pickup_only",
+        "shipper_network",
+        "seller_delivers"
+      ],
+      "description": "pickup_only = buyer collects | shipper_network = Kemetro shipper | seller_delivers = seller brings to buyer"
+    },
+    "pickupInstructions": {
+      "type": "string",
+      "description": "e.g. Building entrance on side street, call on arrival (nullable)"
+    },
+    "shippingCostEstimateEGP": {
+      "type": "number",
+      "description": "Auto-calculated for shipper_network option (nullable)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "reserved",
+        "sold",
+        "expired",
+        "deleted"
+      ],
+      "default": "active",
+      "description": "active = live | reserved = escrow held | sold = completed | expired = > 90 days | deleted = seller removed"
+    },
+    "reservedByUserId": {
+      "type": "string",
+      "description": "Reference to User who reserved (nullable)"
+    },
+    "reservedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When reservation was made (nullable)"
+    },
+    "reservationExpiryAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Reservation expiry: +48 hours \u2014 auto-releases if not collected (nullable)"
+    },
+    "soldAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When sale was completed (nullable)"
+    },
+    "escrowTransactionId": {
+      "type": "string",
+      "description": "XeedWallet escrow transaction reference (nullable)"
+    },
+    "pickupQrCode": {
+      "type": "string",
+      "description": "Unique random hash generated on reservation \u2014 used for QR handshake"
+    },
+    "pickupQrCodeExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "QR code expiry datetime (nullable)"
+    },
+    "platformFeePercent": {
+      "type": "number",
+      "default": 5,
+      "description": "Platform fee percentage"
+    },
+    "platformFeeEGP": {
+      "type": "number",
+      "description": "Calculated on sale: surplusPrice \u00d7 feePercent (nullable)"
+    },
+    "sellerNetEGP": {
+      "type": "number",
+      "description": "surplusPrice - platformFeeEGP (nullable)"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of views"
+    },
+    "saveCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of saves"
+    },
+    "messageCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of messages"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether item is featured"
+    },
+    "isEcoHighlighted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Admin-flagged high ESG impact item"
+    },
+    "listingExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "createdAt + 90 days"
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp"
+    }
+  },
+  "required": [
+    "sellerId",
+    "sellerType",
+    "title",
+    "condition",
+    "quantityAvailable",
+    "unit",
+    "surplusPriceEGP",
+    "deliveryOption",
+    "status"
+  ]
+}

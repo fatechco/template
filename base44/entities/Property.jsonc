@@ -1,0 +1,326 @@
+{
+  "name": "Property",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "property_code": {
+      "type": "string",
+      "description": "Unique property code"
+    },
+    "category_id": {
+      "type": "string",
+      "description": "Reference to PropertyCategory"
+    },
+    "suitable_for_id": {
+      "type": "string",
+      "description": "Reference to PropertySuitableFor"
+    },
+    "purpose_id": {
+      "type": "string",
+      "description": "Reference to PropertyPurpose"
+    },
+    "status_id": {
+      "type": "string",
+      "description": "Reference to PropertyStatus"
+    },
+    "furnished_id": {
+      "type": "string",
+      "description": "Reference to PropertyFurnished"
+    },
+    "country_id": {
+      "type": "string",
+      "description": "Reference to Country"
+    },
+    "province_id": {
+      "type": "string",
+      "description": "Reference to Province"
+    },
+    "city_id": {
+      "type": "string",
+      "description": "Reference to City"
+    },
+    "district_id": {
+      "type": "string",
+      "description": "Reference to District"
+    },
+    "area_id": {
+      "type": "string",
+      "description": "Reference to Area"
+    },
+    "address": {
+      "type": "string",
+      "description": "Full address text"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "GPS latitude"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "GPS longitude"
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Reference to Project"
+    },
+    "direct_phone": {
+      "type": "string",
+      "description": "Direct contact phone number"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Featured image URL"
+    },
+    "avatar_image": {
+      "type": "string",
+      "description": "Avatar/thumbnail image URL"
+    },
+    "image_gallery": {
+      "type": "array",
+      "description": "Array of gallery image URLs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brochure_file": {
+      "type": "string",
+      "description": "Brochure file URL"
+    },
+    "floor_plan_file": {
+      "type": "string",
+      "description": "Floor plan file URL"
+    },
+    "vr_video_link": {
+      "type": "string",
+      "description": "VR / 360 video link"
+    },
+    "youtube_links": {
+      "type": "array",
+      "description": "Array of YouTube video links",
+      "items": {
+        "type": "string"
+      }
+    },
+    "amenity_ids": {
+      "type": "array",
+      "description": "References to PropertyAmenity records",
+      "items": {
+        "type": "string"
+      }
+    },
+    "distance_ids": {
+      "type": "array",
+      "description": "References to PropertyDistance records",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frontage_ids": {
+      "type": "array",
+      "description": "References to PropertyFrontage records",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scene_view_ids": {
+      "type": "array",
+      "description": "References to PropertySceneView records",
+      "items": {
+        "type": "string"
+      }
+    },
+    "publisher_type_id": {
+      "type": "string",
+      "description": "Reference to PropertyPublisherType"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Property tags for search and discovery",
+      "items": {
+        "type": "string"
+      }
+    },
+    "title": {
+      "type": "string",
+      "description": "Property title in English"
+    },
+    "title_ar": {
+      "type": "string",
+      "description": "Property title in Arabic"
+    },
+    "description": {
+      "type": "string",
+      "description": "Property description in English"
+    },
+    "description_ar": {
+      "type": "string",
+      "description": "Property description in Arabic"
+    },
+    "price_amount": {
+      "type": "number",
+      "description": "Listed price"
+    },
+    "currency_id": {
+      "type": "string",
+      "description": "Reference to Currency"
+    },
+    "is_contact_for_price": {
+      "type": "boolean",
+      "default": false,
+      "description": "Hide price, contact for price"
+    },
+    "is_negotiable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Price is negotiable"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured listing"
+    },
+    "is_verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Verified listing"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Listing is active/published"
+    },
+    "view_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of views"
+    },
+    "interested_in_veri": {
+      "type": "boolean",
+      "default": false,
+      "description": "Owner interested in verification service"
+    },
+    "interested_in_campaign": {
+      "type": "boolean",
+      "default": false,
+      "description": "Owner interested in campaign/promotion"
+    },
+    "deleted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Soft delete timestamp"
+    },
+    "isImported": {
+      "type": "boolean",
+      "default": false,
+      "description": "TRUE for all scraping-imported properties"
+    },
+    "importSource": {
+      "type": "string",
+      "description": "e.g. Aqarmap | OLX | PropertyFinder | Bayut | Manual"
+    },
+    "importJobId": {
+      "type": "string",
+      "description": "Reference to scraping job that created this"
+    },
+    "importedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When it was scraped/imported"
+    },
+    "importedBatchId": {
+      "type": "string",
+      "description": "Groups multiple from same scraping run"
+    },
+    "movedToPendingAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When admin moved it to pending"
+    },
+    "movedToPendingBy": {
+      "type": "string",
+      "description": "Reference to User (admin who moved it)"
+    },
+    "movedToPendingReason": {
+      "type": "string",
+      "description": "Optional admin notes when moving to pending"
+    },
+    "importStatus": {
+      "type": "string",
+      "enum": [
+        "imported",
+        "moved_to_pending",
+        "activated",
+        "rejected",
+        "duplicate"
+      ],
+      "default": "imported",
+      "description": "Import workflow status"
+    },
+    "ownerContactStatus": {
+      "type": "string",
+      "enum": [
+        "not_contacted",
+        "contacted",
+        "no_answer",
+        "interested",
+        "not_interested",
+        "activated"
+      ],
+      "default": "not_contacted",
+      "description": "Sales team contact status with property owner"
+    },
+    "lastContactedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time sales contacted the owner"
+    },
+    "lastContactedBy": {
+      "type": "string",
+      "description": "Reference to User (sales rep)"
+    },
+    "contactNotes": {
+      "type": "string",
+      "description": "Notes from contact attempts"
+    },
+    "verification_level": {
+      "type": "number",
+      "default": 1,
+      "description": "Kemedar Verify Pro level 1-5"
+    },
+    "isFracOffering": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this property has a KemeFrac fractional offering"
+    },
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty, nullable"
+    },
+    "isOpenToSwap": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the owner is open to a Kemedar Swap\u2122 property exchange"
+    },
+    "swapIntentId": {
+      "type": "string",
+      "description": "Reference to the active SwapIntent for this property (nullable)"
+    },
+    "isAuction": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this property is designated for KemedarBid\u2122 auction"
+    },
+    "auctionId": {
+      "type": "string",
+      "description": "Reference to PropertyAuction (nullable)"
+    }
+  },
+  "required": [
+    "title",
+    "category_id",
+    "purpose_id"
+  ]
+}

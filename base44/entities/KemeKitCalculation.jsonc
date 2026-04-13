@@ -1,0 +1,118 @@
+{
+  "name": "KemeKitCalculation",
+  "type": "object",
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "description": "Reference to KemeKitTemplate"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (nullable for guest sessions)"
+    },
+    "sessionToken": {
+      "type": "string",
+      "description": "UUID for guest session tracking"
+    },
+    "projectNickname": {
+      "type": "string",
+      "description": "User-given project name (nullable)"
+    },
+    "lengthMeters": {
+      "type": "number",
+      "description": "Room length in meters"
+    },
+    "widthMeters": {
+      "type": "number",
+      "description": "Room width in meters"
+    },
+    "heightMeters": {
+      "type": "number",
+      "default": 2.8,
+      "description": "Room height in meters"
+    },
+    "doorsCount": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of doors"
+    },
+    "windowsCount": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of windows"
+    },
+    "floorAreaSqm": {
+      "type": "number",
+      "description": "Calculated floor area in sqm"
+    },
+    "netWallAreaSqm": {
+      "type": "number",
+      "description": "Calculated net wall area in sqm"
+    },
+    "grossWallAreaSqm": {
+      "type": "number",
+      "description": "Calculated gross wall area in sqm"
+    },
+    "ceilingAreaSqm": {
+      "type": "number",
+      "description": "Calculated ceiling area in sqm"
+    },
+    "perimeterLinearMeters": {
+      "type": "number",
+      "description": "Calculated perimeter in linear meters"
+    },
+    "calculatedBoQ": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of calculated BOQ items with all details"
+    },
+    "totalMaterialCostEGP": {
+      "type": "number",
+      "description": "Sum of all included items"
+    },
+    "totalWeightKg": {
+      "type": "number",
+      "description": "Estimated total kit weight (nullable)"
+    },
+    "estimatedLaborCostEGP": {
+      "type": "number",
+      "description": "Estimated labor cost in EGP (nullable)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "saved",
+        "cart_added",
+        "purchased"
+      ],
+      "default": "draft",
+      "description": "Calculation status"
+    },
+    "cartAddedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When added to cart (nullable)"
+    },
+    "purchasedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When purchased (nullable)"
+    }
+  },
+  "required": [
+    "templateId",
+    "sessionToken",
+    "lengthMeters",
+    "widthMeters",
+    "floorAreaSqm",
+    "netWallAreaSqm",
+    "grossWallAreaSqm",
+    "ceilingAreaSqm",
+    "perimeterLinearMeters",
+    "calculatedBoQ",
+    "totalMaterialCostEGP"
+  ]
+}

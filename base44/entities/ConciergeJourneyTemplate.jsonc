@@ -1,0 +1,31 @@
+{
+  "name": "ConciergeJourneyTemplate",
+  "type": "object",
+  "properties": {
+    "countryId": {
+      "type": "string",
+      "description": "Reference to Country entity. Null = applies globally."
+    },
+    "cityId": {
+      "type": "string",
+      "description": "Reference to City entity. Null = applies to whole country."
+    },
+    "templateTitle": {
+      "type": "string",
+      "description": "e.g. Standard Egypt Move-In"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this template is available for use"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order in admin"
+    }
+  },
+  "required": [
+    "templateTitle"
+  ]
+}

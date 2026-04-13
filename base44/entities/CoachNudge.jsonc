@@ -1,0 +1,66 @@
+{
+  "name": "CoachNudge",
+  "type": "object",
+  "properties": {
+    "coachProfileId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "nudgeType": {
+      "type": "string",
+      "enum": [
+        "step_reminder",
+        "streak_encouragement",
+        "milestone_approaching",
+        "inactivity_recovery",
+        "market_opportunity",
+        "score_improvement",
+        "deadline_reminder",
+        "celebration_followup"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "messageAr": {
+      "type": "string"
+    },
+    "actionText": {
+      "type": "string"
+    },
+    "actionUrl": {
+      "type": "string"
+    },
+    "scheduledFor": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sentAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isRead": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActedOn": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "coachProfileId",
+    "userId",
+    "nudgeType",
+    "title",
+    "message"
+  ]
+}

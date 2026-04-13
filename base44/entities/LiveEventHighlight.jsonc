@@ -1,0 +1,45 @@
+{
+  "name": "LiveEventHighlight",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "highlightType": {
+      "type": "string",
+      "enum": [
+        "key_moment",
+        "price_reveal",
+        "question_answered",
+        "poll_result",
+        "reservation_made",
+        "milestone"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "streamTimestamp": {
+      "type": "number"
+    },
+    "thumbnailUrl": {
+      "type": "string"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "eventId",
+    "highlightType",
+    "title",
+    "streamTimestamp"
+  ]
+}

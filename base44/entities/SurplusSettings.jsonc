@@ -1,0 +1,82 @@
+{
+  "name": "SurplusSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the Surplus module is globally enabled"
+    },
+    "platformFeePercent": {
+      "type": "number",
+      "default": 5,
+      "description": "Platform fee percentage charged on each sale"
+    },
+    "reservationExpiryHours": {
+      "type": "number",
+      "default": 48,
+      "description": "Hours before an uncollected reservation auto-expires"
+    },
+    "listingExpiryDays": {
+      "type": "number",
+      "default": 90,
+      "description": "Days before an active listing auto-expires"
+    },
+    "defaultSearchRadiusKm": {
+      "type": "number",
+      "default": 15,
+      "description": "Default radius in km for proximity searches"
+    },
+    "maxSearchRadiusKm": {
+      "type": "number",
+      "default": 100,
+      "description": "Maximum allowed search radius in km"
+    },
+    "maxImagesPerListing": {
+      "type": "number",
+      "default": 8,
+      "description": "Maximum number of images per surplus listing"
+    },
+    "allowGuestBrowsing": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether guests can browse without logging in"
+    },
+    "requireVerifiedSellerForHighValue": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, high-value listings require verified seller"
+    },
+    "highValueThresholdEGP": {
+      "type": "number",
+      "default": 5000,
+      "description": "EGP threshold above which seller verification may be required"
+    },
+    "ecoStarterKgThreshold": {
+      "type": "number",
+      "default": 500,
+      "description": "Kg threshold for Eco Starter badge"
+    },
+    "ecoBuilderKgThreshold": {
+      "type": "number",
+      "default": 2000,
+      "description": "Kg threshold for Eco Builder badge"
+    },
+    "ecoChampionKgThreshold": {
+      "type": "number",
+      "default": 5000,
+      "description": "Kg threshold for Eco Champion badge"
+    },
+    "claudeModel": {
+      "type": "string",
+      "default": "claude-sonnet-4-20250514",
+      "description": "Claude model used for AI scanning"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When settings were last updated"
+    }
+  },
+  "required": []
+}

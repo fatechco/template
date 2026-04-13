@@ -1,0 +1,48 @@
+{
+  "name": "CRMAIAction",
+  "type": "object",
+  "properties": {
+    "agentId": {
+      "type": "string"
+    },
+    "contactId": {
+      "type": "string"
+    },
+    "actionType": {
+      "type": "string",
+      "description": "e.g. send_message, log_note, update_stage, schedule_task"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_approval",
+        "approved",
+        "rejected",
+        "executed",
+        "failed"
+      ],
+      "default": "pending_approval"
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "executedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rejectionReason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agentId",
+    "actionType"
+  ]
+}

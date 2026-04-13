@@ -1,0 +1,102 @@
+{
+  "name": "TranslationLocation",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "country",
+        "province",
+        "city",
+        "district",
+        "area"
+      ],
+      "description": "Which location entity this translates"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the location entity"
+    },
+    "en": {
+      "type": "string",
+      "description": "English name"
+    },
+    "ar": {
+      "type": "string",
+      "description": "Arabic"
+    },
+    "tr": {
+      "type": "string",
+      "description": "Turkish"
+    },
+    "fr": {
+      "type": "string",
+      "description": "French"
+    },
+    "ru": {
+      "type": "string",
+      "description": "Russian"
+    },
+    "id": {
+      "type": "string",
+      "description": "Indonesian"
+    },
+    "vi": {
+      "type": "string",
+      "description": "Vietnamese"
+    },
+    "de": {
+      "type": "string",
+      "description": "German"
+    },
+    "ur": {
+      "type": "string",
+      "description": "Urdu"
+    },
+    "hi": {
+      "type": "string",
+      "description": "Hindi"
+    },
+    "bn": {
+      "type": "string",
+      "description": "Bengali"
+    },
+    "zh": {
+      "type": "string",
+      "description": "Chinese"
+    },
+    "es": {
+      "type": "string",
+      "description": "Spanish"
+    },
+    "pt": {
+      "type": "string",
+      "description": "Portuguese"
+    },
+    "it": {
+      "type": "string",
+      "description": "Italian"
+    },
+    "th": {
+      "type": "string",
+      "description": "Thai"
+    },
+    "ja": {
+      "type": "string",
+      "description": "Japanese"
+    },
+    "ko": {
+      "type": "string",
+      "description": "Korean"
+    },
+    "fa": {
+      "type": "string",
+      "description": "Persian/Farsi"
+    }
+  },
+  "required": [
+    "entity_type",
+    "entity_id",
+    "en"
+  ]
+}

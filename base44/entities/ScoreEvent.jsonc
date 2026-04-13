@@ -1,0 +1,108 @@
+{
+  "name": "ScoreEvent",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "scoreId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "identity_verified",
+        "phone_verified",
+        "national_id_verified",
+        "property_deed_verified",
+        "bank_statement_uploaded",
+        "escrow_deal_completed",
+        "listing_published",
+        "vision_score_excellent",
+        "offer_made_followed_through",
+        "offer_accepted_no_withdrawal",
+        "response_within_1hr",
+        "community_verified_resident",
+        "review_received_5star",
+        "job_completed_on_time",
+        "dispute_resolved_in_favor",
+        "match_converted_to_deal",
+        "advisor_profile_complete",
+        "fo_assessment_submitted",
+        "community_review_written",
+        "recommendation_helpful",
+        "long_term_platform_member",
+        "multiple_deals_completed",
+        "offer_withdrawn_no_reason",
+        "viewing_no_show",
+        "response_ignored_48hrs",
+        "listing_inaccuracy_reported",
+        "dispute_raised_against",
+        "dispute_lost",
+        "escrow_deal_cancelled_buyer_fault",
+        "job_cancelled_professional",
+        "fake_listing_confirmed",
+        "review_flagged_as_fake",
+        "community_post_removed",
+        "payment_default",
+        "account_warning_issued",
+        "report_confirmed_valid",
+        "badge_earned",
+        "profile_completed",
+        "email_verified",
+        "address_verified",
+        "pre_approval_uploaded",
+        "escrow_account_created",
+        "escrow_first_deposit",
+        "escrow_kyc_standard",
+        "escrow_kyc_enhanced",
+        "viewing_attended",
+        "negotiation_completed",
+        "deal_completed",
+        "fo_area_assessment",
+        "expat_deal_closed",
+        "management_review_received"
+      ]
+    },
+    "scoreImpact": {
+      "type": "number"
+    },
+    "dimensionAffected": {
+      "type": "string"
+    },
+    "previousScore": {
+      "type": "number"
+    },
+    "newScore": {
+      "type": "number"
+    },
+    "relatedEntityType": {
+      "type": "string"
+    },
+    "relatedEntityId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "isDecaying": {
+      "type": "boolean",
+      "default": false
+    },
+    "decaysAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "userId",
+    "eventType"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "CRMAccount",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "agency",
+        "developer",
+        "franchise_owner",
+        "finishing_company",
+        "store",
+        "enterprise",
+        "partner",
+        "individual"
+      ],
+      "default": "individual"
+    },
+    "linkedEntityType": {
+      "type": "string",
+      "description": "e.g. KemetroStore, KemeworkProfessional, User"
+    },
+    "linkedEntityId": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "ownerId": {
+      "type": "string",
+      "description": "CRM owner user ID"
+    },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "prospect",
+        "active",
+        "partner",
+        "churned",
+        "archived"
+      ],
+      "default": "prospect"
+    },
+    "score": {
+      "type": "number",
+      "default": 0
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "isArchived": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

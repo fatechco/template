@@ -1,0 +1,73 @@
+{
+  "name": "FracYieldDistribution",
+  "type": "object",
+  "properties": {
+    "fracPropertyId": {
+      "type": "string",
+      "description": "Reference to FracProperty"
+    },
+    "distributionPeriod": {
+      "type": "string",
+      "description": "e.g. Q1 2026 or March 2026"
+    },
+    "totalYieldAmountEGP": {
+      "type": "number",
+      "description": "Total yield pool in EGP"
+    },
+    "totalTokensEligible": {
+      "type": "number",
+      "description": "Total tokens eligible for this distribution"
+    },
+    "yieldPerTokenEGP": {
+      "type": "number",
+      "description": "Yield per token = totalYield / totalTokens"
+    },
+    "distributionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date yield is distributed"
+    },
+    "distributionStatus": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "scheduled",
+      "description": "Current distribution status"
+    },
+    "recipientsCount": {
+      "type": "number",
+      "description": "Number of token holders receiving yield"
+    },
+    "payoutRecords": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of [{userId, tokensHeld, yieldAmountEGP, paidAt, nearTxHash}]"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes on this distribution"
+    },
+    "initiatedByAdminId": {
+      "type": "string",
+      "description": "Reference to User (admin) who initiated"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When distribution completed"
+    }
+  },
+  "required": [
+    "fracPropertyId",
+    "distributionPeriod",
+    "totalYieldAmountEGP",
+    "distributionDate",
+    "initiatedByAdminId"
+  ]
+}

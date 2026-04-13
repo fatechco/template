@@ -1,0 +1,328 @@
+{
+  "name": "LiveEvent",
+  "type": "object",
+  "properties": {
+    "eventNumber": {
+      "type": "string"
+    },
+    "hostId": {
+      "type": "string"
+    },
+    "hostType": {
+      "type": "string",
+      "enum": [
+        "developer",
+        "agent",
+        "franchise_owner",
+        "kemedar_team",
+        "market_expert",
+        "seller"
+      ]
+    },
+    "coHostIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "organizationName": {
+      "type": "string"
+    },
+    "organizationLogo": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "property_launch",
+        "open_house",
+        "market_briefing",
+        "investment_seminar",
+        "developer_presentation",
+        "educational_webinar",
+        "panel_discussion",
+        "q_and_a_session"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleAr": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "coverImageUrl": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "arabic",
+        "english",
+        "bilingual",
+        "multilingual"
+      ],
+      "default": "bilingual"
+    },
+    "targetAudience": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "featuredPropertyIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "featuredProjectId": {
+      "type": "string"
+    },
+    "scheduledStartAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduledEndAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedDurationMinutes": {
+      "type": "number",
+      "default": 60
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Africa/Cairo"
+    },
+    "streamStatus": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "rehearsal",
+        "live",
+        "paused",
+        "ended",
+        "cancelled",
+        "replay_available"
+      ],
+      "default": "scheduled"
+    },
+    "streamStartedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "streamEndedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actualDurationMinutes": {
+      "type": "number"
+    },
+    "streamKey": {
+      "type": "string"
+    },
+    "streamUrl": {
+      "type": "string"
+    },
+    "replayUrl": {
+      "type": "string"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "requiresRegistration": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxViewers": {
+      "type": "number"
+    },
+    "registrationDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "passwordProtected": {
+      "type": "boolean",
+      "default": false
+    },
+    "eventPassword": {
+      "type": "string"
+    },
+    "inviteOnly": {
+      "type": "boolean",
+      "default": false
+    },
+    "chatEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "qAndAEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "pollsEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "reactionsEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "raiseHandEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "moderationRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "purchaseEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "exclusivePricing": {
+      "type": "boolean",
+      "default": false
+    },
+    "eventOnlyDiscount": {
+      "type": "number"
+    },
+    "purchaseDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "totalRegistered": {
+      "type": "number",
+      "default": 0
+    },
+    "totalAttended": {
+      "type": "number",
+      "default": 0
+    },
+    "peakViewers": {
+      "type": "number",
+      "default": 0
+    },
+    "totalMessages": {
+      "type": "number",
+      "default": 0
+    },
+    "totalQuestions": {
+      "type": "number",
+      "default": 0
+    },
+    "totalReactions": {
+      "type": "number",
+      "default": 0
+    },
+    "totalPolls": {
+      "type": "number",
+      "default": 0
+    },
+    "totalRaisedHands": {
+      "type": "number",
+      "default": 0
+    },
+    "reservationsDuringEvent": {
+      "type": "number",
+      "default": 0
+    },
+    "totalSalesValue": {
+      "type": "number",
+      "default": 0
+    },
+    "aiSummaryStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "processing",
+        "complete",
+        "failed"
+      ],
+      "default": "not_started"
+    },
+    "aiEventSummary": {
+      "type": "string"
+    },
+    "aiEventSummaryAr": {
+      "type": "string"
+    },
+    "aiKeyMoments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiTopQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiSentimentScore": {
+      "type": "number"
+    },
+    "isApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "featuredUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isRecorded": {
+      "type": "boolean",
+      "default": true
+    },
+    "recordingStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "recording",
+        "processing",
+        "ready",
+        "failed"
+      ],
+      "default": "not_started"
+    },
+    "recordingPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cityId": {
+      "type": "string"
+    },
+    "agenda": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "title",
+    "eventType",
+    "scheduledStartAt",
+    "hostType"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "name": "FinishSnaggingItem",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "itemNumber": {
+      "type": "number"
+    },
+    "issueType": {
+      "type": "string",
+      "enum": [
+        "incomplete_work",
+        "quality_defect",
+        "damage",
+        "wrong_material",
+        "measurement_error",
+        "finish_defect",
+        "plumbing_issue",
+        "electrical_issue",
+        "alignment_issue",
+        "cleaning_required",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
+      "type": "string"
+    },
+    "roomArea": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "minor",
+        "moderate",
+        "major",
+        "critical"
+      ]
+    },
+    "photoUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "aiDetected": {
+      "type": "boolean",
+      "default": false
+    },
+    "responsibleParty": {
+      "type": "string",
+      "enum": [
+        "professional",
+        "materials",
+        "owner_request",
+        "unknown"
+      ]
+    },
+    "assignedTo": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "assigned",
+        "fix_in_progress",
+        "fixed_pending_review",
+        "resolved",
+        "accepted_as_is",
+        "disputed"
+      ],
+      "default": "open"
+    },
+    "priorityOrder": {
+      "type": "number"
+    },
+    "fixDeadline": {
+      "type": "string",
+      "format": "date"
+    },
+    "fixedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "fixPhotoUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fixNotes": {
+      "type": "string"
+    },
+    "ownerApproved": {
+      "type": "boolean",
+      "default": false
+    },
+    "ownerApprovedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paymentImpact": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "projectId",
+    "issueType",
+    "description",
+    "severity"
+  ]
+}

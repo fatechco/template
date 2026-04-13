@@ -1,0 +1,133 @@
+{
+  "name": "EscrowAccount",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Auto-generated: ESC-XXXXXXXX"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": [
+        "buyer",
+        "seller",
+        "both"
+      ],
+      "default": "buyer"
+    },
+    "availableBalance": {
+      "type": "number",
+      "default": 0
+    },
+    "lockedBalance": {
+      "type": "number",
+      "default": 0
+    },
+    "pendingBalance": {
+      "type": "number",
+      "default": 0
+    },
+    "totalDeposited": {
+      "type": "number",
+      "default": 0
+    },
+    "totalWithdrawn": {
+      "type": "number",
+      "default": 0
+    },
+    "totalTransacted": {
+      "type": "number",
+      "default": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "verificationLevel": {
+      "type": "string",
+      "enum": [
+        "none",
+        "basic",
+        "enhanced",
+        "full"
+      ],
+      "default": "none"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verificationDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "kycStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "submitted",
+        "approved",
+        "rejected",
+        "requires_update"
+      ],
+      "default": "pending"
+    },
+    "singleTransactionLimit": {
+      "type": "number"
+    },
+    "dailyLimit": {
+      "type": "number"
+    },
+    "monthlyLimit": {
+      "type": "number"
+    },
+    "linkedPaymentMethods": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "frozen",
+        "closed"
+      ],
+      "default": "active"
+    },
+    "suspensionReason": {
+      "type": "string"
+    },
+    "completedDeals": {
+      "type": "number",
+      "default": 0
+    },
+    "activeDeals": {
+      "type": "number",
+      "default": 0
+    },
+    "disputesRaised": {
+      "type": "number",
+      "default": 0
+    },
+    "disputesWon": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

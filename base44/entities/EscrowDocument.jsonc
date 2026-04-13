@@ -1,0 +1,107 @@
+{
+  "name": "EscrowDocument",
+  "type": "object",
+  "properties": {
+    "dealId": {
+      "type": "string"
+    },
+    "milestoneId": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "string",
+      "enum": [
+        "memorandum_of_understanding",
+        "sale_contract",
+        "title_deed",
+        "id_document",
+        "mortgage_approval",
+        "inspection_report",
+        "power_of_attorney",
+        "noc",
+        "survey_report",
+        "transfer_certificate",
+        "receipt",
+        "custom"
+      ]
+    },
+    "documentName": {
+      "type": "string"
+    },
+    "documentNameAr": {
+      "type": "string"
+    },
+    "documentUrl": {
+      "type": "string"
+    },
+    "documentHash": {
+      "type": "string",
+      "description": "SHA-256 hash for integrity"
+    },
+    "uploadedBy": {
+      "type": "string"
+    },
+    "uploadedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "verifiedBy": {
+      "type": "string"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verificationNotes": {
+      "type": "string"
+    },
+    "visibleTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signatureRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "signedByBuyer": {
+      "type": "boolean",
+      "default": false
+    },
+    "signedBySeller": {
+      "type": "boolean",
+      "default": false
+    },
+    "buyerSignedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sellerSignedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "digitalSignatureData": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "dealId",
+    "documentType",
+    "documentName",
+    "documentUrl",
+    "uploadedBy"
+  ]
+}

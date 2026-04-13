@@ -1,0 +1,77 @@
+{
+  "name": "KemeKitSettings",
+  "type": "object",
+  "properties": {
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is the KemeKits feature active"
+    },
+    "defaultWasteMarginPercent": {
+      "type": "number",
+      "default": 10,
+      "description": "Default waste margin percentage"
+    },
+    "defaultPaintCoveragePerLiter": {
+      "type": "number",
+      "default": 10,
+      "description": "Default paint coverage in sqm per liter"
+    },
+    "defaultTileWaste": {
+      "type": "number",
+      "default": 10,
+      "description": "Default tile waste percentage"
+    },
+    "defaultAdhesiveRatio": {
+      "type": "number",
+      "default": 0.15,
+      "description": "Default adhesive ratio in kg per sqm of tile"
+    },
+    "defaultGroutRatio": {
+      "type": "number",
+      "default": 0.25,
+      "description": "Default grout ratio in kg per sqm of tile"
+    },
+    "doorDeductionSqm": {
+      "type": "number",
+      "default": 1.6,
+      "description": "Sqm deducted per door from wall area"
+    },
+    "windowDeductionSqm": {
+      "type": "number",
+      "default": 1.4,
+      "description": "Sqm deducted per window from wall area"
+    },
+    "standardDoorWidthM": {
+      "type": "number",
+      "default": 0.9,
+      "description": "Standard door width in meters"
+    },
+    "creatorCommissionPercent": {
+      "type": "number",
+      "default": 3,
+      "description": "Default creator commission percentage"
+    },
+    "requireAdminApproval": {
+      "type": "boolean",
+      "default": true,
+      "description": "Require admin approval for new templates"
+    },
+    "maxProductsPerKit": {
+      "type": "number",
+      "default": 25,
+      "description": "Maximum products allowed per kit template"
+    },
+    "maxGalleryImages": {
+      "type": "number",
+      "default": 10,
+      "description": "Maximum gallery images per template"
+    },
+    "shippingWeightRateEGP": {
+      "type": "number",
+      "default": 15,
+      "description": "EGP per kg for heavy freight shipping estimate"
+    }
+  },
+  "required": []
+}

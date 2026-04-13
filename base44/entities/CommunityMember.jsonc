@@ -1,0 +1,115 @@
+{
+  "name": "CommunityMember",
+  "type": "object",
+  "properties": {
+    "communityId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "admin",
+        "moderator",
+        "franchise_owner",
+        "member",
+        "pending",
+        "banned"
+      ],
+      "default": "pending"
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "unverified",
+        "pending",
+        "verified",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "verificationMethod": {
+      "type": "string",
+      "enum": [
+        "fo_verified",
+        "property_deed",
+        "utility_bill",
+        "kemedar_property",
+        "admin_override"
+      ]
+    },
+    "unitNumber": {
+      "type": "string"
+    },
+    "ownershipType": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "tenant",
+        "relative",
+        "facility_staff"
+      ]
+    },
+    "propertyId": {
+      "type": "string"
+    },
+    "proofDocumentUrl": {
+      "type": "string"
+    },
+    "postsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "commentsCount": {
+      "type": "number",
+      "default": 0
+    },
+    "reactionsGiven": {
+      "type": "number",
+      "default": 0
+    },
+    "helpfulVotes": {
+      "type": "number",
+      "default": 0
+    },
+    "reputationScore": {
+      "type": "number",
+      "default": 0
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "joinedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notificationPreferences": {
+      "type": "object"
+    },
+    "muteUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "approvedBy": {
+      "type": "string"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "communityId",
+    "userId"
+  ]
+}

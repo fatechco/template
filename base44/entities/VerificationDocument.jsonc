@@ -1,0 +1,151 @@
+{
+  "name": "VerificationDocument",
+  "type": "object",
+  "properties": {
+    "tokenId": {
+      "type": "string",
+      "description": "Reference to PropertyToken"
+    },
+    "propertyId": {
+      "type": "string",
+      "description": "Reference to Property"
+    },
+    "submittedByUserId": {
+      "type": "string",
+      "description": "Reference to User who submitted this document"
+    },
+    "documentType": {
+      "type": "string",
+      "enum": [
+        "national_id",
+        "title_deed",
+        "utility_bill",
+        "tax_certificate",
+        "building_permit",
+        "floor_plan",
+        "survey_report",
+        "noc_letter",
+        "inheritance_doc",
+        "power_of_attorney",
+        "other"
+      ],
+      "description": "Type of document submitted"
+    },
+    "documentLabel": {
+      "type": "string",
+      "description": "Custom label when documentType is other"
+    },
+    "fileUrl": {
+      "type": "string",
+      "description": "Uploaded document file URL"
+    },
+    "fileType": {
+      "type": "string",
+      "enum": [
+        "pdf",
+        "jpg",
+        "png"
+      ],
+      "description": "File format"
+    },
+    "fileHash": {
+      "type": "string",
+      "description": "sha256 of file content at upload time for integrity verification"
+    },
+    "aiAnalyzed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether AI has analyzed this document"
+    },
+    "aiScore": {
+      "type": "number",
+      "description": "Authenticity confidence score 0\u2013100"
+    },
+    "aiDecision": {
+      "type": "string",
+      "enum": [
+        "authentic",
+        "likely_authentic",
+        "suspicious",
+        "likely_fraudulent",
+        "unreadable"
+      ],
+      "description": "AI authenticity verdict"
+    },
+    "aiFindings": {
+      "type": "array",
+      "description": "Array of AI findings: [{finding, severity, detail}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "aiSummary": {
+      "type": "string",
+      "description": "Plain language AI verdict in English"
+    },
+    "aiSummaryAr": {
+      "type": "string",
+      "description": "Plain language AI verdict in Arabic"
+    },
+    "aiAnalyzedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when AI analysis was completed"
+    },
+    "claudeModel": {
+      "type": "string",
+      "description": "AI model version used for analysis"
+    },
+    "foReviewStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "needs_resubmission"
+      ],
+      "default": "pending",
+      "description": "Franchise Owner / Admin review status"
+    },
+    "foReviewedByUserId": {
+      "type": "string",
+      "description": "Reference to FO or Admin User who reviewed the document"
+    },
+    "foReviewNotes": {
+      "type": "string",
+      "description": "Notes from the FO or admin reviewer"
+    },
+    "foReviewedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of FO/Admin review"
+    },
+    "overallStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "under_review",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending",
+      "description": "Overall document status"
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "Reason for rejection if overallStatus is rejected"
+    },
+    "resubmissionRequested": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether resubmission has been requested"
+    }
+  },
+  "required": [
+    "tokenId",
+    "propertyId",
+    "submittedByUserId",
+    "documentType",
+    "fileUrl"
+  ]
+}

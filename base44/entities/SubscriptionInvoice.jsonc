@@ -1,0 +1,92 @@
+{
+  "name": "SubscriptionInvoice",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Reference to UserSubscription entity"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "invoiceNumber": {
+      "type": "string",
+      "description": "Unique invoice number (KMD-INV-XXXXXXXXXX)"
+    },
+    "planName": {
+      "type": "string",
+      "description": "Plan name at time of invoice"
+    },
+    "billingPeriodStart": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period start date"
+    },
+    "billingPeriodEnd": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period end date"
+    },
+    "subtotal": {
+      "type": "number",
+      "description": "Amount before discount and tax"
+    },
+    "discount": {
+      "type": "number",
+      "default": 0,
+      "description": "Discount amount"
+    },
+    "taxAmount": {
+      "type": "number",
+      "default": 0,
+      "description": "Tax amount"
+    },
+    "total": {
+      "type": "number",
+      "description": "Total invoice amount"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP",
+      "description": "Invoice currency"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "open",
+        "paid",
+        "void",
+        "uncollectible"
+      ],
+      "default": "open",
+      "description": "Invoice status"
+    },
+    "paidAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When invoice was paid"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "description": "Payment method used (nullable)"
+    },
+    "paymentReference": {
+      "type": "string",
+      "description": "External payment reference ID (nullable)"
+    },
+    "invoicePdfUrl": {
+      "type": "string",
+      "description": "URL to PDF invoice (nullable)"
+    }
+  },
+  "required": [
+    "subscriptionId",
+    "userId",
+    "invoiceNumber",
+    "billingPeriodStart",
+    "billingPeriodEnd",
+    "total"
+  ]
+}

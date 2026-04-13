@@ -1,0 +1,48 @@
+{
+  "name": "BlockchainWallet",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Reference to User \u2014 unique, one wallet per user"
+    },
+    "walletAddress": {
+      "type": "string",
+      "description": "Auto-generated wallet address: KW- + userId hash"
+    },
+    "publicKey": {
+      "type": "string",
+      "description": "sha256 of walletAddress + createdAt"
+    },
+    "balanceKemecoins": {
+      "type": "number",
+      "default": 0,
+      "description": "Current Kemecoin balance"
+    },
+    "totalTransactions": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of transactions"
+    },
+    "verifiedPropertiesCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of verified properties owned"
+    },
+    "ownedTokenIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of PropertyToken IDs owned by this wallet"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the wallet is active"
+    }
+  },
+  "required": [
+    "userId"
+  ]
+}

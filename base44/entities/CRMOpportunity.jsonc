@@ -1,0 +1,76 @@
+{
+  "name": "CRMOpportunity",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "contactId": {
+      "type": "string"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "pipelineId": {
+      "type": "string"
+    },
+    "stageId": {
+      "type": "string"
+    },
+    "ownerId": {
+      "type": "string"
+    },
+    "value": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EGP"
+    },
+    "probability": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "expectedCloseDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "closedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "closeReason": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "won",
+        "lost",
+        "archived"
+      ],
+      "default": "open"
+    },
+    "linkedEntityType": {
+      "type": "string",
+      "description": "Property, Project, KemetroProduct, KemeworkService"
+    },
+    "linkedEntityId": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "pipelineId"
+  ]
+}

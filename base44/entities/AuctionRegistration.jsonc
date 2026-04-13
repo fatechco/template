@@ -1,0 +1,126 @@
+{
+  "name": "AuctionRegistration",
+  "type": "object",
+  "properties": {
+    "auctionId": {
+      "type": "string",
+      "description": "Reference to PropertyAuction"
+    },
+    "bidderUserId": {
+      "type": "string",
+      "description": "Reference to User (bidder)"
+    },
+    "kycVerified": {
+      "type": "boolean",
+      "default": false,
+      "description": "KYC status checked at time of registration"
+    },
+    "proofOfFundsUploaded": {
+      "type": "boolean",
+      "default": false
+    },
+    "proofOfFundsUrl": {
+      "type": "string",
+      "description": "Uploaded proof of funds file URL (nullable)"
+    },
+    "proofOfFundsApprovedByAdmin": {
+      "type": "boolean",
+      "default": false
+    },
+    "depositAmountEGP": {
+      "type": "number",
+      "description": "Snapshot of required deposit at time of registration"
+    },
+    "depositPaid": {
+      "type": "boolean",
+      "default": false
+    },
+    "depositPaidAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When deposit was paid (nullable)"
+    },
+    "depositTransactionId": {
+      "type": "string",
+      "description": "Payment transaction reference (nullable)"
+    },
+    "depositEscrowReference": {
+      "type": "string",
+      "description": "XeedWallet escrow reference for deposit (nullable)"
+    },
+    "depositStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "held",
+        "refunded",
+        "forfeited"
+      ],
+      "default": "pending",
+      "description": "pending=not paid | held=paid and in escrow | refunded=returned to bidder | forfeited=winner failed to pay"
+    },
+    "depositRefundedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When deposit was refunded (nullable)"
+    },
+    "hasAutoBid": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether bidder has set an autobid maximum"
+    },
+    "autoBidMaxEGP": {
+      "type": "number",
+      "description": "Maximum amount system will autobid on their behalf (nullable)"
+    },
+    "autoBidIncrement": {
+      "type": "number",
+      "description": "Amount to outbid by in each autobid step"
+    },
+    "registrationStatus": {
+      "type": "string",
+      "enum": [
+        "pending_payment",
+        "active",
+        "suspended",
+        "winner",
+        "refund_pending",
+        "refunded",
+        "forfeited"
+      ],
+      "default": "pending_payment",
+      "description": "pending_payment=deposit pending | active=cleared to bid | suspended=flagged | winner=won auction | refund_pending=lost, refund queued | refunded=deposit returned | forfeited=failed to pay after winning"
+    },
+    "winnerId": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this registrant won the auction"
+    },
+    "totalBidsPlaced": {
+      "type": "number",
+      "default": 0,
+      "description": "Total bids this registrant has placed in this auction"
+    },
+    "highestBidPlaced": {
+      "type": "number",
+      "default": 0,
+      "description": "Highest bid this registrant has placed"
+    },
+    "lastBidAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this registrant last placed a bid (nullable)"
+    },
+    "registeredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When registration was submitted"
+    }
+  },
+  "required": [
+    "auctionId",
+    "bidderUserId",
+    "depositAmountEGP",
+    "registeredAt"
+  ]
+}

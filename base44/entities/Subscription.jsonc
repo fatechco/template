@@ -1,0 +1,94 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "subscriptionCode": {
+      "type": "string",
+      "description": "Format: SUB-XXXXXX"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "planId": {
+      "type": "string",
+      "description": "Reference to SubscriptionPlan"
+    },
+    "moduleId": {
+      "type": "string",
+      "description": "Reference to SystemModule (denormalized)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "cancelled",
+        "suspended",
+        "pending_payment",
+        "trial"
+      ],
+      "default": "pending_payment"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "nextBillingDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "autoRenew": {
+      "type": "boolean",
+      "default": true
+    },
+    "paymentMethod": {
+      "type": "string",
+      "description": "e.g. credit_card, bank_transfer, wallet"
+    },
+    "lastPaymentDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lastPaymentAmount": {
+      "type": "number"
+    },
+    "totalPaid": {
+      "type": "number",
+      "default": 0
+    },
+    "cancellationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "cancellationReason": {
+      "type": "string"
+    },
+    "franchiseOwnerId": {
+      "type": "string",
+      "description": "Reference to User (franchise owner)"
+    },
+    "franchiseCommissionPercent": {
+      "type": "number"
+    },
+    "franchiseCommissionTotal": {
+      "type": "number",
+      "default": 0
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes"
+    }
+  },
+  "required": [
+    "userId",
+    "planId",
+    "moduleId",
+    "startDate",
+    "endDate"
+  ]
+}

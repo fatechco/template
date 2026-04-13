@@ -1,0 +1,86 @@
+{
+  "name": "Invoice",
+  "type": "object",
+  "properties": {
+    "invoiceNumber": {
+      "type": "string",
+      "description": "Format: INV-YYYYMM-XXXX"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Reference to User (who is billed)"
+    },
+    "invoiceType": {
+      "type": "string",
+      "enum": [
+        "subscription",
+        "service_order",
+        "franchise_fee",
+        "advertising"
+      ]
+    },
+    "subscriptionId": {
+      "type": "string",
+      "description": "Reference to Subscription (nullable)"
+    },
+    "serviceOrderId": {
+      "type": "string",
+      "description": "Reference to ServiceOrder (nullable)"
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "tax": {
+      "type": "number",
+      "default": 0
+    },
+    "discount": {
+      "type": "number",
+      "default": 0
+    },
+    "totalAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "sent",
+        "paid",
+        "overdue",
+        "cancelled",
+        "refunded"
+      ],
+      "default": "draft"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "paidDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "paymentMethod": {
+      "type": "string"
+    },
+    "paymentReference": {
+      "type": "string",
+      "description": "Transaction ID from payment gateway"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "userId",
+    "invoiceType",
+    "subtotal",
+    "totalAmount",
+    "dueDate"
+  ]
+}

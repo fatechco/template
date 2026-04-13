@@ -1,0 +1,78 @@
+{
+  "name": "RolePermission",
+  "type": "object",
+  "properties": {
+    "roleId": {
+      "type": "string",
+      "description": "Reference to SystemRole"
+    },
+    "resourceId": {
+      "type": "string",
+      "description": "Reference to PermissionResource"
+    },
+    "actionId": {
+      "type": "string",
+      "description": "Reference to PermissionAction"
+    },
+    "roleKey": {
+      "type": "string",
+      "description": "Cached roleKey for fast lookups"
+    },
+    "resourceKey": {
+      "type": "string",
+      "description": "Cached resourceKey for fast lookups"
+    },
+    "actionKey": {
+      "type": "string",
+      "description": "Cached actionKey for fast lookups"
+    },
+    "permissionLevel": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "deny",
+        "allow_own_only",
+        "allow_area_only",
+        "guest_preview"
+      ],
+      "description": "The permission level granted"
+    },
+    "guestBehavior": {
+      "type": "string",
+      "enum": [
+        "redirect_login",
+        "show_preview",
+        "allow_form_fill",
+        "show_teaser",
+        "full_block"
+      ],
+      "description": "Only used when roleKey = guest \u2014 controls UX behavior"
+    },
+    "conditions": {
+      "type": "object",
+      "description": "Additional conditions: {ownResourceOnly, areaOnly, requiresSubscription, requiresVerification, maxCount, requiresModuleActive}"
+    },
+    "grantedBy": {
+      "type": "string",
+      "description": "Reference to User (admin who set this)"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Optional admin note explaining why"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional expiration date"
+    }
+  },
+  "required": [
+    "roleId",
+    "resourceId",
+    "actionId",
+    "permissionLevel",
+    "roleKey",
+    "resourceKey",
+    "actionKey"
+  ]
+}

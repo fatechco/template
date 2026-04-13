@@ -1,0 +1,51 @@
+{
+  "name": "SwapNegotiationMessage",
+  "type": "object",
+  "properties": {
+    "matchId": {
+      "type": "string",
+      "description": "Reference to SwapMatch"
+    },
+    "senderUserId": {
+      "type": "string",
+      "description": "Reference to User who sent the message"
+    },
+    "messageType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "counter_offer",
+        "system",
+        "media"
+      ],
+      "description": "text = regular chat; counter_offer = proposes new gap amount; system = automated status update; media = image or document"
+    },
+    "messageText": {
+      "type": "string",
+      "description": "Message content (nullable for media-only messages)"
+    },
+    "proposedGapEGP": {
+      "type": "number",
+      "description": "Proposed gap amount \u2014 only for counter_offer type"
+    },
+    "mediaUrl": {
+      "type": "string",
+      "description": "URL of attached image or document"
+    },
+    "isRead": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the recipient has read this message"
+    },
+    "readAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the message was read"
+    }
+  },
+  "required": [
+    "matchId",
+    "senderUserId",
+    "messageType"
+  ]
+}
