@@ -1,0 +1,282 @@
+model BuildProject {
+  id                  String   @id @default(cuid())
+  userId              String
+  title               String
+  titleAr             String?
+  description         String?
+  projectType         String?
+  floorPlanUrl        String?
+  floorPlanAnalysis   Json?
+  totalAreaSqm        Float?
+  rooms               Json?
+  estimatedCostEGP    Float?
+  costBreakdown       Json?
+  boqGenerated        Boolean  @default(false)
+  boqItems            Json?
+  laborEstimate       Float?
+  materialEstimate    Float?
+  status              String   @default("draft")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([userId])
+  @@map("build_projects")
+}
+
+model FinishProject {
+  id                  String              @id @default(cuid())
+  userId              String
+  propertyId          String?
+  title               String
+  titleAr             String?
+  description         String?
+  projectType         String?
+  totalAreaSqm        Float?
+
+  budgetMinEGP        Float?
+  budgetMaxEGP        Float?
+  actualSpentEGP      Float?
+
+  status              FinishProjectStatus @default(draft)
+  currentPhaseId      String?
+  completionPercent   Float               @default(0)
+
+  startDate           DateTime?
+  expectedEndDate     DateTime?
+  actualEndDate       DateTime?
+
+  contractorId        String?
+  supervisorId        String?
+
+  qualityScore        Float?
+  snaggingCount       Int                 @default(0)
+
+  projectNumber       String?   @unique
+  propertyType        String?
+  numberOfRooms       Int?
+  numberOfBathrooms   Int?
+  floorNumber         Int?
+  propertyAddress     String?
+  cityId              String?
+  districtId          String?
+  designStyle         String?
+  colorPalette        Json?
+  finishingLevel      String?
+  floorPlanUrl        String?
+  floorPlanAiExtracted Boolean  @default(false)
+  approvedBudget      Float?
+  budgetCurrency      String    @default("EGP")
+  budgetBreakdown     Json?
+  boqStatus           String    @default("not_generated")
+  boqData             Json?
+  boqApprovedAt       DateTime?
+  boqApprovedBy       String?
+  estimatedDurationWeeks Int?
+  currentPhaseStatus  String?
+  franchiseOwnerId    String?
+  projectManagerId    String?
+  assignedProfessionals Json?
+  escrowDealId        String?
+  totalEscrowAmount   Float?
+  requiresFOSupervision Boolean @default(false)
+  foInspectionCount   Int       @default(0)
+  hasActiveSnaggingList Boolean @default(false)
+  ownerSatisfactionRating Float?
+  aiProjectSummary    String?
+  aiRiskFlags         Json?
+  aiRecommendations   String[]
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  phases              FinishPhase[]
+  boqs                FinishBOQ[]
+  materialOrders      FinishMaterialOrder[]
+  progressUpdates     FinishProgressUpdate[]
+  snaggingItems       FinishSnaggingItem[]
+  inspectionReports   FOInspectionReport[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("finish_projects")
+}
+
+model FinishPhase {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  phaseName       String
+  phaseNameAr     String?
+  phaseOrder      Int
+  description     String?
+  status          String        @default("pending")
+  budgetEGP       Float?
+  actualCostEGP   Float?
+  completionPercent Float       @default(0)
+  startDate       DateTime?
+  endDate         DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([projectId])
+  @@map("finish_phases")
+}
+
+model FinishBOQ {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  title           String?
+  totalCostEGP    Float?
+  laborCostEGP    Float?
+  materialCostEGP Float?
+  items           Json?
+  sections        Json?
+  generatedByAI   Boolean       @default(false)
+  version         Int           @default(1)
+  status          String        @default("draft")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([projectId])
+  @@map("finish_boqs")
+}
+
+model FinishMaterialOrder {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  itemName        String
+  quantity        Float
+  unit            String?
+  pricePerUnit    Float?
+  totalPrice      Float?
+  supplierId      String?
+  status          String        @default("pending")
+  orderedAt       DateTime?
+  deliveredAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([projectId])
+  @@map("finish_material_orders")
+}
+
+model FinishProgressUpdate {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  phaseId         String?
+  description     String?
+  photoUrls       String[]
+  completionPercent Float?
+  qualityScore    Float?
+  aiAnalysis      Json?
+  reportedByUserId String?
+  createdAt       DateTime      @default(now())
+
+  @@index([projectId])
+  @@map("finish_progress_updates")
+}
+
+model FinishSnaggingItem {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  phaseId         String?
+  title           String
+  description     String?
+  severity        String        @default("medium")
+  photoUrls       String[]
+  location        String?
+  status          String        @default("open")
+  assignedToId    String?
+  resolvedAt      DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([projectId])
+  @@map("finish_snagging_items")
+}
+
+model BOQItem {
+  id              String   @id @default(cuid())
+  name            String
+  nameAr          String?
+  category        String?
+  unit            String?
+  pricePerUnitEGP Float?
+  calcRule        BOQItemCalcRule @default(per_sqm)
+  coverageSqm     Float?
+  wasteMargin     Float?   @default(0.1)
+  parentItemId    String?
+  ratioToParent   Float?
+  isOptional      Boolean  @default(false)
+  kemetroKeywords String[]
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("boq_items")
+}
+
+model FinishingCostIndex {
+  id              String   @id @default(cuid())
+  material        String
+  category        String?
+  pricePerUnitEGP Float
+  unit            String
+  region          String?
+  cityId          String?
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@map("finishing_cost_indices")
+}
+
+model FinishingSimulation {
+  id              String   @id @default(cuid())
+  userId          String?
+  projectId       String?
+  scenario        String?
+  inputParams     Json?
+  results         Json?
+  totalEstimateEGP Float?
+  createdAt       DateTime @default(now())
+
+  @@map("finishing_simulations")
+}
+
+model FOInspectionReport {
+  id              String        @id @default(cuid())
+  projectId       String
+  project         FinishProject @relation(fields: [projectId], references: [id])
+  inspectorUserId String
+  inspectionType  String
+  overallScore    Float?
+  findings        Json?
+  photoUrls       String[]
+  recommendations String?
+  status          String        @default("draft")
+  inspectedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([projectId])
+  @@map("fo_inspection_reports")
+}
+
+model ExpansionMilestone {
+  id              String   @id @default(cuid())
+  phase           String
+  title           String
+  description     String?
+  targetDate      DateTime?
+  completedAt     DateTime?
+  status          String   @default("pending")
+  metrics         Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("expansion_milestones")
+}

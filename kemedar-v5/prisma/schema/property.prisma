@@ -1,0 +1,213 @@
+model Property {
+  id                    String    @id @default(cuid())
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id])
+  propertyCode          String?   @unique
+
+  categoryId            String
+  category              PropertyCategory @relation(fields: [categoryId], references: [id])
+  purposeId             String
+  purpose               PropertyPurpose  @relation(fields: [purposeId], references: [id])
+  statusId              String?
+  status                PropertyStatus?  @relation(fields: [statusId], references: [id])
+  furnishedId           String?
+  furnished             PropertyFurnished? @relation(fields: [furnishedId], references: [id])
+  suitableForId         String?
+  suitableFor           PropertySuitableFor? @relation(fields: [suitableForId], references: [id])
+
+  countryId             String?
+  provinceId            String?
+  cityId                String?
+  city                  City?     @relation(fields: [cityId], references: [id])
+  districtId            String?
+  areaId                String?
+  address               String?
+  latitude              Float?
+  longitude             Float?
+  projectId             String?
+
+  title                 String
+  titleAr               String?
+  description           String?
+  descriptionAr         String?
+
+  priceAmount           Float?
+  currencyId            String?
+  isContactForPrice     Boolean   @default(false)
+  isNegotiable          Boolean   @default(false)
+
+  directPhone           String?
+  featuredImage         String?
+  avatarImage           String?
+  imageGallery          String[]
+  brochureFile          String?
+  floorPlanFile         String?
+  vrVideoLink           String?
+  youtubeLinks          String[]
+  amenityIds            String[]
+  distanceIds           String[]
+  frontageIds           String[]
+  sceneViewIds          String[]
+  publisherTypeId       String?
+  tags                  String[]
+
+  isFeatured            Boolean   @default(false)
+  isVerified            Boolean   @default(false)
+  isActive              Boolean   @default(true)
+  viewCount             Int       @default(0)
+  verificationLevel     Int       @default(1)
+
+  interestedInVeri      Boolean   @default(false)
+  interestedInCampaign  Boolean   @default(false)
+
+  // Import fields
+  isImported            Boolean   @default(false)
+  importSource          String?
+  importJobId           String?
+  importedAt            DateTime?
+  importedBatchId       String?
+  importStatus          PropertyImportStatus @default(imported)
+
+  // Contact tracking
+  ownerContactStatus    OwnerContactStatus @default(not_contacted)
+  lastContactedAt       DateTime?
+  lastContactedBy       String?
+  contactNotes          String?
+  movedToPendingAt      DateTime?
+  movedToPendingBy      String?
+  movedToPendingReason  String?
+
+  // Feature flags
+  isFracOffering        Boolean   @default(false)
+  fracPropertyId        String?
+  isOpenToSwap          Boolean   @default(false)
+  swapIntentId          String?
+  isAuction             Boolean   @default(false)
+  auctionId             String?
+
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  deletedAt             DateTime?
+
+  // Relations
+  distances             PropertyDistance[]
+  matches               PropertyMatch[]
+  swipes                PropertySwipe[]
+  valuations            PropertyValuation[]
+  auction               PropertyAuction?
+  fracProperty          FracProperty?
+  swapIntent            SwapIntent?
+  analyzedImages        AnalyzedPropertyImage[]
+  escrowDeals           EscrowDeal[]
+
+  @@index([userId])
+  @@index([categoryId, purposeId])
+  @@index([cityId])
+  @@index([isActive, isFeatured])
+  @@index([isImported, importStatus])
+  @@map("properties")
+}
+
+model PropertyDistance {
+  id           String   @id @default(cuid())
+  propertyId   String
+  property     Property @relation(fields: [propertyId], references: [id])
+  poiName      String
+  poiNameAr    String?
+  poiType      String?
+  distanceKm   Float?
+  distanceText String?
+  durationMins Float?
+  latitude     Float?
+  longitude    Float?
+  createdAt    DateTime @default(now())
+
+  @@index([propertyId])
+  @@map("property_distances")
+}
+
+model PropertyMatch {
+  id              String   @id @default(cuid())
+  propertyId      String
+  property        Property @relation(fields: [propertyId], references: [id])
+  userId          String
+  matchScore      Float?
+  matchReasons    Json?
+  isNotified      Boolean  @default(false)
+  isViewed        Boolean  @default(false)
+  isSaved         Boolean  @default(false)
+  isDismissed     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([propertyId, userId])
+  @@index([userId])
+  @@map("property_matches")
+}
+
+model PropertySwipe {
+  id           String   @id @default(cuid())
+  propertyId   String
+  property     Property @relation(fields: [propertyId], references: [id])
+  userId       String
+  direction    String
+  sessionId    String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId])
+  @@index([propertyId])
+  @@map("property_swipes")
+}
+
+model PropertyValuation {
+  id                  String   @id @default(cuid())
+  propertyId          String
+  property            Property @relation(fields: [propertyId], references: [id])
+  valuationAmountEGP  Float?
+  valuationAmountUSD  Float?
+  valuationMethod     String?
+  aiConfidence        Float?
+  marketComps         Json?
+  multipliers         Json?
+  investmentGrade     String?
+  roiScore            Float?
+  setByAdminId        String?
+  setByAdmin          Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([propertyId])
+  @@map("property_valuations")
+}
+
+model PropertyToken {
+  id              String   @id @default(cuid())
+  propertyId      String
+  tokenAddress    String?
+  tokenSymbol     String?
+  networkType     NearNetworkType @default(testnet)
+  transactionHash String?
+  mintedAt        DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([propertyId])
+  @@map("property_tokens")
+}
+
+model AnalyzedPropertyImage {
+  id              String   @id @default(cuid())
+  propertyId      String
+  property        Property @relation(fields: [propertyId], references: [id])
+  imageUrl        String
+  roomType        String?
+  style           String?
+  condition       String?
+  qualityScore    Float?
+  features        Json?
+  aiAnalysis      Json?
+  analyzedAt      DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([propertyId])
+  @@map("analyzed_property_images")
+}

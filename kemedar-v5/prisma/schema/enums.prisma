@@ -1,0 +1,366 @@
+enum UserRole {
+  super_user
+  admin
+  user
+  agent
+  agency
+  developer
+  franchise_owner
+  franchise_owner_area
+  franchise_owner_country
+  product_seller
+  kemetro_seller
+  product_buyer
+  shipper
+  kemework_professional
+  kemework_company
+  kemework_customer
+  customer_kemework
+}
+
+enum PropertyImportStatus {
+  imported
+  moved_to_pending
+  activated
+  rejected
+  duplicate
+}
+
+enum OwnerContactStatus {
+  not_contacted
+  contacted
+  no_answer
+  interested
+  not_interested
+  activated
+}
+
+enum EscrowDealStatus {
+  draft
+  awaiting_deposit
+  deposit_received
+  in_progress
+  awaiting_completion
+  completed
+  disputed
+  cancelled
+  refunded
+  expired
+}
+
+enum PaymentStructure {
+  full_cash
+  cash_installment
+  mortgage
+  developer_plan
+  mixed
+}
+
+enum AuctionStatus {
+  draft
+  pending_approval
+  approved
+  deposit_requested
+  deposit_paid
+  registration_open
+  live
+  ended_winner
+  ended_no_bids
+  ended_reserve_not_met
+  cancelled
+  payment_received
+  legal_in_progress
+  completed
+  failed
+}
+
+enum AuctionBidType {
+  manual
+  auto_max
+  buy_now
+}
+
+enum AuctionEventType {
+  auction_created
+  auction_approved
+  seller_deposit_paid
+  registration_opened
+  bidder_registered
+  bid_placed
+  bid_outbid
+  autobid_triggered
+  time_extended
+  reserve_met
+  buy_now_triggered
+  auction_ended
+  winner_notified
+  payment_received
+  deposit_refunded
+  deposit_forfeited
+  legal_started
+  completed
+  cancelled
+  fraud_flagged
+}
+
+enum AuctionActorType {
+  seller
+  bidder
+  admin
+  system
+}
+
+enum DepositStatus {
+  pending
+  held
+  refunded
+  forfeited
+}
+
+enum RegistrationStatus {
+  pending_payment
+  active
+  suspended
+  winner
+  refund_pending
+  refunded
+  forfeited
+}
+
+enum FracOfferingType {
+  fractional_sale
+  fractional_investment
+  hybrid
+}
+
+enum FracOfferingStatus {
+  draft
+  under_review
+  valuation_set
+  approved
+  tokenizing
+  live
+  sold_out
+  closed
+  rejected
+  suspended
+}
+
+enum YieldFrequency {
+  monthly
+  quarterly
+  annual
+}
+
+enum FracTransactionType {
+  purchase
+  transfer
+  yield_paid
+  refund
+}
+
+enum FracTransactionStatus {
+  pending
+  confirmed
+  failed
+  refunded
+}
+
+enum PaymentMethod {
+  card
+  bank_transfer
+  wallet
+  kemecoins
+}
+
+enum NearNetworkType {
+  mainnet
+  testnet
+}
+
+enum SwapStatus {
+  draft
+  published
+  matching
+  matched
+  negotiating
+  agreed
+  escrow
+  completed
+  cancelled
+  expired
+}
+
+enum SwapMatchStatus {
+  pending
+  viewed
+  interested
+  negotiating
+  agreed
+  rejected
+  expired
+}
+
+enum NegotiationStatus {
+  active
+  counter_offered
+  agreed
+  rejected
+  expired
+  cancelled
+}
+
+enum NegotiationOfferStatus {
+  pending
+  accepted
+  rejected
+  countered
+  expired
+  withdrawn
+}
+
+enum CommunityType {
+  compound
+  building
+  district
+  interest_group
+  professional
+}
+
+enum CommunityMemberRole {
+  member
+  moderator
+  admin
+  super_admin
+}
+
+enum CommunityPostType {
+  announcement
+  help_request
+  question
+  general
+  complaint
+  alert
+  poll
+  marketplace
+  recommendation
+  event
+}
+
+enum ModerationStatus {
+  pending
+  approved
+  flagged
+  removed
+}
+
+enum LiveEventType {
+  webinar
+  open_house
+  property_tour
+  q_and_a
+  market_update
+  panel
+}
+
+enum LiveEventStatus {
+  draft
+  scheduled
+  live
+  ended
+  cancelled
+}
+
+enum ServiceOrderStatus {
+  pending
+  assigned
+  in_progress
+  completed
+  cancelled
+  disputed
+}
+
+enum SubscriptionStatus {
+  active
+  paused
+  cancelled
+  expired
+  trial
+}
+
+enum VerificationLevel {
+  level_1
+  level_2
+  level_3
+  level_4
+  level_5
+}
+
+enum CRMLeadStatus {
+  new
+  contacted
+  qualified
+  proposal
+  negotiation
+  won
+  lost
+  dormant
+}
+
+enum CRMOpportunityStage {
+  lead
+  qualified
+  proposal
+  negotiation
+  contract
+  closed_won
+  closed_lost
+}
+
+enum ConciergeTaskStatus {
+  pending
+  in_progress
+  completed
+  skipped
+  cancelled
+}
+
+enum FinishProjectStatus {
+  draft
+  planning
+  in_progress
+  inspection
+  snagging
+  completed
+  on_hold
+  cancelled
+}
+
+enum BOQItemCalcRule {
+  per_sqm
+  per_linear_meter
+  fixed_qty
+  ratio_to_parent
+  per_unit
+}
+
+enum QRCodeType {
+  property
+  project
+  profile
+  store
+  event
+  custom
+}
+
+enum ScoreEventCategory {
+  positive
+  negative
+}
+
+enum CoachJourneyStatus {
+  active
+  completed
+  dismissed
+  expired
+}

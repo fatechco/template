@@ -1,0 +1,114 @@
+model Subscription {
+  id              String             @id @default(cuid())
+  userId          String
+  user            User               @relation(fields: [userId], references: [id])
+  planId          String
+  plan            SubscriptionPlan   @relation(fields: [planId], references: [id])
+  status          SubscriptionStatus @default(active)
+  startDate       DateTime
+  endDate         DateTime?
+  trialEndsAt     DateTime?
+  cancelledAt     DateTime?
+  cancelReason    String?
+  stripeSubscriptionId String?
+  stripeCustomerId     String?
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  activities      SubscriptionActivity[]
+  invoices        SubscriptionInvoice[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("subscriptions")
+}
+
+model SubscriptionPlan {
+  id                String   @id @default(cuid())
+  name              String
+  nameAr            String?
+  description       String?
+  descriptionAr     String?
+  priceMonthlyEGP   Float?
+  priceYearlyEGP    Float?
+  priceMonthlyUSD   Float?
+  priceYearlyUSD    Float?
+  features          Json?
+  limits            Json?
+  isActive          Boolean  @default(true)
+  sortOrder         Int      @default(0)
+  stripePriceIdMonthly String?
+  stripePriceIdYearly  String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  subscriptions     Subscription[]
+
+  @@map("subscription_plans")
+}
+
+model SubscriptionActivity {
+  id              String       @id @default(cuid())
+  subscriptionId  String
+  subscription    Subscription @relation(fields: [subscriptionId], references: [id])
+  activityType    String
+  description     String?
+  metaData        Json?
+  createdAt       DateTime     @default(now())
+
+  @@index([subscriptionId])
+  @@map("subscription_activities")
+}
+
+model SubscriptionInvoice {
+  id              String       @id @default(cuid())
+  subscriptionId  String
+  subscription    Subscription @relation(fields: [subscriptionId], references: [id])
+  invoiceNumber   String?      @unique
+  amountEGP       Float?
+  amountUSD       Float?
+  currency        String       @default("EGP")
+  status          String       @default("pending")
+  stripeInvoiceId String?
+  paidAt          DateTime?
+  dueDate         DateTime?
+  createdAt       DateTime     @default(now())
+
+  @@index([subscriptionId])
+  @@map("subscription_invoices")
+}
+
+model Invoice {
+  id              String   @id @default(cuid())
+  userId          String
+  invoiceNumber   String   @unique
+  type            String
+  amount          Float
+  currency        String   @default("EGP")
+  status          String   @default("pending")
+  items           Json?
+  paidAt          DateTime?
+  dueDate         DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("invoices")
+}
+
+model PaidService {
+  id              String   @id @default(cuid())
+  userId          String
+  serviceType     String
+  amount          Float
+  currency        String   @default("EGP")
+  status          String   @default("pending")
+  paymentRef      String?
+  expiresAt       DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@map("paid_services")
+}

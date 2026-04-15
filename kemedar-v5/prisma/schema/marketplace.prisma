@@ -1,0 +1,119 @@
+model MarketplaceItem {
+  id              String   @id @default(cuid())
+  sellerId        String
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  category        String?
+  subcategory     String?
+  priceEGP        Float?
+  currency        String   @default("EGP")
+  imageUrls       String[]
+  condition       String?
+  quantity        Int      @default(1)
+  unit            String?
+  brand           String?
+  model           String?
+  specifications  Json?
+  location        String?
+  cityId          String?
+  isActive        Boolean  @default(true)
+  isFeatured      Boolean  @default(false)
+  viewCount       Int      @default(0)
+  tags            String[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  @@index([sellerId])
+  @@index([category])
+  @@index([isActive])
+  @@map("marketplace_items")
+}
+
+model GroupBuySession {
+  id              String   @id @default(cuid())
+  title           String
+  productId       String?
+  category        String?
+  targetQty       Int
+  currentQty      Int      @default(0)
+  pricePerUnit    Float?
+  discountPercent Float?
+  status          String   @default("open")
+  expiresAt       DateTime?
+  createdByUserId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("group_buy_sessions")
+}
+
+model FlashDeal {
+  id              String   @id @default(cuid())
+  sellerId        String
+  title           String
+  titleAr         String?
+  description     String?
+  productId       String?
+  originalPriceEGP Float?
+  flashPriceEGP   Float
+  discountPercent Float?
+  quantity        Int      @default(1)
+  soldCount       Int      @default(0)
+  imageUrl        String?
+  startsAt        DateTime
+  endsAt          DateTime
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  orders          FlashOrder[]
+
+  @@index([sellerId])
+  @@index([startsAt, endsAt])
+  @@map("flash_deals")
+}
+
+model FlashOrder {
+  id              String    @id @default(cuid())
+  dealId          String
+  deal            FlashDeal @relation(fields: [dealId], references: [id])
+  buyerUserId     String
+  quantity        Int       @default(1)
+  totalPriceEGP   Float
+  status          String    @default("pending")
+  paymentRef      String?
+  deliveryAddress String?
+  rating          Int?
+  review          String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([dealId])
+  @@index([buyerUserId])
+  @@map("flash_orders")
+}
+
+model ShopTheLookCart {
+  id              String   @id @default(cuid())
+  userId          String?
+  sessionId       String?
+  items           Json?
+  totalEGP        Float?
+  status          String   @default("active")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("shop_the_look_carts")
+}
+
+model ShopTheLookSettings {
+  id              String   @id @default(cuid())
+  isActive        Boolean  @default(true)
+  defaultCurrency String   @default("EGP")
+  updatedAt       DateTime @updatedAt
+
+  @@map("shop_the_look_settings")
+}

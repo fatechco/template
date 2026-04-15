@@ -1,0 +1,143 @@
+model KemedarScore {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  overallScore    Float    @default(0)
+  grade           String?
+  percentile      Float?
+  trend           String?
+  dimensions      Json?
+  lastCalculatedAt DateTime?
+  version         Int      @default(1)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("kemedar_scores")
+}
+
+model ScoreEvent {
+  id              String            @id @default(cuid())
+  userId          String
+  user            User              @relation(fields: [userId], references: [id])
+  eventType       String
+  category        ScoreEventCategory
+  points          Float
+  dimension       String?
+  description     String?
+  metaData        Json?
+  decayedAt       DateTime?
+  createdAt       DateTime          @default(now())
+
+  @@index([userId])
+  @@index([eventType])
+  @@map("score_events")
+}
+
+model ScoreBadge {
+  id          String   @id @default(cuid())
+  userId      String
+  badgeType   String
+  title       String
+  titleAr     String?
+  description String?
+  iconUrl     String?
+  earnedAt    DateTime @default(now())
+
+  @@index([userId])
+  @@map("score_badges")
+}
+
+model ScoreShareRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  token       String   @unique
+  expiresAt   DateTime
+  viewCount   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("score_share_requests")
+}
+
+model LifeScoreDataPoint {
+  id          String   @id @default(cuid())
+  locationId  String?
+  dimension   String
+  value       Float
+  source      String?
+  measuredAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  @@map("life_score_data_points")
+}
+
+model LifeScoreReview {
+  id          String   @id @default(cuid())
+  locationId  String?
+  userId      String?
+  dimension   String
+  rating      Int
+  comment     String?
+  createdAt   DateTime @default(now())
+
+  @@map("life_score_reviews")
+}
+
+model LifeScoreComparison {
+  id          String   @id @default(cuid())
+  userId      String
+  propertyIds String[]
+  locationIds String[]
+  results     Json?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("life_score_comparisons")
+}
+
+model NeighborhoodLifeScore {
+  id              String   @id @default(cuid())
+  districtId      String?
+  cityId          String?
+  overallScore    Float?
+  walkability     Float?
+  noise           Float?
+  safety          Float?
+  education       Float?
+  healthcare      Float?
+  connectivity    Float?
+  greenSpace      Float?
+  convenience     Float?
+  calculatedAt    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("neighborhood_life_scores")
+}
+
+model DNASignal {
+  id          String   @id @default(cuid())
+  userId      String
+  signalType  String
+  value       Json?
+  strength    Float?
+  source      String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("dna_signals")
+}
+
+model DNAInsight {
+  id          String   @id @default(cuid())
+  userId      String
+  insightType String
+  title       String?
+  description String?
+  confidence  Float?
+  data        Json?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("dna_insights")
+}

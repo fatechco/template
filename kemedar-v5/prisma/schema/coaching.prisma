@@ -1,0 +1,102 @@
+model CoachProfile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id])
+  currentJourneyId    String?
+  completedJourneys   String[]
+  preferences         Json?
+  goals               Json?
+  experienceLevel     String?
+  lastActiveAt        DateTime?
+  totalPointsEarned   Int      @default(0)
+  streakDays          Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("coach_profiles")
+}
+
+model CoachJourney {
+  id              String             @id @default(cuid())
+  name            String
+  nameAr          String?
+  description     String?
+  descriptionAr   String?
+  targetRole      String?
+  steps           Json?
+  totalSteps      Int                @default(0)
+  estimatedMinutes Int?
+  isActive        Boolean            @default(true)
+  sortOrder       Int                @default(0)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@map("coach_journeys")
+}
+
+model CoachContent {
+  id              String   @id @default(cuid())
+  title           String
+  titleAr         String?
+  contentType     String
+  body            String?
+  bodyAr          String?
+  mediaUrl        String?
+  category        String?
+  tags            String[]
+  targetRoles     String[]
+  isActive        Boolean  @default(true)
+  viewCount       Int      @default(0)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("coach_contents")
+}
+
+model CoachMessage {
+  id              String   @id @default(cuid())
+  userId          String
+  role            String
+  content         String
+  contentAr       String?
+  isAiGenerated   Boolean  @default(false)
+  journeyId       String?
+  stepIndex       Int?
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@map("coach_messages")
+}
+
+model CoachAchievement {
+  id              String   @id @default(cuid())
+  userId          String
+  achievementType String
+  title           String
+  titleAr         String?
+  description     String?
+  points          Int      @default(0)
+  iconUrl         String?
+  earnedAt        DateTime @default(now())
+
+  @@index([userId])
+  @@map("coach_achievements")
+}
+
+model CoachNudge {
+  id              String   @id @default(cuid())
+  userId          String
+  nudgeType       String
+  title           String
+  titleAr         String?
+  message         String
+  messageAr       String?
+  actionUrl       String?
+  isRead          Boolean  @default(false)
+  isDismissed     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@map("coach_nudges")
+}

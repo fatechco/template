@@ -1,0 +1,234 @@
+model Community {
+  id                String   @id @default(cuid())
+  name              String
+  nameAr            String?
+  description       String?
+  descriptionAr     String?
+  type              CommunityType @default(compound)
+  coverImageUrl     String?
+  logoUrl           String?
+
+  countryId         String?
+  provinceId        String?
+  cityId            String?
+  districtId        String?
+  compoundName      String?
+
+  isVerified        Boolean  @default(false)
+  isActive          Boolean  @default(true)
+  isPublic          Boolean  @default(true)
+
+  membersCount      Int      @default(0)
+  postsCount        Int      @default(0)
+
+  rules             Json?
+  features          String[]
+  tags              String[]
+
+  createdByUserId   String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  communityNumber     String?   @unique
+  privacyLevel        String    @default("public")
+  areaId              String?
+  compoundId          String?
+  buildingNumber      String?
+  coordinates         Json?
+  activeMembers       Int       @default(0)
+  pendingMembers      Int       @default(0)
+  membershipRequirements Json?
+  franchiseOwnerId    String?
+  adminUserIds        String[]
+  moderatorUserIds    String[]
+  allowMemberPosts    Boolean   @default(true)
+  allowMarketplace    Boolean   @default(true)
+  allowPolls          Boolean   @default(true)
+  allowAlerts         Boolean   @default(true)
+  allowAnnouncements  Boolean   @default(true)
+  requirePostApproval Boolean   @default(false)
+  totalMarketplaceItems Int     @default(0)
+  postsThisWeek       Int       @default(0)
+  status              String    @default("active")
+  kemetroGroupBuyEnabled Boolean @default(false)
+
+  members           CommunityMember[]
+  posts             CommunityPost[]
+  events            CommunityEvent[]
+  alerts            CommunityAlert[]
+
+  @@index([cityId])
+  @@index([type])
+  @@map("communities")
+}
+
+model CommunityMember {
+  id            String            @id @default(cuid())
+  communityId   String
+  community     Community         @relation(fields: [communityId], references: [id])
+  userId        String
+  user          User              @relation(fields: [userId], references: [id])
+  role          CommunityMemberRole @default(member)
+  unitNumber    String?
+  isVerified    Boolean           @default(false)
+  joinedAt      DateTime          @default(now())
+  leftAt        DateTime?
+
+  @@unique([communityId, userId])
+  @@map("community_members")
+}
+
+model CommunityPost {
+  id              String          @id @default(cuid())
+  communityId     String
+  community       Community       @relation(fields: [communityId], references: [id])
+  authorUserId    String
+  author          User            @relation(fields: [authorUserId], references: [id])
+
+  postType        CommunityPostType @default(general)
+  title           String?
+  titleAr         String?
+  content         String
+  contentAr       String?
+  imageUrls       String[]
+  attachmentUrls  String[]
+
+  isPinned        Boolean         @default(false)
+  isAnonymous     Boolean         @default(false)
+
+  likesCount      Int             @default(0)
+  commentsCount   Int             @default(0)
+  sharesCount     Int             @default(0)
+
+  moderationStatus ModerationStatus @default(pending)
+  moderatedByUserId String?
+  moderatedAt     DateTime?
+  moderationNotes String?
+
+  pollOptions     Json?
+  pollVotes       Json?
+
+  linkUrl             String?
+  pinnedUntil         DateTime?
+  pinnedBy            String?
+  isAnnouncement      Boolean   @default(false)
+  announcementUrgency String?
+  requiresAction      Boolean   @default(false)
+  actionDeadline      DateTime?
+  visibility          String    @default("community")
+  viewCount           Int       @default(0)
+  reactionsCount      Int       @default(0)
+  reactions           Json?
+  reportCount         Int       @default(0)
+  pollEndsAt          DateTime?
+  pollMultipleChoice  Boolean   @default(false)
+  pollAnonymous       Boolean   @default(false)
+  totalPollVotes      Int       @default(0)
+  pollVoterIds        String[]
+  alertType           String?
+  alertArea           String?
+  alertStartsAt       DateTime?
+  alertEndsAt         DateTime?
+  alertResolved       Boolean   @default(false)
+  alertResolvedAt     DateTime?
+  alertConfirmations  Int       @default(0)
+  alertConfirmingUserIds String[]
+  marketplaceItemId   String?
+  suggestedKemeworkCategory String?
+  kemeworkTaskCreated Boolean   @default(false)
+  kemeworkTaskId      String?
+  aiModerated         Boolean   @default(false)
+  aiModerationScore   Float?
+  aiCategoryDetected  String?
+  expiresAt           DateTime?
+
+  tags            String[]
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  deletedAt       DateTime?
+
+  comments        CommunityComment[]
+
+  @@index([communityId])
+  @@index([authorUserId])
+  @@index([postType])
+  @@map("community_posts")
+}
+
+model CommunityComment {
+  id              String        @id @default(cuid())
+  postId          String
+  post            CommunityPost @relation(fields: [postId], references: [id])
+  authorUserId    String
+  content         String
+  contentAr       String?
+  parentCommentId String?
+  likesCount      Int           @default(0)
+  moderationStatus ModerationStatus @default(approved)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  deletedAt       DateTime?
+
+  @@index([postId])
+  @@map("community_comments")
+}
+
+model CommunityEvent {
+  id              String    @id @default(cuid())
+  communityId     String
+  community       Community @relation(fields: [communityId], references: [id])
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  eventType       String?
+  location        String?
+  startAt         DateTime?
+  endAt           DateTime?
+  imageUrl        String?
+  maxAttendees    Int?
+  rsvpCount       Int       @default(0)
+  createdByUserId String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([communityId])
+  @@map("community_events")
+}
+
+model CommunityAlert {
+  id              String    @id @default(cuid())
+  communityId     String
+  community       Community @relation(fields: [communityId], references: [id])
+  alertType       String
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  severity        String    @default("info")
+  isActive        Boolean   @default(true)
+  expiresAt       DateTime?
+  createdByUserId String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([communityId])
+  @@map("community_alerts")
+}
+
+model CommunityRecommendation {
+  id              String   @id @default(cuid())
+  communityId     String
+  recommendedByUserId String
+  serviceType     String
+  title           String
+  description     String?
+  rating          Int?
+  contactInfo     String?
+  likesCount      Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  @@index([communityId])
+  @@map("community_recommendations")
+}

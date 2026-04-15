@@ -1,0 +1,46 @@
+model QRCode {
+  id              String     @id @default(cuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id])
+  codeType        QRCodeType @default(property)
+  targetId        String?
+  targetUrl       String?
+  frameText       String?
+  frameTextAr     String?
+  qrImageUrl      String?
+  shortCode       String?    @unique
+  scanCount       Int        @default(0)
+  isActive        Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  scans           QRScan[]
+
+  @@index([userId])
+  @@index([shortCode])
+  @@map("qr_codes")
+}
+
+model QRScan {
+  id          String   @id @default(cuid())
+  qrCodeId    String
+  qrCode      QRCode   @relation(fields: [qrCodeId], references: [id])
+  scannedByUserId String?
+  ipAddress   String?
+  userAgent   String?
+  location    Json?
+  scannedAt   DateTime @default(now())
+
+  @@index([qrCodeId])
+  @@map("qr_scans")
+}
+
+model QRSettings {
+  id          String   @id @default(cuid())
+  isActive    Boolean  @default(true)
+  defaultFrameColor String? @default("#000000")
+  maxFreeQR   Int      @default(5)
+  updatedAt   DateTime @updatedAt
+
+  @@map("qr_settings")
+}

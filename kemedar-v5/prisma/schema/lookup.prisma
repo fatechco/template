@@ -1,0 +1,70 @@
+model PropertyCategory {
+  id         String     @id @default(cuid())
+  name       String
+  nameAr     String?
+  slug       String     @unique
+  icon       String?
+  sortOrder  Int        @default(0)
+  isActive   Boolean    @default(true)
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  @@map("property_categories")
+}
+
+model PropertyPurpose {
+  id         String     @id @default(cuid())
+  name       String
+  nameAr     String?
+  slug       String     @unique
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  @@map("property_purposes")
+}
+
+model PropertyStatus {
+  id         String     @id @default(cuid())
+  name       String
+  nameAr     String?
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  @@map("property_statuses")
+}
+
+model PropertyFurnished {
+  id         String     @id @default(cuid())
+  name       String
+  nameAr     String?
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  @@map("property_furnished")
+}
+
+model PropertyAmenity {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String?
+  icon      String?
+  category  String?
+  createdAt DateTime @default(now())
+  @@map("property_amenities")
+}
+
+model Currency {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  nameAr    String?
+  symbol    String
+  rate      Float    @default(1)
+  createdAt DateTime @default(now())
+  @@map("currencies")
+}
+
+model PropertySuitableFor {
+  id         String     @id @default(cuid())
+  name       String
+  nameAr     String?
+  properties Property[]
+  createdAt  DateTime   @default(now())
+  @@map("property_suitable_for")
+}

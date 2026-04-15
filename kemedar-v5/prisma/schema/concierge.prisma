@@ -1,0 +1,79 @@
+model ConciergeJourney {
+  id              String              @id @default(cuid())
+  userId          String
+  propertyId      String?
+  templateId      String?
+  journeyType     String
+  status          String              @default("active")
+  completionPercent Float             @default(0)
+  moveInDate      DateTime?
+  startedAt       DateTime            @default(now())
+  completedAt     DateTime?
+  dismissedAt     DateTime?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  tasks           ConciergeTask[]
+
+  @@index([userId])
+  @@map("concierge_journeys")
+}
+
+model ConciergeJourneyTemplate {
+  id              String   @id @default(cuid())
+  name            String
+  nameAr          String?
+  journeyType     String
+  propertyType    String?
+  countryId       String?
+  cityId          String?
+  steps           Json?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("concierge_journey_templates")
+}
+
+model ConciergeTask {
+  id              String            @id @default(cuid())
+  journeyId       String
+  journey         ConciergeJourney  @relation(fields: [journeyId], references: [id])
+  templateTaskId  String?
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  category        String?
+  priority        String?           @default("medium")
+  status          ConciergeTaskStatus @default(pending)
+  dueDate         DateTime?
+  completedAt     DateTime?
+  skippedAt       DateTime?
+  sortOrder       Int               @default(0)
+  actionUrl       String?
+  notes           String?
+  assignedToUserId String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([journeyId])
+  @@map("concierge_tasks")
+}
+
+model ConciergeTaskTemplate {
+  id              String   @id @default(cuid())
+  title           String
+  titleAr         String?
+  description     String?
+  descriptionAr   String?
+  category        String?
+  defaultPriority String?  @default("medium")
+  estimatedDays   Int?
+  actionUrl       String?
+  sortOrder       Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  @@map("concierge_task_templates")
+}

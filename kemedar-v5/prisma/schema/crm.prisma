@@ -1,0 +1,380 @@
+model CRMContact {
+  id                  String        @id @default(cuid())
+  firstName           String?
+  lastName            String?
+  firstNameAr         String?
+  lastNameAr          String?
+  email               String?
+  phone               String?
+  whatsapp            String?
+  company             String?
+  jobTitle            String?
+  source              String?
+  leadStatus          CRMLeadStatus @default(new)
+  leadScore           Int           @default(0)
+  assignedToUserId    String?
+  tags                String[]
+  customFields        Json?
+  lastContactedAt     DateTime?
+  nextFollowUpAt      DateTime?
+  notes               String?
+
+  countryId           String?
+  cityId              String?
+  address             String?
+
+  preferredLanguage   String?       @default("ar")
+  preferredContactMethod String?
+
+  consentMarketing    Boolean       @default(false)
+  consentWhatsapp     Boolean       @default(false)
+  consentEmail        Boolean       @default(false)
+  consentSms          Boolean       @default(false)
+
+  displayName         String?
+  phoneNormalized     String?
+  emailNormalized     String?
+  avatarUrl           String?
+  primaryRole         String?
+  secondaryRoles      String[]
+  lifecycleStage      String    @default("lead")
+  priority            String    @default("medium")
+  preferredChannel    String?
+  sourceDetail        String?
+  teamId              String?
+  accountId           String?
+  aiScore             Float?
+  consentCommunication Boolean  @default(false)
+  consentDataStorage  Boolean   @default(false)
+  lastActivityAt      DateTime?
+  isArchived          Boolean   @default(false)
+  archivedAt          DateTime?
+
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  deletedAt           DateTime?
+
+  opportunities       CRMOpportunity[]
+  tasks               CRMTask[]
+  notes_              CRMNote[]
+  calls               CRMCall[]
+  activityLogs        CRMActivityLog[]
+
+  @@index([email])
+  @@index([phone])
+  @@index([leadStatus])
+  @@index([assignedToUserId])
+  @@map("crm_contacts")
+}
+
+model CRMAccount {
+  id            String   @id @default(cuid())
+  name          String
+  nameAr        String?
+  type          String?
+  industry      String?
+  website       String?
+  phone         String?
+  email         String?
+  address       String?
+  cityId        String?
+  countryId     String?
+  logoUrl       String?
+  notes         String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  contacts      CRMAccountContact[]
+
+  @@map("crm_accounts")
+}
+
+model CRMAccountContact {
+  id          String     @id @default(cuid())
+  accountId   String
+  account     CRMAccount @relation(fields: [accountId], references: [id])
+  contactId   String
+  role        String?
+  isPrimary   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+
+  @@unique([accountId, contactId])
+  @@map("crm_account_contacts")
+}
+
+model CRMOpportunity {
+  id              String              @id @default(cuid())
+  contactId       String
+  contact         CRMContact          @relation(fields: [contactId], references: [id])
+  title           String
+  stage           CRMOpportunityStage @default(lead)
+  value           Float?
+  currency        String              @default("EGP")
+  probability     Float?
+  expectedCloseDate DateTime?
+  propertyId      String?
+  assignedToUserId String?
+  source          String?
+  lostReason      String?
+  notes           String?
+  customFields    Json?
+  closedAt        DateTime?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  history         CRMOpportunityHistory[]
+
+  @@index([contactId])
+  @@index([stage])
+  @@index([assignedToUserId])
+  @@map("crm_opportunities")
+}
+
+model CRMOpportunityHistory {
+  id              String         @id @default(cuid())
+  opportunityId   String
+  opportunity     CRMOpportunity @relation(fields: [opportunityId], references: [id])
+  fromStage       String?
+  toStage         String
+  changedByUserId String?
+  notes           String?
+  createdAt       DateTime       @default(now())
+
+  @@index([opportunityId])
+  @@map("crm_opportunity_history")
+}
+
+model CRMPipeline {
+  id          String           @id @default(cuid())
+  name        String
+  nameAr      String?
+  isDefault   Boolean          @default(false)
+  isActive    Boolean          @default(true)
+  stages      CRMPipelineStage[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@map("crm_pipelines")
+}
+
+model CRMPipelineStage {
+  id          String      @id @default(cuid())
+  pipelineId  String
+  pipeline    CRMPipeline @relation(fields: [pipelineId], references: [id])
+  name        String
+  nameAr      String?
+  sortOrder   Int         @default(0)
+  color       String?
+  probability Float?
+  createdAt   DateTime    @default(now())
+
+  @@index([pipelineId])
+  @@map("crm_pipeline_stages")
+}
+
+model CRMTask {
+  id              String     @id @default(cuid())
+  contactId       String?
+  contact         CRMContact? @relation(fields: [contactId], references: [id])
+  title           String
+  description     String?
+  type            String?
+  priority        String?    @default("medium")
+  status          String     @default("pending")
+  dueDate         DateTime?
+  assignedToUserId String?
+  completedAt     DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([contactId])
+  @@index([assignedToUserId])
+  @@index([status])
+  @@map("crm_tasks")
+}
+
+model CRMNote {
+  id          String     @id @default(cuid())
+  contactId   String
+  contact     CRMContact @relation(fields: [contactId], references: [id])
+  content     String
+  authorUserId String
+  isPinned    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([contactId])
+  @@map("crm_notes")
+}
+
+model CRMCall {
+  id              String     @id @default(cuid())
+  contactId       String
+  contact         CRMContact @relation(fields: [contactId], references: [id])
+  callerUserId    String
+  direction       String     @default("outbound")
+  duration        Int?
+  outcome         String?
+  recordingUrl    String?
+  notes           String?
+  calledAt        DateTime
+  createdAt       DateTime   @default(now())
+
+  @@index([contactId])
+  @@map("crm_calls")
+}
+
+model CRMMessage {
+  id              String   @id @default(cuid())
+  conversationId  String?
+  contactId       String?
+  channel         String
+  direction       String   @default("outbound")
+  content         String
+  senderUserId    String?
+  status          String   @default("sent")
+  sentAt          DateTime?
+  deliveredAt     DateTime?
+  readAt          DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([conversationId])
+  @@index([contactId])
+  @@map("crm_messages")
+}
+
+model CRMConversation {
+  id          String   @id @default(cuid())
+  contactId   String
+  channel     String
+  subject     String?
+  status      String   @default("open")
+  assignedToUserId String?
+  lastMessageAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([contactId])
+  @@map("crm_conversations")
+}
+
+model CRMActivityLog {
+  id          String     @id @default(cuid())
+  contactId   String
+  contact     CRMContact @relation(fields: [contactId], references: [id])
+  activityType String
+  description String?
+  metaData    Json?
+  performedByUserId String?
+  createdAt   DateTime   @default(now())
+
+  @@index([contactId])
+  @@map("crm_activity_logs")
+}
+
+model CRMTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  channel     String
+  subject     String?
+  content     String
+  contentAr   String?
+  variables   String[]
+  category    String?
+  isActive    Boolean  @default(true)
+  usageCount  Int      @default(0)
+  createdByUserId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("crm_templates")
+}
+
+model CRMAutomationWorkflow {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  trigger     String
+  conditions  Json?
+  actions     Json?
+  isActive    Boolean  @default(true)
+  runCount    Int      @default(0)
+  lastRunAt   DateTime?
+  createdByUserId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  runs        CRMAutomationRun[]
+
+  @@map("crm_automation_workflows")
+}
+
+model CRMAutomationRun {
+  id          String                @id @default(cuid())
+  workflowId  String
+  workflow    CRMAutomationWorkflow @relation(fields: [workflowId], references: [id])
+  contactId   String?
+  status      String                @default("running")
+  result      Json?
+  error       String?
+  startedAt   DateTime              @default(now())
+  completedAt DateTime?
+
+  @@index([workflowId])
+  @@map("crm_automation_runs")
+}
+
+model CRMAIAgent {
+  id          String   @id @default(cuid())
+  name        String
+  type        String
+  config      Json?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("crm_ai_agents")
+}
+
+model CRMAIAction {
+  id          String   @id @default(cuid())
+  agentId     String?
+  contactId   String?
+  actionType  String
+  input       Json?
+  output      Json?
+  status      String   @default("pending")
+  executedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  @@map("crm_ai_actions")
+}
+
+model CRMContactChannel {
+  id          String   @id @default(cuid())
+  contactId   String
+  channel     String
+  identifier  String
+  isPrimary   Boolean  @default(false)
+  isVerified  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([contactId])
+  @@map("crm_contact_channels")
+}
+
+model CRMContactConsent {
+  id          String   @id @default(cuid())
+  contactId   String
+  consentType String
+  granted     Boolean  @default(false)
+  grantedAt   DateTime?
+  revokedAt   DateTime?
+  source      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([contactId])
+  @@map("crm_contact_consents")
+}

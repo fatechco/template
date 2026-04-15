@@ -1,0 +1,170 @@
+model EscrowDeal {
+  id                      String          @id @default(cuid())
+  dealNumber              String          @unique
+  buyerId                 String
+  buyer                   User            @relation("EscrowBuyer", fields: [buyerId], references: [id])
+  sellerId                String
+  seller                  User            @relation("EscrowSeller", fields: [sellerId], references: [id])
+  agentId                 String?
+  franchiseOwnerId        String?
+  lawyerId                String?
+  propertyId              String
+  property                Property        @relation(fields: [propertyId], references: [id])
+  negotiationSessionId    String?
+  matchId                 String?
+
+  agreedPrice             Float
+  currency                String          @default("EGP")
+  agreedPricePerSqm       Float?
+  paymentStructure        PaymentStructure @default(full_cash)
+  earnestMoneyAmount      Float?
+  earnestMoneyPercent     Float?
+  totalEscrowAmount       Float?
+  paymentSchedule         Json?
+  conditions              Json?
+
+  status                  EscrowDealStatus @default(draft)
+  currentMilestone        String?
+  completionPercent       Float           @default(0)
+
+  depositDeadline         DateTime?
+  completionDeadline      DateTime?
+  dealStartedAt           DateTime?
+  dealCompletedAt         DateTime?
+
+  totalDeposited          Float           @default(0)
+  totalReleased           Float           @default(0)
+  totalRefunded           Float           @default(0)
+  platformFeeAmount       Float?
+  platformFeePercent      Float?
+  agentFeeAmount          Float?
+  franchiseOwnerFeeAmount Float?
+
+  isDisputed              Boolean         @default(false)
+  disputeId               String?
+  dealDocuments           Json?
+
+  buyerConfirmedCompletion  Boolean       @default(false)
+  sellerConfirmedCompletion Boolean       @default(false)
+  buyerConfirmedAt        DateTime?
+  sellerConfirmedAt       DateTime?
+
+  foInspectionRequired    Boolean         @default(false)
+  foInspectionCompleted   Boolean         @default(false)
+  foInspectionNotes       String?
+
+  buyerRatedSeller        Boolean         @default(false)
+  sellerRatedBuyer        Boolean         @default(false)
+  buyerRating             Int?
+  sellerRating            Int?
+  buyerReview             String?
+  sellerReview            String?
+
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+
+  milestones              EscrowMilestone[]
+  transactions            EscrowTransaction[]
+  disputes                EscrowDispute[]
+  documents               EscrowDocument[]
+
+  @@index([buyerId])
+  @@index([sellerId])
+  @@index([propertyId])
+  @@index([status])
+  @@map("escrow_deals")
+}
+
+model EscrowAccount {
+  id              String   @id @default(cuid())
+  userId          String
+  balance         Float    @default(0)
+  currency        String   @default("EGP")
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("escrow_accounts")
+}
+
+model EscrowMilestone {
+  id                String     @id @default(cuid())
+  dealId            String
+  deal              EscrowDeal @relation(fields: [dealId], references: [id])
+  milestoneOrder    Int
+  title             String
+  titleAr           String?
+  description       String?
+  amountDue         Float?
+  amountPercent     Float?
+  status            String     @default("pending")
+  conditions        Json?
+  dueDate           DateTime?
+  completedAt       DateTime?
+  completedByUserId String?
+  evidenceUrls      String[]
+  notes             String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([dealId])
+  @@map("escrow_milestones")
+}
+
+model EscrowTransaction {
+  id              String     @id @default(cuid())
+  dealId          String
+  deal            EscrowDeal @relation(fields: [dealId], references: [id])
+  transactionType String
+  amount          Float
+  currency        String     @default("EGP")
+  fromUserId      String?
+  toUserId        String?
+  paymentMethod   String?
+  paymentReference String?
+  status          String     @default("pending")
+  processedAt     DateTime?
+  notes           String?
+  createdAt       DateTime   @default(now())
+
+  @@index([dealId])
+  @@map("escrow_transactions")
+}
+
+model EscrowDispute {
+  id              String     @id @default(cuid())
+  dealId          String
+  deal            EscrowDeal @relation(fields: [dealId], references: [id])
+  raisedByUserId  String
+  reason          String
+  description     String?
+  evidenceUrls    String[]
+  status          String     @default("open")
+  resolution      String?
+  resolvedByAdminId String?
+  aiRecommendation  Json?
+  resolvedAt      DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([dealId])
+  @@map("escrow_disputes")
+}
+
+model EscrowDocument {
+  id           String     @id @default(cuid())
+  dealId       String
+  deal         EscrowDeal @relation(fields: [dealId], references: [id])
+  documentType String
+  title        String
+  fileUrl      String
+  uploadedById String
+  isVerified   Boolean    @default(false)
+  verifiedById String?
+  verifiedAt   DateTime?
+  createdAt    DateTime   @default(now())
+
+  @@index([dealId])
+  @@map("escrow_documents")
+}

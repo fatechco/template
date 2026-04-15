@@ -1,0 +1,81 @@
+model SurplusItem {
+  id              String   @id @default(cuid())
+  sellerId        String
+  title           String
+  titleAr         String?
+  description     String?
+  category        String?
+  condition       String?
+  priceEGP        Float?
+  originalPriceEGP Float?
+  quantity         Int     @default(1)
+  unit            String?
+  imageUrls       String[]
+  location        String?
+  cityId          String?
+  source          String?
+  isActive        Boolean  @default(true)
+  reservedByUserId String?
+  reservedAt       DateTime?
+  reservationExpiresAt DateTime?
+  viewCount       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([sellerId])
+  @@index([category])
+  @@map("surplus_items")
+}
+
+model SurplusSavedItem {
+  id          String   @id @default(cuid())
+  userId      String
+  itemId      String
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, itemId])
+  @@map("surplus_saved_items")
+}
+
+model SurplusTransaction {
+  id          String   @id @default(cuid())
+  itemId      String
+  buyerUserId String
+  sellerUserId String
+  amountEGP   Float
+  status      String   @default("pending")
+  paymentRef  String?
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+
+  @@index([itemId])
+  @@map("surplus_transactions")
+}
+
+model SurplusShipmentRequest {
+  id              String   @id @default(cuid())
+  itemId          String
+  buyerUserId     String
+  sellerUserId    String
+  shipperId       String?
+  pickupAddress   String?
+  deliveryAddress String?
+  weightKg        Float?
+  estimatedCostEGP Float?
+  status          String   @default("pending")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([itemId])
+  @@map("surplus_shipment_requests")
+}
+
+model SurplusSettings {
+  id                  String   @id @default(cuid())
+  isActive            Boolean  @default(true)
+  reservationHours    Int      @default(24)
+  shippingRatePerKg   Float    @default(15)
+  updatedAt           DateTime @updatedAt
+
+  @@map("surplus_settings")
+}

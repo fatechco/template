@@ -1,0 +1,193 @@
+model LiveEvent {
+  id                String         @id @default(cuid())
+  title             String
+  titleAr           String?
+  description       String?
+  descriptionAr     String?
+  eventType         LiveEventType  @default(webinar)
+  status            LiveEventStatus @default(draft)
+
+  hostUserId        String
+  propertyId        String?
+  communityId       String?
+
+  coverImageUrl     String?
+  streamUrl         String?
+  recordingUrl      String?
+
+  scheduledStartAt  DateTime?
+  scheduledEndAt    DateTime?
+  actualStartAt     DateTime?
+  actualEndAt       DateTime?
+
+  maxAttendees      Int?
+  registeredCount   Int            @default(0)
+  attendedCount     Int            @default(0)
+
+  tags              String[]
+
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  registrations     LiveEventRegistration[]
+  reservations      LiveEventReservation[]
+  messages          LiveEventMessage[]
+  polls             LiveEventPoll[]
+  highlights        LiveEventHighlight[]
+
+  @@index([hostUserId])
+  @@index([status])
+  @@map("live_events")
+}
+
+model LiveEventRegistration {
+  id          String    @id @default(cuid())
+  eventId     String
+  event       LiveEvent @relation(fields: [eventId], references: [id])
+  userId      String
+  status      String    @default("registered")
+  attendedAt  DateTime?
+  leftAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@unique([eventId, userId])
+  @@map("live_event_registrations")
+}
+
+model LiveEventReservation {
+  id          String    @id @default(cuid())
+  eventId     String
+  event       LiveEvent @relation(fields: [eventId], references: [id])
+  userId      String
+  seatNumber  String?
+  status      String    @default("reserved")
+  createdAt   DateTime  @default(now())
+
+  @@index([eventId])
+  @@map("live_event_reservations")
+}
+
+model LiveEventMessage {
+  id          String    @id @default(cuid())
+  eventId     String
+  event       LiveEvent @relation(fields: [eventId], references: [id])
+  userId      String
+  content     String
+  isModerated Boolean   @default(false)
+  isPinned    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+
+  @@index([eventId])
+  @@map("live_event_messages")
+}
+
+model LiveEventPoll {
+  id          String    @id @default(cuid())
+  eventId     String
+  event       LiveEvent @relation(fields: [eventId], references: [id])
+  question    String
+  questionAr  String?
+  options     Json
+  votes       Json?
+  isActive    Boolean   @default(true)
+  closedAt    DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([eventId])
+  @@map("live_event_polls")
+}
+
+model LiveEventHighlight {
+  id          String    @id @default(cuid())
+  eventId     String
+  event       LiveEvent @relation(fields: [eventId], references: [id])
+  title       String
+  timestamp   Float?
+  description String?
+  createdAt   DateTime  @default(now())
+
+  @@index([eventId])
+  @@map("live_event_highlights")
+}
+
+model LiveTourSession {
+  id            String   @id @default(cuid())
+  propertyId    String
+  hostUserId    String
+  title         String?
+  status        String   @default("scheduled")
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  endedAt       DateTime?
+  recordingUrl  String?
+  attendeeCount Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  registrations LiveTourRegistration[]
+
+  @@index([propertyId])
+  @@map("live_tour_sessions")
+}
+
+model LiveTourRegistration {
+  id          String          @id @default(cuid())
+  sessionId   String
+  session     LiveTourSession @relation(fields: [sessionId], references: [id])
+  userId      String
+  status      String          @default("registered")
+  createdAt   DateTime        @default(now())
+
+  @@unique([sessionId, userId])
+  @@map("live_tour_registrations")
+}
+
+model VirtualTour {
+  id          String   @id @default(cuid())
+  propertyId  String
+  title       String?
+  description String?
+  tourUrl     String?
+  thumbnailUrl String?
+  sceneCount  Int      @default(0)
+  viewCount   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotspots    TourHotspot[]
+
+  @@index([propertyId])
+  @@map("virtual_tours")
+}
+
+model TourHotspot {
+  id          String      @id @default(cuid())
+  tourId      String
+  tour        VirtualTour @relation(fields: [tourId], references: [id])
+  sceneId     String?
+  title       String?
+  description String?
+  positionX   Float?
+  positionY   Float?
+  positionZ   Float?
+  targetScene String?
+  hotspotType String      @default("info")
+  createdAt   DateTime    @default(now())
+
+  @@index([tourId])
+  @@map("tour_hotspots")
+}
+
+model TourChatMessage {
+  id          String   @id @default(cuid())
+  tourId      String
+  sessionId   String?
+  userId      String
+  content     String
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([tourId])
+  @@map("tour_chat_messages")
+}

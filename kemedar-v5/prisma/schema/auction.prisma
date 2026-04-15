@@ -1,0 +1,190 @@
+model PropertyAuction {
+  id                      String        @id @default(cuid())
+  propertyId              String        @unique
+  property                Property      @relation(fields: [propertyId], references: [id])
+  sellerUserId            String
+  auctionCode             String        @unique
+
+  startingPriceEGP        Float
+  reservePriceEGP         Float?
+  buyNowPriceEGP          Float?
+  currentHighestBidEGP    Float?
+  currentHighestBidderId  String?
+  totalBidsCount          Int           @default(0)
+  uniqueBiddersCount      Int           @default(0)
+
+  minBidIncrementEGP      Float         @default(5000)
+  sellerDepositAmountEGP  Float?
+  sellerDepositPaid       Boolean       @default(false)
+  buyerDepositPercent     Float         @default(1)
+
+  auctionStartAt          DateTime?
+  auctionEndAt            DateTime?
+  extensionMinutes        Int           @default(5)
+  maxExtensions           Int           @default(3)
+  extensionsUsed          Int           @default(0)
+
+  status                  AuctionStatus @default(draft)
+  platformCommissionPercent Float       @default(2)
+  winnerId                String?
+  winnerPaymentDeadline   DateTime?
+
+  auctionTitle        String?
+  auctionTitleAr      String?
+  auctionDescription  String?
+  auctionDescriptionAr String?
+  auctionType         String    @default("open")
+  reserveMet          Boolean   @default(false)
+  sellerDepositPaidAt DateTime?
+  sellerDepositTransactionId String?
+  sellerDepositRefunded Boolean @default(false)
+  sellerDepositRefundedAt DateTime?
+  buyerDepositAmountEGP Float?
+  buyerDepositDescription String?
+  registrationOpenAt  DateTime?
+  registrationCloseAt DateTime?
+  finalEndAt          DateTime?
+  requireVerifyProLevel Int     @default(2)
+  requireBuyerKYC     Boolean   @default(true)
+  requireBuyerProofOfFunds Boolean @default(false)
+  winnerBidEGP        Float?
+  winnerNotifiedAt    DateTime?
+  winnerPaymentCompletedAt DateTime?
+  reviewedByAdminId   String?
+  reviewedAt          DateTime?
+  rejectionReason     String?
+  adminNotes          String?
+  isFeaturedHomepage  Boolean   @default(false)
+  kemeworkLegalTaskId String?
+  xeedWalletEscrowReference String?
+  escrowActivatedAt   DateTime?
+  totalRegisteredBidders Int    @default(0)
+  totalPageViews      Int       @default(0)
+  totalWatchlisted    Int       @default(0)
+  peakConcurrentViewers Int     @default(0)
+  deletedAt           DateTime?
+
+  createdAt               DateTime      @default(now())
+  updatedAt               DateTime      @updatedAt
+
+  bids                    AuctionBid[]
+  events                  AuctionEvent[]
+  registrations           AuctionRegistration[]
+  watchlist               AuctionWatchlist[]
+
+  @@index([status])
+  @@index([auctionStartAt, auctionEndAt])
+  @@map("property_auctions")
+}
+
+model AuctionBid {
+  id                    String         @id @default(cuid())
+  auctionId             String
+  auction               PropertyAuction @relation(fields: [auctionId], references: [id])
+  bidderUserId          String
+  bidder                User           @relation(fields: [bidderUserId], references: [id])
+  bidAmountEGP          Float
+  bidType               AuctionBidType
+  isWinning             Boolean        @default(false)
+  isAutoBid             Boolean        @default(false)
+  autoMaxAmountEGP      Float?
+  ipAddress             String?
+  deviceInfo            String?
+  bidSequenceNumber     Int
+  wasExtended           Boolean        @default(false)
+  extensionMinutesAdded Int?
+  bidPlacedAt           DateTime
+  createdAt             DateTime       @default(now())
+
+  @@index([auctionId])
+  @@index([bidderUserId])
+  @@index([auctionId, bidAmountEGP])
+  @@map("auction_bids")
+}
+
+model AuctionEvent {
+  id            String           @id @default(cuid())
+  auctionId     String
+  auction       PropertyAuction  @relation(fields: [auctionId], references: [id])
+  eventType     AuctionEventType
+  actorUserId   String?
+  actorType     AuctionActorType
+  description   String
+  metaData      Json?
+  recordedAt    DateTime
+  createdAt     DateTime         @default(now())
+
+  @@index([auctionId])
+  @@index([eventType])
+  @@map("auction_events")
+}
+
+model AuctionRegistration {
+  id                      String             @id @default(cuid())
+  auctionId               String
+  auction                 PropertyAuction    @relation(fields: [auctionId], references: [id])
+  bidderUserId            String
+  bidder                  User               @relation(fields: [bidderUserId], references: [id])
+  kycVerified             Boolean            @default(false)
+  proofOfFundsUploaded    Boolean            @default(false)
+  proofOfFundsUrl         String?
+  proofOfFundsApprovedByAdmin Boolean        @default(false)
+  depositAmountEGP        Float
+  depositPaid             Boolean            @default(false)
+  depositPaidAt           DateTime?
+  depositTransactionId    String?
+  depositEscrowReference  String?
+  depositStatus           DepositStatus      @default(pending)
+  depositRefundedAt       DateTime?
+  hasAutoBid              Boolean            @default(false)
+  autoBidMaxEGP           Float?
+  autoBidIncrement        Float?
+  registrationStatus      RegistrationStatus @default(pending_payment)
+  isWinner                Boolean            @default(false)
+  totalBidsPlaced         Int                @default(0)
+  highestBidPlaced        Float              @default(0)
+  lastBidAt               DateTime?
+  registeredAt            DateTime
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
+
+  @@unique([auctionId, bidderUserId])
+  @@index([auctionId])
+  @@index([bidderUserId])
+  @@map("auction_registrations")
+}
+
+model AuctionWatchlist {
+  id           String          @id @default(cuid())
+  auctionId    String
+  auction      PropertyAuction @relation(fields: [auctionId], references: [id])
+  userId       String
+  notifyOnBid  Boolean         @default(true)
+  notifyOnEnd  Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+
+  @@unique([auctionId, userId])
+  @@map("auction_watchlists")
+}
+
+model AuctionSettings {
+  id                        String   @id @default(cuid())
+  isActive                  Boolean  @default(true)
+  sellerDepositPercent      Float    @default(0.5)
+  sellerDepositMinEGP       Float    @default(2000)
+  buyerDepositPercent       Float    @default(1)
+  buyerDepositMinEGP        Float    @default(5000)
+  winnerPaymentDeadlineHours Int     @default(48)
+  defaultMinBidIncrementEGP Float    @default(5000)
+  defaultExtensionMinutes   Int      @default(5)
+  defaultMaxExtensions      Int      @default(3)
+  platformCommissionPercent Float    @default(2)
+  requireVerifyProLevel     Int      @default(2)
+  requireBuyerKYC           Boolean  @default(true)
+  maxAuctionDurationDays    Int      @default(30)
+  minAuctionDurationDays    Int      @default(1)
+  featuredAuctionFeeEGP     Float    @default(500)
+  updatedAt                 DateTime @updatedAt
+
+  @@map("auction_settings")
+}

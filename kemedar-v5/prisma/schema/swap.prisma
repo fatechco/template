@@ -1,0 +1,106 @@
+model SwapIntent {
+  id                  String     @id @default(cuid())
+  userId              String
+  user                User       @relation(fields: [userId], references: [id])
+  offeredPropertyId   String     @unique
+  offeredProperty     Property   @relation(fields: [offeredPropertyId], references: [id])
+
+  desiredCategories   String[]
+  desiredCityIds      String[]
+  desiredProvinceIds  String[]
+  desiredDistrictIds  String[]
+  desiredMinArea      Float?
+  desiredMaxArea      Float?
+  desiredMinBedrooms  Int?
+  desiredMaxBedrooms  Int?
+  desiredMinBathrooms Int?
+
+  acceptsCashGap      Boolean    @default(true)
+  maxCashGapPayEGP    Float?
+  maxCashGapReceiveEGP Float?
+
+  status              SwapStatus @default(draft)
+  totalMatches        Int        @default(0)
+  publishedAt         DateTime?
+  expiresAt           DateTime?
+
+  notes               String?
+  notesAr             String?
+
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  matchesAsA          SwapMatch[] @relation("SwapMatchA")
+  matchesAsB          SwapMatch[] @relation("SwapMatchB")
+
+  @@index([userId])
+  @@index([status])
+  @@map("swap_intents")
+}
+
+model SwapMatch {
+  id              String          @id @default(cuid())
+  intentAId       String
+  intentA         SwapIntent      @relation("SwapMatchA", fields: [intentAId], references: [id])
+  intentBId       String
+  intentB         SwapIntent      @relation("SwapMatchB", fields: [intentBId], references: [id])
+  matchScore      Float?
+  matchReasons    Json?
+  cashGapAmount   Float?
+  cashGapDirection String?
+  status          SwapMatchStatus @default(pending)
+  aInterested     Boolean         @default(false)
+  bInterested     Boolean         @default(false)
+  negotiationId   String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  gapOffers       SwapGapOffer[]
+  messages        SwapNegotiationMessage[]
+
+  @@unique([intentAId, intentBId])
+  @@index([intentAId])
+  @@index([intentBId])
+  @@map("swap_matches")
+}
+
+model SwapGapOffer {
+  id           String    @id @default(cuid())
+  matchId      String
+  match        SwapMatch @relation(fields: [matchId], references: [id])
+  offeredById  String
+  amountEGP    Float
+  direction    String
+  status       String    @default("pending")
+  respondedAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@index([matchId])
+  @@map("swap_gap_offers")
+}
+
+model SwapNegotiationMessage {
+  id          String    @id @default(cuid())
+  matchId     String
+  match       SwapMatch @relation(fields: [matchId], references: [id])
+  senderUserId String
+  content     String
+  contentAr   String?
+  messageType String    @default("text")
+  isRead      Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+
+  @@index([matchId])
+  @@map("swap_negotiation_messages")
+}
+
+model SwapSettings {
+  id                  String   @id @default(cuid())
+  isActive            Boolean  @default(true)
+  requireVerifyPro    Int      @default(2)
+  maxActiveIntents    Int      @default(3)
+  matchExpiryDays     Int      @default(30)
+  updatedAt           DateTime @updatedAt
+
+  @@map("swap_settings")
+}

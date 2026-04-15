@@ -1,0 +1,653 @@
+model MatchProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  preferences     Json?
+  budgetRange     Json?
+  locationPrefs   Json?
+  lifestylePrefs  Json?
+  dealBreakers    String[]
+  lastUpdatedAt   DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("match_profiles")
+}
+
+model MatchQueue {
+  id          String   @id @default(cuid())
+  userId      String
+  propertyId  String
+  score       Float?
+  reasons     Json?
+  isViewed    Boolean  @default(false)
+  isDismissed Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("match_queues")
+}
+
+model MatchInsight {
+  id          String   @id @default(cuid())
+  userId      String
+  insightType String
+  title       String?
+  description String?
+  data        Json?
+  confidence  Float?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("match_insights")
+}
+
+model AdvisorProfile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id])
+  purpose             String?
+  householdSize       Int?
+  monthlyIncomeEGP    Float?
+  budgetEGP           Float?
+  priorities          Json?
+  preferredLocations  String[]
+  preferredTypes      String[]
+  timeline            String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("advisor_profiles")
+}
+
+model AdvisorMatch {
+  id              String   @id @default(cuid())
+  advisorProfileId String
+  propertyId      String
+  matchScore      Float?
+  matchReasons    Json?
+  userAction      String?
+  viewedAt        DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([advisorProfileId])
+  @@map("advisor_matches")
+}
+
+model AdvisorReport {
+  id              String   @id @default(cuid())
+  userId          String
+  profileId       String
+  title           String?
+  recommendations Json?
+  financialAnalysis Json?
+  locationRankings Json?
+  shareToken      String?  @unique
+  expiresAt       DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@map("advisor_reports")
+}
+
+model ServiceOrder {
+  id              String             @id @default(cuid())
+  userId          String
+  user            User               @relation(fields: [userId], references: [id])
+  serviceType     String
+  title           String
+  description     String?
+  status          ServiceOrderStatus @default(pending)
+  priorityLevel   String?            @default("normal")
+  assignedToId    String?
+  estimatedCostEGP Float?
+  actualCostEGP   Float?
+  scheduledAt     DateTime?
+  completedAt     DateTime?
+  rating          Int?
+  review          String?
+  location        String?
+  cityId          String?
+  imageUrls       String[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  activities      ServiceOrderActivity[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("service_orders")
+}
+
+model ServiceOrderActivity {
+  id          String       @id @default(cuid())
+  orderId     String
+  order       ServiceOrder @relation(fields: [orderId], references: [id])
+  activityType String
+  description String?
+  performedByUserId String?
+  createdAt   DateTime     @default(now())
+
+  @@index([orderId])
+  @@map("service_order_activities")
+}
+
+model Translation {
+  id          String   @id @default(cuid())
+  key         String
+  module      String
+  locale      String
+  value       String
+  isVerified  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([key, module, locale])
+  @@index([module, locale])
+  @@map("translations")
+}
+
+model TranslationLocation {
+  id          String   @id @default(cuid())
+  entityType  String
+  entityId    String
+  locale      String
+  field       String
+  value       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([entityType, entityId, locale, field])
+  @@map("translation_locations")
+}
+
+model VerificationDocument {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  documentType    String
+  fileUrl         String
+  status          String   @default("pending")
+  reviewedById    String?
+  reviewedAt      DateTime?
+  rejectionReason String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("verification_documents")
+}
+
+model VerificationRecord {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  propertyId      String?
+  level           Int
+  action          String
+  hashChain       String?
+  previousHash    String?
+  metaData        Json?
+  verifiedByUserId String?
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@index([propertyId])
+  @@map("verification_records")
+}
+
+model CompoundDeal {
+  id              String   @id @default(cuid())
+  propertyId      String?
+  dealType        String?
+  title           String
+  description     String?
+  participants    Json?
+  totalValueEGP   Float?
+  status          String   @default("draft")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("compound_deals")
+}
+
+model FranchiseCommission {
+  id              String   @id @default(cuid())
+  franchiseOwnerId String
+  sourceType      String
+  sourceId        String?
+  amountEGP       Float
+  percent         Float?
+  status          String   @default("pending")
+  paidAt          DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([franchiseOwnerId])
+  @@map("franchise_commissions")
+}
+
+model PromoCode {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  discountType    String
+  discountValue   Float
+  maxUses         Int?
+  usedCount       Int      @default(0)
+  validFrom       DateTime?
+  validTo         DateTime?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  @@map("promo_codes")
+}
+
+model UsageEvent {
+  id          String   @id @default(cuid())
+  userId      String?
+  sessionId   String?
+  eventType   String
+  eventData   Json?
+  page        String?
+  referrer    String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([eventType])
+  @@map("usage_events")
+}
+
+model MarketIntelligenceReport {
+  id              String   @id @default(cuid())
+  title           String
+  reportType      String?
+  region          String?
+  cityId          String?
+  content         Json?
+  summary         String?
+  publishedAt     DateTime?
+  createdAt       DateTime @default(now())
+
+  @@map("market_intelligence_reports")
+}
+
+model MarketSignal {
+  id          String   @id @default(cuid())
+  signalType  String
+  region      String?
+  cityId      String?
+  value       Float?
+  trend       String?
+  source      String?
+  data        Json?
+  recordedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  @@map("market_signals")
+}
+
+model MarketProfile {
+  id          String   @id @default(cuid())
+  region      String
+  cityId      String?
+  profileData Json?
+  metrics     Json?
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  @@map("market_profiles")
+}
+
+model MarketPriceIndex {
+  id              String   @id @default(cuid())
+  region          String?
+  cityId          String?
+  propertyType    String?
+  pricePerSqm     Float?
+  currency        String   @default("EGP")
+  period          String?
+  trend           String?
+  createdAt       DateTime @default(now())
+
+  @@map("market_price_indices")
+}
+
+model DemandSignal {
+  id          String   @id @default(cuid())
+  signalType  String
+  category    String?
+  region      String?
+  strength    Float?
+  data        Json?
+  createdAt   DateTime @default(now())
+
+  @@map("demand_signals")
+}
+
+model CrossMarketSearch {
+  id          String   @id @default(cuid())
+  userId      String?
+  query       Json?
+  results     Json?
+  markets     String[]
+  createdAt   DateTime @default(now())
+
+  @@map("cross_market_searches")
+}
+
+model InvestmentMetric {
+  id              String   @id @default(cuid())
+  propertyId      String?
+  metricType      String
+  value           Float?
+  currency        String   @default("EGP")
+  period          String?
+  calculatedAt    DateTime?
+  createdAt       DateTime @default(now())
+
+  @@map("investment_metrics")
+}
+
+model PricePrediction {
+  id              String   @id @default(cuid())
+  propertyId      String?
+  locationId      String?
+  predictedPrice  Float?
+  confidence      Float?
+  timeframeMonths Int?
+  factors         Json?
+  createdAt       DateTime @default(now())
+
+  @@map("price_predictions")
+}
+
+model PredictSubscription {
+  id          String   @id @default(cuid())
+  userId      String
+  locationId  String?
+  propertyType String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("predict_subscriptions")
+}
+
+model PredictionHistoricalTrack {
+  id              String   @id @default(cuid())
+  predictionId    String
+  actualPrice     Float?
+  accuracy        Float?
+  checkedAt       DateTime?
+  createdAt       DateTime @default(now())
+
+  @@map("prediction_historical_tracks")
+}
+
+model PersonalizationRule {
+  id          String   @id @default(cuid())
+  name        String
+  conditions  Json?
+  actions     Json?
+  priority    Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("personalization_rules")
+}
+
+model PersonalizedFeed {
+  id          String   @id @default(cuid())
+  userId      String
+  feedItems   Json?
+  generatedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@map("personalized_feeds")
+}
+
+model RelocationProfile {
+  id              String   @id @default(cuid())
+  userId          String
+  fromCountry     String?
+  fromCity        String?
+  toCountry       String?
+  toCity          String?
+  timeline        String?
+  budget          Float?
+  needs           Json?
+  matchScore      Float?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("relocation_profiles")
+}
+
+model ImageHotspot {
+  id              String   @id @default(cuid())
+  imageUrl        String
+  propertyId      String?
+  positionX       Float
+  positionY       Float
+  productId       String?
+  title           String?
+  description     String?
+  priceEGP        Float?
+  linkUrl         String?
+  clickCount      Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  @@map("image_hotspots")
+}
+
+model HotspotSponsorshipLog {
+  id              String   @id @default(cuid())
+  hotspotId       String
+  sponsorId       String?
+  impressionCount Int      @default(0)
+  clickCount      Int      @default(0)
+  costPerClick    Float?
+  totalCost       Float?
+  period          String?
+  createdAt       DateTime @default(now())
+
+  @@map("hotspot_sponsorship_logs")
+}
+
+model ValuationPortfolio {
+  id              String   @id @default(cuid())
+  userId          String
+  propertyIds     String[]
+  totalValueEGP   Float?
+  lastCalculatedAt DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("valuation_portfolios")
+}
+
+model DeveloperEcoScore {
+  id              String   @id @default(cuid())
+  developerId     String
+  overallScore    Float?
+  dimensions      Json?
+  projectCount    Int?     @default(0)
+  calculatedAt    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([developerId])
+  @@map("developer_eco_scores")
+}
+
+model ThinkDarAPIRequest {
+  id              String   @id @default(cuid())
+  userId          String?
+  requestType     String
+  inputData       Json?
+  outputData      Json?
+  status          String   @default("pending")
+  processingTime  Float?
+  createdAt       DateTime @default(now())
+
+  @@map("thinkdar_api_requests")
+}
+
+model SnapSession {
+  id              String   @id @default(cuid())
+  userId          String
+  imageUrl        String?
+  analysis        Json?
+  materialMatches Json?
+  status          String   @default("active")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("snap_sessions")
+}
+
+model SnapSettings {
+  id          String   @id @default(cuid())
+  isActive    Boolean  @default(true)
+  maxDailySessions Int @default(10)
+  updatedAt   DateTime @updatedAt
+
+  @@map("snap_settings")
+}
+
+model SnapMaterialCartItem {
+  id          String   @id @default(cuid())
+  sessionId   String
+  productId   String?
+  name        String
+  quantity    Int      @default(1)
+  priceEGP    Float?
+  createdAt   DateTime @default(now())
+
+  @@index([sessionId])
+  @@map("snap_material_cart_items")
+}
+
+model KemeKitItem {
+  id              String   @id @default(cuid())
+  name            String
+  nameAr          String?
+  category        String?
+  description     String?
+  priceEGP        Float?
+  unit            String?
+  imageUrl        String?
+  brand           String?
+  inStock         Boolean  @default(true)
+  stockQty        Int?
+  kemetroProductId String?
+  tags            String[]
+  sortOrder       Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("keme_kit_items")
+}
+
+model KemeKitTemplate {
+  id              String   @id @default(cuid())
+  name            String
+  nameAr          String?
+  roomType        String?
+  items           Json?
+  totalEstimate   Float?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("keme_kit_templates")
+}
+
+model KemeKitCalculation {
+  id              String   @id @default(cuid())
+  userId          String
+  projectId       String?
+  rooms           Json?
+  items           Json?
+  totalMaterialCost Float?
+  totalLaborCost    Float?
+  totalShippingCost Float?
+  grandTotal        Float?
+  currency          String  @default("EGP")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("keme_kit_calculations")
+}
+
+model KemeKitInstallationRequest {
+  id              String   @id @default(cuid())
+  userId          String
+  calculationId   String?
+  itemIds         String[]
+  address         String?
+  cityId          String?
+  preferredDate   DateTime?
+  status          String   @default("pending")
+  assignedTo      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("keme_kit_installation_requests")
+}
+
+model KemeKitSave {
+  id              String   @id @default(cuid())
+  userId          String
+  calculationId   String?
+  title           String?
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@map("keme_kit_saves")
+}
+
+model KemeKitSettings {
+  id              String   @id @default(cuid())
+  isActive        Boolean  @default(true)
+  defaultWasteMargin Float @default(0.1)
+  shippingRatePerKg  Float @default(15)
+  updatedAt       DateTime @updatedAt
+
+  @@map("keme_kit_settings")
+}
+
+model DistanceField {
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String?
+  category    String?
+  icon        String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@map("distance_fields")
+}
+
+model ProjectDistance {
+  id          String   @id @default(cuid())
+  projectId   String
+  poiName     String
+  poiNameAr   String?
+  poiType     String?
+  distanceKm  Float?
+  durationMins Float?
+  createdAt   DateTime @default(now())
+
+  @@index([projectId])
+  @@map("project_distances")
+}

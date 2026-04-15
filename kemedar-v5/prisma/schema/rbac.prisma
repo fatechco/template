@@ -1,0 +1,116 @@
+model SystemRole {
+  id          String           @id @default(cuid())
+  name        String           @unique
+  nameAr      String?
+  description String?
+  isSystem    Boolean          @default(false)
+  permissions RolePermission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@map("system_roles")
+}
+
+model RolePermission {
+  id          String     @id @default(cuid())
+  roleId      String
+  role        SystemRole @relation(fields: [roleId], references: [id])
+  resource    String
+  action      String
+  conditions  Json?
+  createdAt   DateTime   @default(now())
+
+  @@unique([roleId, resource, action])
+  @@map("role_permissions")
+}
+
+model PermissionGroup {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  nameAr      String?
+  description String?
+  permissions String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("permission_groups")
+}
+
+model PermissionResource {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  nameAr      String?
+  description String?
+  module      String?
+  createdAt   DateTime @default(now())
+
+  @@map("permission_resources")
+}
+
+model PermissionAction {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  nameAr      String?
+  description String?
+  createdAt   DateTime @default(now())
+
+  @@map("permission_actions")
+}
+
+model PermissionAuditLog {
+  id              String   @id @default(cuid())
+  userId          String
+  action          String
+  resource        String
+  resourceId      String?
+  oldValue        Json?
+  newValue        Json?
+  ipAddress       String?
+  userAgent       String?
+  result          String   @default("allowed")
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@index([resource])
+  @@map("permission_audit_logs")
+}
+
+model SystemModule {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  nameAr      String?
+  description String?
+  isEnabled   Boolean  @default(true)
+  config      Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("system_modules")
+}
+
+model ModuleConfig {
+  id          String   @id @default(cuid())
+  moduleId    String
+  key         String
+  value       Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([moduleId, key])
+  @@map("module_configs")
+}
+
+model FeatureRegistry {
+  id          String   @id @default(cuid())
+  featureKey  String   @unique
+  name        String
+  nameAr      String?
+  description String?
+  isEnabled   Boolean  @default(false)
+  rolloutPercent Float? @default(0)
+  conditions  Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("feature_registry")
+}

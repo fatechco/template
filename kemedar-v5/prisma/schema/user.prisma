@@ -1,0 +1,98 @@
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  passwordHash      String?
+  name              String?
+  nameAr            String?
+  phone             String?
+  avatarUrl         String?
+  role              UserRole  @default(user)
+  isActive          Boolean   @default(true)
+  isVerified        Boolean   @default(false)
+  agreedToTerms     Boolean   @default(false)
+  agreedToTermsAt   DateTime?
+  lastLoginAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+
+  // Relations
+  properties              Property[]
+  escrowDealsAsBuyer      EscrowDeal[]    @relation("EscrowBuyer")
+  escrowDealsAsSeller     EscrowDeal[]    @relation("EscrowSeller")
+  auctionRegistrations    AuctionRegistration[]
+  auctionBids             AuctionBid[]
+  fracTokens              FracToken[]
+  swapIntents             SwapIntent[]
+  communityMemberships    CommunityMember[]
+  communityPosts          CommunityPost[]
+  subscriptions           Subscription[]
+  userDna                 UserDNA?
+  kemedarScore            KemedarScore?
+  coachProfile            CoachProfile?
+  advisorProfile          AdvisorProfile?
+  matchProfile            MatchProfile?
+  blockchainWallets       BlockchainWallet[]
+  scoreEvents             ScoreEvent[]
+  serviceOrders           ServiceOrder[]
+  qrCodes                 QRCode[]
+  verificationDocuments   VerificationDocument[]
+  verificationRecords     VerificationRecord[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+model UserDNA {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  preferredPropertyTypes String[]
+  preferredLocations     String[]
+  budgetMin              Float?
+  budgetMax              Float?
+  preferredCurrency      String?
+  lifestylePriorities    Json?
+  investmentStyle        String?
+  riskTolerance          String?
+  searchBehavior         Json?
+  interactionHistory     Json?
+  calculatedAt           DateTime?
+  version                Int       @default(1)
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@map("user_dna")
+}
+
+model UserSubscription {
+  id              String   @id @default(cuid())
+  userId          String
+  subscriptionId  String
+  status          String   @default("active")
+  startDate       DateTime
+  endDate         DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("user_subscriptions")
+}
+
+model BlockchainWallet {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  walletAddress   String
+  networkType     NearNetworkType @default(testnet)
+  isPrimary       Boolean  @default(false)
+  balance         Float?
+  lastSyncedAt    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, walletAddress])
+  @@map("blockchain_wallets")
+}

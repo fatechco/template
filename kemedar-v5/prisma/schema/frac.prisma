@@ -1,0 +1,193 @@
+model FracProperty {
+  id                      String            @id @default(cuid())
+  propertyId              String            @unique
+  property                Property          @relation(fields: [propertyId], references: [id])
+  submittedByUserId       String
+  approvedByAdminId       String?
+
+  offeringTitle           String
+  offeringTitleAr         String?
+  offeringDescription     String?
+  offeringDescriptionAr   String?
+  offeringSlug            String?           @unique
+
+  propertyValuationEGP    Float?
+  propertyValuationUSD    Float?
+  valuationCurrencyId     String?
+  valuationApprovedByAdminId String?
+  valuationDate           DateTime?
+
+  totalTokenSupply        Int
+  tokenPriceEGP           Float
+  tokenPriceUSD           Float?
+  tokenSymbol             String?
+  tokenName               String?
+  tokensForSale           Int
+  tokensRetainedBySeller  Int?
+  tokensSold              Int               @default(0)
+  tokensAvailable         Int?
+  minTokensPerBuyer       Int               @default(1)
+  maxTokensPerBuyer       Int?
+
+  offeringType            FracOfferingType
+  expectedAnnualYieldPercent Float?
+  yieldFrequency          YieldFrequency?
+  yieldCurrencyId         String?
+
+  offeringStartDate       DateTime?
+  offeringEndDate         DateTime?
+
+  nearContractAddress     String?
+  nearTokenContractDeployed Boolean         @default(false)
+  nearDeployedAt          DateTime?
+  nearDeployedByAdminId   String?
+  nearNetworkType         NearNetworkType   @default(testnet)
+  nearTransactionHash     String?
+  nearExplorerUrl         String?
+
+  status                  FracOfferingStatus @default(draft)
+  rejectionReason         String?
+  isFeatured              Boolean           @default(false)
+  isVerified              Boolean           @default(false)
+  viewCount               Int               @default(0)
+
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+
+  tokens                  FracToken[]
+  transactions            FracTransaction[]
+  updates                 FracPropertyUpdate[]
+  yieldDistributions      FracYieldDistribution[]
+
+  @@index([status])
+  @@index([submittedByUserId])
+  @@map("frac_properties")
+}
+
+model FracToken {
+  id                      String       @id @default(cuid())
+  fracPropertyId          String
+  fracProperty            FracProperty @relation(fields: [fracPropertyId], references: [id])
+  propertyId              String
+  holderUserId            String
+  holder                  User         @relation(fields: [holderUserId], references: [id])
+  holderNearWalletAddress String?
+  tokensHeld              Int
+  tokensHeldPercent       Float?
+  averagePurchasePriceEGP Float?
+  totalInvestedEGP        Float?
+  nearTokenBalance        Float?
+  nearLastSyncedAt        DateTime?
+  nearTransactionHashes   String[]
+  isActive                Boolean      @default(true)
+  firstPurchasedAt        DateTime?
+  lastTransactionAt       DateTime?
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+
+  @@unique([fracPropertyId, holderUserId])
+  @@index([holderUserId])
+  @@map("frac_tokens")
+}
+
+model FracTransaction {
+  id                  String              @id @default(cuid())
+  fracPropertyId      String
+  fracProperty        FracProperty        @relation(fields: [fracPropertyId], references: [id])
+  transactionType     FracTransactionType
+  fromUserId          String?
+  toUserId            String
+  tokensAmount        Int
+  pricePerTokenEGP    Float?
+  totalAmountEGP      Float
+  platformFeeEGP      Float?
+  nearTransactionHash String?
+  nearConfirmed       Boolean             @default(false)
+  nearConfirmedAt     DateTime?
+  paymentMethod       PaymentMethod?
+  paymentReference    String?
+  status              FracTransactionStatus @default(pending)
+  notes               String?
+  createdAt           DateTime            @default(now())
+
+  @@index([fracPropertyId])
+  @@index([toUserId])
+  @@map("frac_transactions")
+}
+
+model FracPropertyUpdate {
+  id             String       @id @default(cuid())
+  fracPropertyId String
+  fracProperty   FracProperty @relation(fields: [fracPropertyId], references: [id])
+  updateType     String
+  title          String?
+  description    String?
+  changedFields  Json?
+  updatedByUserId String
+  createdAt      DateTime     @default(now())
+
+  @@index([fracPropertyId])
+  @@map("frac_property_updates")
+}
+
+model FracYieldDistribution {
+  id             String       @id @default(cuid())
+  fracPropertyId String
+  fracProperty   FracProperty @relation(fields: [fracPropertyId], references: [id])
+  periodStart    DateTime
+  periodEnd      DateTime
+  totalYieldEGP  Float
+  perTokenYieldEGP Float
+  totalTokensEligible Int
+  holdersCount   Int
+  status         String       @default("pending")
+  distributedAt  DateTime?
+  createdAt      DateTime     @default(now())
+
+  @@index([fracPropertyId])
+  @@map("frac_yield_distributions")
+}
+
+model FracKYC {
+  id              String   @id @default(cuid())
+  userId          String
+  documentType    String
+  documentNumber  String?
+  documentUrl     String?
+  selfieUrl       String?
+  status          String   @default("pending")
+  reviewedById    String?
+  reviewedAt      DateTime?
+  rejectionReason String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("frac_kyc")
+}
+
+model FracWatchlist {
+  id             String   @id @default(cuid())
+  fracPropertyId String
+  userId         String
+  notifyOnPrice  Boolean  @default(true)
+  notifyOnYield  Boolean  @default(true)
+  createdAt      DateTime @default(now())
+
+  @@unique([fracPropertyId, userId])
+  @@map("frac_watchlists")
+}
+
+model FracSettings {
+  id                      String   @id @default(cuid())
+  isActive                Boolean  @default(true)
+  platformFeePercent      Float    @default(2.5)
+  minTokenPrice           Float    @default(100)
+  maxTokensPerOffering    Int      @default(10000)
+  requireVerifyProLevel   Int      @default(3)
+  kycRequired             Boolean  @default(true)
+  nearNetworkDefault      NearNetworkType @default(testnet)
+  updatedAt               DateTime @updatedAt
+
+  @@map("frac_settings")
+}

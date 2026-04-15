@@ -1,0 +1,85 @@
+model NegotiationSession {
+  id                String            @id @default(cuid())
+  propertyId        String?
+  buyerUserId       String
+  sellerUserId      String
+  swapMatchId       String?
+
+  status            NegotiationStatus @default(active)
+  currentOfferPrice Float?
+  currency          String            @default("EGP")
+  roundsCount       Int               @default(0)
+  maxRounds         Int?
+
+  buyerStrategy     Json?
+  sellerStrategy    Json?
+
+  startedAt         DateTime          @default(now())
+  lastActivityAt    DateTime?
+  agreedAt          DateTime?
+  expiresAt         DateTime?
+
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  offers            NegotiationOffer[]
+  messages          NegotiationMessage[]
+  analytics         NegotiationAnalytics?
+
+  @@index([buyerUserId])
+  @@index([sellerUserId])
+  @@index([status])
+  @@map("negotiation_sessions")
+}
+
+model NegotiationOffer {
+  id              String                @id @default(cuid())
+  sessionId       String
+  session         NegotiationSession    @relation(fields: [sessionId], references: [id])
+  offeredByUserId String
+  offerPrice      Float
+  currency        String                @default("EGP")
+  conditions      Json?
+  message         String?
+  messageAr       String?
+  status          NegotiationOfferStatus @default(pending)
+  respondedAt     DateTime?
+  expiresAt       DateTime?
+  createdAt       DateTime              @default(now())
+
+  @@index([sessionId])
+  @@map("negotiation_offers")
+}
+
+model NegotiationMessage {
+  id              String             @id @default(cuid())
+  sessionId       String
+  session         NegotiationSession @relation(fields: [sessionId], references: [id])
+  senderUserId    String
+  content         String
+  contentAr       String?
+  messageType     String             @default("text")
+  isRead          Boolean            @default(false)
+  isAiGenerated   Boolean            @default(false)
+  createdAt       DateTime           @default(now())
+
+  @@index([sessionId])
+  @@map("negotiation_messages")
+}
+
+model NegotiationAnalytics {
+  id              String             @id @default(cuid())
+  sessionId       String             @unique
+  session         NegotiationSession @relation(fields: [sessionId], references: [id])
+  totalRounds     Int                @default(0)
+  priceDropPercent Float?
+  avgResponseTime Float?
+  buyerLeverage   Json?
+  sellerLeverage  Json?
+  aiRecommendation Json?
+  outcome         String?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@map("negotiation_analytics")
+}
